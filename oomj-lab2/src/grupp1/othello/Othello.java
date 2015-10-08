@@ -13,25 +13,6 @@ import javafx.stage.Stage;
 public final class Othello extends Application {
 
 /**
- * Program authors.
- */
-private final static String[] authors = { "Philip Arvidsson (S133686)",
-                                          "Martin Bergqvist (S141564)" };
-
-/**
- * Prints the introductor message to stdio.
- */
-private static void printIntroMessage() {
-    System.out.println("ASYAR14h / OOMU / Lab. 2");
-
-    System.out.println("By:");
-    for (String author : authors)
-        System.out.println("    " + author);
-
-    System.out.println();
-}
-
-/**
  * This method initializes the game and starts it.
  * @param primaryStage Stage to use for displaying the game in a visual fashion.
  */
@@ -54,6 +35,28 @@ public static void main(String[] args) {
     printIntroMessage();
 
     launch(args);
+}
+
+/**
+ * Prints the introductory message to stdio.
+ */
+private static void printIntroMessage() {
+    System.out.println("ASYAR14h / OOMU / Lab. 2");
+
+    System.out.println("By:");
+    for (String author : getAuthors())
+        System.out.println("    " + author);
+
+    System.out.println();
+}
+
+/**
+ * Retrieves the program authors.
+ * @return An array of strings with the program authors' names.
+ */
+private static String[] getAuthors() {
+    return new String[] { "Philip Arvidsson (S133686)",
+                          "Martin Bergqvist (S141564)" };
 }
 
 }
