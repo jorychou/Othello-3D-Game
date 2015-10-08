@@ -1,9 +1,14 @@
 <project name="oomj-lab2" default="compile-jar">
-    <property name="src-dir"     value="src"                  />
+    <!-- Properties -->
+
     <property name="build-dir"   value="build"                />
     <property name="classes-dir" value="${build-dir}/classes" />
     <property name="jar-dir"     value="${build-dir}/jar"     />
+    <property name="jar-name"    value="Othello.jar"          />
     <property name="main-class"  value="gruppX.reversi.ReversiGame" />
+    <property name="src-dir"     value="src"                  />
+
+    <!-- Targets -->
 
     <target name="clean">
         <delete dir="${build-dir}" />
@@ -17,8 +22,7 @@
 
     <target name="jar">
         <mkdir dir="${jar-dir}" />
-        <jar basedir="${classes-dir}"
-             destfile="${jar-dir}/${ant.project.name}.jar">
+        <jar basedir="${classes-dir}" destfile="${jar-dir}/${jar-name}">
             <manifest>
                 <attribute name="Main-Class" value="${main-class}" />
             </manifest>
