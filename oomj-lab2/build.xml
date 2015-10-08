@@ -5,7 +5,7 @@
     <property name="classes-dir" value="${build-dir}/classes" />
     <property name="jar-dir"     value="${build-dir}/jar"     />
     <property name="jar-name"    value="Othello.jar"          />
-    <property name="main-class"  value="gruppX.reversi.ReversiGame" />
+    <property name="main-class"  value="grupp1.othello.Othello" />
     <property name="src-dir"     value="src"                  />
 
     <!-- Targets -->
