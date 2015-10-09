@@ -5,7 +5,6 @@ package grupp1.othello;
  *----------------------------------------------*/
 
 import grupp1.othello.controller.SetUpGameDialog;
-import grupp1.othello.model.SetUpGameDialogResult;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -44,15 +43,16 @@ public static void main(String[] args) {
  */
 @Override
 public void start(Stage primaryStage) {
-    // We don't need this crap.
+    // We don't need this crap. lol!
     primaryStage.close();
 
-    SetUpGameDialogResult r = new SetUpGameDialog().showAndGetResult();
+    setUserAgentStylesheet(STYLESHEET_MODENA);
 
-    System.out.println("Player 1: " + r.getPlayer1Name());
-    System.out.println("Player 2: " + r.getPlayer2Name());
-
-    System.out.println("darn");
+    new SetUpGameDialog()
+        .onComplete((model) -> {
+            System.out.println("Player 1: " + model.getPlayer1Name());
+            System.out.println("Player 2: " + model.getPlayer2Name());
+        }).showAndWait();
 }
 
 /*------------------------------------------------

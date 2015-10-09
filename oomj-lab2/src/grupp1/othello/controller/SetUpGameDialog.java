@@ -5,9 +5,11 @@ package grupp1.othello.controller;
  *----------------------------------------------*/
 
 import grupp1.othello.controller.FXMLStage;
-import grupp1.othello.model.SetUpGameDialogResult;
+import grupp1.othello.model.GameConfiguration;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 /*------------------------------------------------
@@ -19,11 +21,17 @@ import javafx.scene.control.TextField;
  *
  * @author Philip Arvidsson (S133686)
  */
-public class SetUpGameDialog extends FXMLStage<SetUpGameDialogResult> {
+public class SetUpGameDialog extends FXMLStage<GameConfiguration> {
 
 /*------------------------------------------------
  * FIELDS
  *----------------------------------------------*/
+
+/**
+ * Button for accepting the configuration.
+ */
+@FXML
+private Button playButton;
 
 /**
  * Text field for entering the first player's name.
@@ -38,6 +46,32 @@ private TextField player1Name;
 private TextField player2Name;
 
 /*------------------------------------------------
+ * PUBLIC METHODS
+ *----------------------------------------------*/
+
+/**
+ * Constructor.
+ */
+public SetUpGameDialog() {
+    super(new GameConfiguration());
+}
+
+/*------------------------------------------------
+ * PROTECTED METHODS
+ *----------------------------------------------*/
+
+/**
+ * Initializes the stage.
+ */
+@Override
+protected void initialize() {
+    setResizable(false);
+
+    player1Name.setText("Player 1");
+    player2Name.setText("Player 2");
+}
+
+/*------------------------------------------------
  * PRIVATE METHODS
  *----------------------------------------------*/
 
@@ -45,11 +79,22 @@ private TextField player2Name;
  * Action handler for when the play button is pressed.
  */
 @FXML
-private void playAction() {
-    setResult(new SetUpGameDialogResult(player1Name.getText(),
-                                        player2Name.getText()));
+private void playButtonClicked() {
+    getModel().setPlayer1Name(player1Name.getText());
+    getModel().setPlayer2Name(player2Name.getText());
 
     close();
+}
+
+/**
+ * Handler for when a player name has been changed.
+ */
+@FXML
+private void playerNameChanged() {
+    Platform.runLater(() ->
+        playButton.setDisable(!(player1Name.getText().length() > 0
+                             && player2Name.getText().length() > 0))
+    );
 }
 
 }

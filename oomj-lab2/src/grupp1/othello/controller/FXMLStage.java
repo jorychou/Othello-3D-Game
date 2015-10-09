@@ -5,7 +5,11 @@ package grupp1.othello.controller;
  *----------------------------------------------*/
 
 import java.io.IOException;
+import java.lang.reflect.ParameterizedType;
+import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
@@ -26,9 +30,19 @@ public class FXMLStage<T> extends Stage {
  *----------------------------------------------*/
 
 /**
- * The result, if any.
+ * The function to be called when the stage has achieved its life purpose.
  */
-private T result;
+private Consumer<T> completeCallback;
+
+/**
+ * Function to be called when something has gone wrong.
+ */
+private BiConsumer<T, Object> errorCallback;
+
+/**
+ * The data storage object.
+ */
+public T model;
 
 /*------------------------------------------------
  * PUBLIC METHODS
@@ -37,10 +51,12 @@ private T result;
 /**
  * Constructor. FXML for the view is automatically loaded in it.
  */
-public FXMLStage() {
+public FXMLStage(T model) {
     String     className = getClass().getSimpleName();
-    String     viewName  = "/grupp1/othello/view/" + className + ".fxml";
+    String     viewName  = "/fxml/" + className + ".fxml";
     FXMLLoader fxml      = new FXMLLoader(getClass().getResource(viewName));
+
+    this.model = model;
 
     fxml.setController(this);
 
@@ -52,9 +68,48 @@ public FXMLStage() {
     }
 }
 
-public T showAndGetResult() {
-    showAndWait();
-    return (result);
+/**
+ * Assigns a complete handler function to the stage.
+ *
+ * @param cb The complete handler callback function.
+ *
+ * @return The stage itself.
+ */
+public FXMLStage<T> onComplete(Consumer<T> cb) {
+    completeCallback = cb;
+    return (this);
+}
+
+/**
+ * Assigns an error handler function to the stage.
+ *
+ * @param cb The error handler callback function.
+ *
+ * @return The stage itself.
+ */
+public FXMLStage<T> onError(BiConsumer<T, Object> cb) {
+    errorCallback = cb;
+    return (this);
+}
+
+/**
+ * Gets the data storage object.
+ *
+ * @return The data storage object.
+ */
+public T getModel() {
+    return (model);
+}
+
+/**
+ * Shows the stage and blocks until its done. The complete handler will be
+ * called if one has been set.
+ */
+@Override
+public void showAndWait() {
+    initialize();
+    super.showAndWait();
+    complete();
 }
 
 /*------------------------------------------------
@@ -62,12 +117,34 @@ public T showAndGetResult() {
  *----------------------------------------------*/
 
 /**
- * Sets the result.
+ * Calls the error handler if one has been set.
  *
- * @param value The result.
+ * @param data Error data.
  */
-protected void setResult(T value) {
-    result = value;
+protected void error(Object data) {
+    if (errorCallback != null)
+        errorCallback.accept(model, data);
+
+    // Simple h4x to prevent the complete callback from being called! lol!
+    completeCallback = null;
+}
+
+/**
+ * Initializes the stage.
+ */
+protected void initialize() {
+}
+
+/*------------------------------------------------
+ * PRIVATE METHODS
+ *----------------------------------------------*/
+
+/**
+ * Calls the complete handler if one has been set.
+ */
+private void complete() {
+    if (completeCallback != null)
+        completeCallback.accept(model);
 }
 
 }
