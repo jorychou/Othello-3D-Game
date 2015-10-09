@@ -4,7 +4,8 @@ package grupp1.othello;
  * IMPORTS
  *----------------------------------------------*/
 
-import grupp1.othello.view.SetUpGameDialog;
+import grupp1.othello.controller.SetUpGameDialog;
+import grupp1.othello.model.FXMLLoader;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -31,15 +32,8 @@ public class Othello extends Application {
  * Program entry point.
  * @param args Command line arguments.
  */
-public final static void main(String[] args) {
+public static void main(String[] args) {
     printIntroMessage();
-
-    Platform.runLater(() -> {
-        Stage dlgStage = new Stage();
-        dlgStage.setScene(new Scene(new SetUpGameDialog()));
-        dlgStage.sizeToScene();
-        dlgStage.show();
-    });
 
     launch(args);
 }
@@ -50,13 +44,10 @@ public final static void main(String[] args) {
  */
 @Override
 public void start(Stage primaryStage) {
-    Button button = new Button("heylo everyone!");
-    Scene  scene  = new Scene(button);
+    // We don't need this crap.
+    primaryStage.close();
 
-    primaryStage.setTitle("Othello (grupp1)");
-    primaryStage.setScene(scene);
-    primaryStage.sizeToScene();
-    primaryStage.show();
+    new SetUpGameDialog().showAndWait();
 }
 
 /*------------------------------------------------

@@ -16,13 +16,16 @@
 
     <target name="compile">
         <mkdir dir="${classes-dir}" />
-        <javac srcdir="${src-dir}" destdir="${classes-dir}"
-               includeantruntime="false" />
+        <javac destdir="${classes-dir}" includeantruntime="false">
+            <src path="${src-dir}" />
+        </javac>
     </target>
 
     <target name="jar">
         <mkdir dir="${jar-dir}" />
-        <jar basedir="${classes-dir}" destfile="${jar-dir}/${jar-name}">
+        <jar destfile="${jar-dir}/${jar-name}">
+            <fileset dir="build/classes" />
+            <fileset dir="${src-dir}" excludes="*.java" />
             <manifest>
                 <attribute name="Main-Class" value="${main-class}" />
             </manifest>
