@@ -67,8 +67,8 @@ public SetUpGameDialog() {
 protected void initialize() {
     setResizable(false);
 
-    player1Name.setText("Player 1");
-    player2Name.setText("Player 2");
+    player1Name.setText(getModel().getPlayer1Name());
+    player2Name.setText(getModel().getPlayer2Name());
 }
 
 /*------------------------------------------------

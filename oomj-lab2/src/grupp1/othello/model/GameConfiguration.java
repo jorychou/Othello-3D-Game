@@ -24,7 +24,7 @@ public class GameConfiguration {
 /**
  * First player's name.
  */
-private String player1Name;
+private String player1Name = "Player 1";
 
 /**
  * First player's type.
@@ -34,7 +34,7 @@ private PlayerType player1Type;
 /**
  * Second player's name.
  */
-private String player2Name;
+private String player2Name = "Player 2";
 
 /**
  * Second player's type.
