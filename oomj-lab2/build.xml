@@ -1,4 +1,4 @@
-<project name="oomj-lab2" default="compile-jar">
+<project name="oomj-lab2" default="run">
     <!-- Properties -->
 
     <property name="build-dir"   value="build"                  />
