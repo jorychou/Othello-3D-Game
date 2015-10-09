@@ -30,7 +30,7 @@
     </target>
 
     <target name="run">
-        <java jar="${jar-dir}/$(jar-name}" />
+        <java jar="${jar-dir}/${jar-name}" fork="true" />
     </target>
 
     <target name="compile-jar" depends="compile,jar" />
