@@ -16,12 +16,12 @@
 
         <HBox alignment="baseline_left" spacing="10">
             <Label text="Player 1 name:" />
-            <TextField fx:id="playerName1" />
+            <TextField fx:id="player1Name" />
         </HBox>
 
         <HBox alignment="baseline_left" spacing="10">
             <Label text="Player 2 name:" />
-            <TextField fx:id="playerName2" />
+            <TextField fx:id="player2Name" />
         </HBox>
 
         <HBox alignment="center">

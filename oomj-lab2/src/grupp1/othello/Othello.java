@@ -5,7 +5,7 @@ package grupp1.othello;
  *----------------------------------------------*/
 
 import grupp1.othello.controller.SetUpGameDialog;
-import grupp1.othello.model.FXMLLoader;
+import grupp1.othello.model.SetUpGameDialogResult;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -47,7 +47,12 @@ public void start(Stage primaryStage) {
     // We don't need this crap.
     primaryStage.close();
 
-    new SetUpGameDialog().showAndWait();
+    SetUpGameDialogResult r = new SetUpGameDialog().showAndGetResult();
+
+    System.out.println("Player 1: " + r.getPlayer1Name());
+    System.out.println("Player 2: " + r.getPlayer2Name());
+
+    System.out.println("darn");
 }
 
 /*------------------------------------------------

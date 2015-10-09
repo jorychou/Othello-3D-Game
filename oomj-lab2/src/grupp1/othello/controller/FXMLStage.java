@@ -19,7 +19,16 @@ import javafx.stage.Stage;
  *
  * @author Philip Arvidsson (S133686)
  */
-public class FXMLStage extends Stage {
+public class FXMLStage<T> extends Stage {
+
+/*------------------------------------------------
+ * FIELDS
+ *----------------------------------------------*/
+
+/**
+ * The result, if any.
+ */
+private T result;
 
 /*------------------------------------------------
  * PUBLIC METHODS
@@ -41,6 +50,24 @@ public FXMLStage() {
     catch (IOException e) {
         e.printStackTrace();
     }
+}
+
+public T showAndGetResult() {
+    showAndWait();
+    return (result);
+}
+
+/*------------------------------------------------
+ * PROTECTED METHODS
+ *----------------------------------------------*/
+
+/**
+ * Sets the result.
+ *
+ * @param value The result.
+ */
+protected void setResult(T value) {
+    result = value;
 }
 
 }
