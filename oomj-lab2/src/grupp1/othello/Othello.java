@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  *
  * @author Philip Arvidsson (S133686)
  */
-public final class Othello extends Application {
+public class Othello extends Application {
 
 /*------------------------------------------------
  * PUBLIC METHODS
@@ -28,7 +28,7 @@ public final class Othello extends Application {
  * Program entry point.
  * @param args Command line arguments.
  */
-public static void main(String[] args) {
+public final static void main(String[] args) {
     printIntroMessage();
 
     launch(args);
