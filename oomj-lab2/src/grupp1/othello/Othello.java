@@ -4,7 +4,10 @@ package grupp1.othello;
  * IMPORTS
  *----------------------------------------------*/
 
+import grupp1.othello.view.SetUpGameDialog;
+
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -30,6 +33,8 @@ public class Othello extends Application {
  */
 public final static void main(String[] args) {
     printIntroMessage();
+
+    Platform.runLater(() -> new SetUpGameDialog().show());
 
     launch(args);
 }
