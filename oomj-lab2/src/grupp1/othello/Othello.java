@@ -34,7 +34,12 @@ public class Othello extends Application {
 public final static void main(String[] args) {
     printIntroMessage();
 
-    Platform.runLater(() -> new SetUpGameDialog().show());
+    Platform.runLater(() -> {
+        Stage dlgStage = new Stage();
+        dlgStage.setScene(new Scene(new SetUpGameDialog()));
+        dlgStage.sizeToScene();
+        dlgStage.show();
+    });
 
     launch(args);
 }
