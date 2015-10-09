@@ -14,16 +14,16 @@ import javafx.scene.control.TextField;
  * CLASS
  *----------------------------------------------*/
 
-/*------------------------------------------------
- * FIELDS
- *----------------------------------------------*/
-
 /**
  * Initial dialog for configuring the game session.
  *
  * @author Philip Arvidsson (S133686)
  */
 public class SetUpGameDialog extends FXMLStage<SetUpGameDialogResult> {
+
+/*------------------------------------------------
+ * FIELDS
+ *----------------------------------------------*/
 
 /**
  * Text field for entering the first player's name.
@@ -36,10 +36,6 @@ private TextField player1Name;
  */
 @FXML
 private TextField player2Name;
-
-/*------------------------------------------------
- * PUBLIC METHODS
- *----------------------------------------------*/
 
 /*------------------------------------------------
  * PRIVATE METHODS
