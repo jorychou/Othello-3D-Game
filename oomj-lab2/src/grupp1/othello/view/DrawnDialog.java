@@ -4,7 +4,7 @@ package grupp1.othello.view;
  * IMPORTS
  *----------------------------------------------*/
 
-import blah;
+//import blah;
 
 /*------------------------------------------------
  * CLASS
@@ -13,7 +13,7 @@ import blah;
 /**
  * @author
  */
-public class DrawnDialog extends what {
+public class DrawnDialog  {
 
 /*------------------------------------------------
  * PUBLIC METHODS

@@ -4,7 +4,7 @@ package grupp1.othello.model;
  * IMPORTS
  *----------------------------------------------*/
 
-import blah;
+//import blah;
 
 /*------------------------------------------------
  * CLASS
@@ -13,7 +13,7 @@ import blah;
 /**
  * @author
  */
-public class GameGrid extends what {
+public class GameGrid  {
 
 private final int gridSize;
 

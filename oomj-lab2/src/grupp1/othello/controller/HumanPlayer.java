@@ -4,7 +4,7 @@ package grupp1.othello.controller;
  * IMPORTS
  *----------------------------------------------*/
 
-import blah;
+//import blah;
 
 /*------------------------------------------------
  * CLASS

@@ -4,7 +4,7 @@ package grupp1.othello.exceptions;
  * IMPORTS
  *----------------------------------------------*/
 
-import blah;
+//import blah;
 
 /*------------------------------------------------
  * CLASS
