@@ -38,4 +38,5 @@
 
     <target name="compile-jar" depends="compile,jar" />
     <target name="jfx-build" depends="compile-jar" />
+    <target name="jfxsa-run" depends="run" />
 </project>
