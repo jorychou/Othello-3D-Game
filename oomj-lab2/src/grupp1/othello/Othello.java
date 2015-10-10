@@ -46,8 +46,6 @@ public void start(Stage primaryStage) {
     // We don't need this crap. lol!
     primaryStage.close();
 
-    setUserAgentStylesheet(STYLESHEET_MODENA);
-
     new SetUpGameDialog()
         .onComplete((model) -> {
             System.out.println("Player 1: " + model.getPlayer1Name());

@@ -6,8 +6,10 @@ package grupp1.othello.controller;
 
 import grupp1.othello.controller.FXMLStage;
 import grupp1.othello.model.GameConfiguration;
+import grupp1.othello.model.PlayerType;
 
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -68,8 +70,9 @@ protected void initialize() {
     setResizable(false);
     setTitle("asyar14h/oomu/lab.2");
 
-    player1Name.setText(getModel().getPlayer1Name());
-    player2Name.setText(getModel().getPlayer2Name());
+    setupModel();
+    setupHandlers();
+    setupBindings();
 }
 
 /*------------------------------------------------
@@ -77,25 +80,40 @@ protected void initialize() {
  *----------------------------------------------*/
 
 /**
- * Action handler for when the play button is pressed.
+ * Sets up all bindings. Some in a slightly more inane manner than others.
  */
-@FXML
-private void playButtonClicked() {
-    getModel().setPlayer1Name(player1Name.getText());
-    getModel().setPlayer2Name(player2Name.getText());
+private void setupBindings() {
+    GameConfiguration model = getModel();
 
-    close();
+    player1Name.textProperty().bindBidirectional(model.player1NameProperty());
+    player2Name.textProperty().bindBidirectional(model.player2NameProperty());
+
+    // Disable play button when a name is missing.
+    playButton.disableProperty().bind(
+        Bindings.createBooleanBinding(() ->
+            model.player1NameProperty().isEmpty().getValue()
+         || model.player2NameProperty().isEmpty().getValue(),
+            model.player1NameProperty(), model.player2NameProperty()
+        )
+    );
 }
 
 /**
- * Handler for when a player name has been changed.
+ * Sets up the control event handlers.
  */
-@FXML
-private void playerNameChanged() {
-    Platform.runLater(() ->
-        playButton.setDisable(!(player1Name.getText().length() > 0
-                             && player2Name.getText().length() > 0))
-    );
+private void setupHandlers() {
+    playButton.setOnAction(e -> close());
+}
+
+/**
+ * Initializes the model to some defaults.
+ */
+private void setupModel() {
+    getModel().setPlayer1Name("Player");
+    getModel().setPlayer1Type(PlayerType.HUMAN);
+
+    getModel().setPlayer2Name("Computer");
+    getModel().setPlayer2Type(PlayerType.COMPUTER);
 }
 
 }

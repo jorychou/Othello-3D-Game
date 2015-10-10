@@ -42,7 +42,7 @@ private BiConsumer<T, Object> errorCallback;
 /**
  * The data storage object.
  */
-public T model;
+private T model;
 
 /*------------------------------------------------
  * PUBLIC METHODS

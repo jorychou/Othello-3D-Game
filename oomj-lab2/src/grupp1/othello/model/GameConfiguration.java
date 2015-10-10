@@ -6,6 +6,9 @@ package grupp1.othello.model;
 
 import grupp1.othello.model.PlayerType;
 
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /*------------------------------------------------
  * CLASS
  *----------------------------------------------*/
@@ -22,9 +25,9 @@ public class GameConfiguration {
  *----------------------------------------------*/
 
 /**
- * First player's name.
+ * First player's name property.
  */
-private String player1Name = "Player";
+private final StringProperty player1NameProperty = new SimpleStringProperty();
 
 /**
  * First player's type.
@@ -32,9 +35,9 @@ private String player1Name = "Player";
 private PlayerType player1Type = PlayerType.HUMAN;
 
 /**
- * Second player's name.
+ * Second player's name property.
  */
-private String player2Name = "Computer";
+private final StringProperty player2NameProperty = new SimpleStringProperty();
 
 /**
  * Second player's type.
@@ -46,12 +49,30 @@ private PlayerType player2Type = PlayerType.COMPUTER;
  *----------------------------------------------*/
 
 /**
+ * Gets the first player's name property.
+ *
+ * @return The first player's name property.
+ */
+public final StringProperty player1NameProperty() {
+    return (player1NameProperty);
+}
+
+/**
+ * Gets the second player's name property.
+ *
+ * @return The second player's name property.
+ */
+public final StringProperty player2NameProperty() {
+    return (player2NameProperty);
+}
+
+/**
  * Gets the first player's name.
  *
  * @return The first player's name.
  */
 public String getPlayer1Name() {
-    return (player1Name);
+    return (player1NameProperty.getValue());
 }
 
 /**
@@ -60,7 +81,7 @@ public String getPlayer1Name() {
  * @param value Player name.
  */
 public void setPlayer1Name(String value) {
-    player1Name = value;
+    player1NameProperty.setValue(value);
 }
 
 /**
@@ -87,7 +108,7 @@ public void setPlayer1Type(PlayerType value) {
  * @return The second player's name.
  */
 public String getPlayer2Name() {
-    return (player2Name);
+    return (player2NameProperty.getValue());
 }
 
 /**
@@ -96,7 +117,7 @@ public String getPlayer2Name() {
  * @param value Player name.
  */
 public void setPlayer2Name(String value) {
-    player2Name = value;
+    player2NameProperty.setValue(value);
 }
 
 /**

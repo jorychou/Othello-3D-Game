@@ -8,9 +8,10 @@
 
 <Scene xmlns="http://javafx.com/javafx/8"
        xmlns:fx="http://javafx.com/fxml/1">
+
     <fx:define>
-        <ToggleGroup fx:id="player1TypeToggleGroup" />
-        <ToggleGroup fx:id="player2TypeToggleGroup" />
+        <ToggleGroup fx:id="player1Type" />
+        <ToggleGroup fx:id="player2Type" />
     </fx:define>
 
     <VBox spacing="16">
@@ -31,9 +32,10 @@
 
         <HBox alignment="baseline_left" spacing="10">
             <Label text="Player 1:" />
-            <TextField fx:id="player1Name" onKeyTyped="#playerNameChanged" />
 
-            <RadioButton toggleGroup="$player1TypeToggleGroup" selected="true">
+            <TextField fx:id="player1Name" />
+
+            <RadioButton toggleGroup="$player1Type" selected="true">
                 <graphic>
                     <ImageView>
                         <Image url="/images/human.png" />
@@ -41,7 +43,7 @@
                 </graphic>
             </RadioButton>
 
-            <RadioButton toggleGroup="$player1TypeToggleGroup">
+            <RadioButton toggleGroup="$player1Type">
                 <graphic>
                     <ImageView>
                         <Image url="/images/computer.png" />
@@ -52,9 +54,9 @@
 
         <HBox alignment="baseline_left" spacing="10">
             <Label text="Player 2:" />
-            <TextField fx:id="player2Name" onKeyTyped="#playerNameChanged" />
+            <TextField fx:id="player2Name" />
 
-            <RadioButton toggleGroup="$player2TypeToggleGroup">
+            <RadioButton toggleGroup="$player2Type">
                 <graphic>
                     <ImageView>
                         <Image url="/images/human.png" />
@@ -62,7 +64,7 @@
                 </graphic>
             </RadioButton>
 
-            <RadioButton toggleGroup="$player2TypeToggleGroup" selected="true">
+            <RadioButton toggleGroup="$player2Type" selected="true">
                 <graphic>
                     <ImageView>
                         <Image url="/images/computer.png" />
@@ -77,7 +79,7 @@
             </padding>
 
             <Separator HBox.hgrow="always" />
-            <Button fx:id="playButton" text="Play Othello!" defaultButton="true" scaleX="1.2" scaleY="1.2" onAction="#playButtonClicked" style="-fx-cursor: hand;" />
+            <Button fx:id="playButton" text="Play Othello!" defaultButton="true" scaleX="1.2" scaleY="1.2" style="-fx-cursor: hand;" />
             <Separator HBox.hgrow="always" />
         </HBox>
     </VBox>
