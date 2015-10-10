@@ -24,22 +24,22 @@ public class GameConfiguration {
 /**
  * First player's name.
  */
-private String player1Name = "Player 1";
+private String player1Name = "Player";
 
 /**
  * First player's type.
  */
-private PlayerType player1Type;
+private PlayerType player1Type = PlayerType.HUMAN;
 
 /**
  * Second player's name.
  */
-private String player2Name = "Player 2";
+private String player2Name = "Computer";
 
 /**
  * Second player's type.
  */
-private PlayerType player2Type;
+private PlayerType player2Type = PlayerType.COMPUTER;
 
 /*------------------------------------------------
  * PUBLIC METHODS

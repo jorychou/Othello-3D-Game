@@ -23,18 +23,20 @@
             <Label style="-fx-font-size: 32;" text="Othello" />
             <Label style="-fx-font-size: 10;" text="Not for Noobs Edition" />
         </HBox>
-        <Label text="Welcome to the most l33t Othello game of all time!&#10;Enter your secrets below to start enjoying this 'game'." />
+
+        <Label text="Welcome to the most awesome game ever created in Java/FX!&#10;Configure your game session below and press the play button&#10;to get started." />
+        <Label text="        by Martin Bergqvist (S141564) &amp; Philip Arvidsson (S133686)" style="-fx-font-size: 10;" />
 
         <Separator />
 
         <HBox alignment="baseline_left" spacing="10">
-            <Label text="Player 1 name:" />
+            <Label text="Player 1:" />
             <TextField fx:id="player1Name" onKeyTyped="#playerNameChanged" />
 
             <RadioButton toggleGroup="$player1TypeToggleGroup" selected="true">
                 <graphic>
                     <ImageView>
-                        <Image url="/images/icon-8.png" />
+                        <Image url="/images/human.png" />
                     </ImageView>
                 </graphic>
             </RadioButton>
@@ -42,20 +44,20 @@
             <RadioButton toggleGroup="$player1TypeToggleGroup">
                 <graphic>
                     <ImageView>
-                        <Image url="/images/icon-8.png" />
+                        <Image url="/images/computer.png" />
                     </ImageView>
                 </graphic>
             </RadioButton>
         </HBox>
 
         <HBox alignment="baseline_left" spacing="10">
-            <Label text="Player 2 name:" />
+            <Label text="Player 2:" />
             <TextField fx:id="player2Name" onKeyTyped="#playerNameChanged" />
 
             <RadioButton toggleGroup="$player2TypeToggleGroup">
                 <graphic>
                     <ImageView>
-                        <Image url="/images/icon-8.png" />
+                        <Image url="/images/human.png" />
                     </ImageView>
                 </graphic>
             </RadioButton>
@@ -63,22 +65,20 @@
             <RadioButton toggleGroup="$player2TypeToggleGroup" selected="true">
                 <graphic>
                     <ImageView>
-                        <Image url="/images/icon-8.png" />
+                        <Image url="/images/computer.png" />
                     </ImageView>
                 </graphic>
             </RadioButton>
         </HBox>
 
-        <HBox alignment="baseline_left">
+        <HBox alignment="center_left" spacing="26">
             <padding>
                 <Insets top="10" />
             </padding>
 
-            <Pane HBox.hgrow="always">
-                <Label text="You must enter a name for both players."
-                       textFill="#ff0000" visible="${playButton.disable}" />
-            </Pane>
-            <Button fx:id="playButton" text="Play" defaultButton="true" onAction="#playButtonClicked" style="-fx-cursor: hand;" />
+            <Separator HBox.hgrow="always" />
+            <Button fx:id="playButton" text="Play Othello!" defaultButton="true" scaleX="1.2" scaleY="1.2" onAction="#playButtonClicked" style="-fx-cursor: hand;" />
+            <Separator HBox.hgrow="always" />
         </HBox>
     </VBox>
 </Scene>

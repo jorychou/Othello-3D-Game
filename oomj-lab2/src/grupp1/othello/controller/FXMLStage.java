@@ -108,6 +108,10 @@ public T getModel() {
 @Override
 public void showAndWait() {
     initialize();
+
+    // @To-do: Not sure if this is a good idea.
+    sizeToScene();
+
     super.showAndWait();
     complete();
 }

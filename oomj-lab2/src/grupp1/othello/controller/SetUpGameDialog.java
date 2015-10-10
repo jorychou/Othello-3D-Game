@@ -66,6 +66,7 @@ public SetUpGameDialog() {
 @Override
 protected void initialize() {
     setResizable(false);
+    setTitle("asyar14h/oomu/lab.2");
 
     player1Name.setText(getModel().getPlayer1Name());
     player2Name.setText(getModel().getPlayer2Name());
