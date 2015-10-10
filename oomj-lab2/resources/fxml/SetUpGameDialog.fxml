@@ -79,7 +79,8 @@
             </padding>
 
             <Separator HBox.hgrow="always" />
-            <Button fx:id="playButton" text="Play Othello!" defaultButton="true" scaleX="1.2" scaleY="1.2" style="-fx-cursor: hand;" />
+            <Button fx:id="playButton" text="Play Othello!" defaultButton="true"
+                    scaleX="1.2" scaleY="1.2" />
             <Separator HBox.hgrow="always" />
         </HBox>
     </VBox>

@@ -1,9 +1,9 @@
 <project name="oomj-lab2" default="run">
     <!-- Properties -->
 
-    <property name="build-dir"     value="build"                  />
-    <property name="classes-dir"   value="${build-dir}/classes"   />
-    <property name="jar-dir"       value="${build-dir}/jar"       />
+    <property name="bin-dir"       value="bin"                    />
+    <property name="classes-dir"   value="${bin-dir}/classes"     />
+    <property name="jar-dir"       value="${bin-dir}/jar"         />
     <property name="jar-name"      value="Othello.jar"            />
     <property name="main-class"    value="grupp1.othello.Othello" />
     <property name="resources-dir" value="resources"              />
@@ -12,7 +12,7 @@
     <!-- Targets -->
 
     <target name="clean">
-        <delete dir="${build-dir}" />
+        <delete dir="${bin-dir}" />
     </target>
 
     <target name="compile">
@@ -22,25 +22,22 @@
         </javac>
     </target>
 
-    <target name="jar">
+    <target name="jar" depends="compile">
         <mkdir dir="${jar-dir}" />
         <jar destfile="${jar-dir}/${jar-name}">
             <fileset dir="${classes-dir}" />
             <fileset dir="${resources-dir}" />
-            <fileset dir="${src-dir}" excludes="*.java" />
             <manifest>
                 <attribute name="Main-Class" value="${main-class}" />
             </manifest>
         </jar>
     </target>
 
-    <target name="run" depends="compile-jar">
+    <target name="run" depends="jar">
         <java jar="${jar-dir}/${jar-name}" fork="true" />
     </target>
 
-    <target name="compile-jar" depends="compile,jar" />
-
     <!-- NetBeans sux. lol! -->
-    <target name="jfx-build" depends="compile-jar" />
-    <target name="jfxsa-run" depends="run" />
+    <target name="jfx-build" depends="jar" />
+    <target name="jfxsa-run" depends="jfx-build" />
 </project>
