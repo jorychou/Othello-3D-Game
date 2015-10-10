@@ -83,17 +83,17 @@ protected void initialize() {
  * Sets up all bindings. Some in a slightly more inane manner than others.
  */
 private void setupBindings() {
-    GameConfiguration model = getModel();
-
-    player1Name.textProperty().bindBidirectional(model.player1NameProperty());
-    player2Name.textProperty().bindBidirectional(model.player2NameProperty());
+    player1Name.textProperty().bindBidirectional(
+        getModel().player1NameProperty());
+    player2Name.textProperty().bindBidirectional(
+        getModel().player2NameProperty());
 
     // Disable play button when a name is missing.
     playButton.disableProperty().bind(
         Bindings.createBooleanBinding(() ->
-            model.player1NameProperty().isEmpty().getValue()
-         || model.player2NameProperty().isEmpty().getValue(),
-            model.player1NameProperty(), model.player2NameProperty()
+            getModel().player1NameProperty().isEmpty().getValue()
+         || getModel().player2NameProperty().isEmpty().getValue(),
+            getModel().player1NameProperty(), getModel().player2NameProperty()
         )
     );
 }
@@ -109,6 +109,7 @@ private void setupHandlers() {
  * Initializes the model to some defaults.
  */
 private void setupModel() {
+    GameConfiguration model = getModel();
     getModel().setPlayer1Name("Player");
     getModel().setPlayer1Type(PlayerType.HUMAN);
 
