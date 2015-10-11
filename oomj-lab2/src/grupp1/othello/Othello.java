@@ -44,7 +44,7 @@ public static void main(String[] args) {
 @Override
 public void start(Stage primaryStage) {
     // We don't need this crap. lol!
-    primaryStage.close();
+    //primaryStage.close();
 
     new SetUpGameDialog()
         .onComplete((model) -> {
