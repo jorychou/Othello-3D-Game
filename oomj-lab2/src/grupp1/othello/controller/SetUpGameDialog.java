@@ -109,7 +109,6 @@ private void setupHandlers() {
  * Initializes the model to some defaults.
  */
 private void setupModel() {
-    GameConfiguration model = getModel();
     getModel().setPlayer1Name("Player");
     getModel().setPlayer1Type(PlayerType.HUMAN);
 
