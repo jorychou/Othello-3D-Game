@@ -39,5 +39,5 @@
 
     <!-- NetBeans sux. lol! -->
     <target name="jfx-build" depends="jar" />
-    <target name="jfxsa-run" depends="jfx-build" />
+    <target name="jfxsa-run" depends="run" />
 </project>
