@@ -69,8 +69,8 @@ public void printBoard(){
                     System.out.print("|" +gridCells[inner][outer]);
             }
             System.out.print("|\n");
-            
-        }   
+
+        }
 }
 /*------------------------------------------------
  * PRIVATE METHODS

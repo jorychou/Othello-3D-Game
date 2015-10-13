@@ -4,7 +4,7 @@ package grupp1.othello.controller;
  * IMPORTS
  *----------------------------------------------*/
 
-import grupp1.othello.controller.FXMLStage;
+import grupp1.othello.controller.GameDialog;
 import grupp1.othello.model.GameConfiguration;
 import grupp1.othello.model.PlayerType;
 
@@ -23,7 +23,7 @@ import javafx.scene.control.TextField;
  *
  * @author Philip Arvidsson (S133686)
  */
-public class SetUpGameDialog extends FXMLStage<GameConfiguration> {
+public class SetUpGameDialog extends GameDialog<GameConfiguration> {
 
 /*------------------------------------------------
  * FIELDS
