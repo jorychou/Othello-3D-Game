@@ -85,9 +85,11 @@ public Object play() {
 private int[] validMoves(int playerIndex) {
     ArrayList a = new ArrayList();
 
-    for (int i = 0; i < 63; i++) {
-        if (gameGrid.isValidMove(i, playerIndex))
-            a.add(i);
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if (gameGrid.isValidMove(x, y, playerIndex))
+                a.add(1337);
+        }
     }
 
     return (a.toArray());
