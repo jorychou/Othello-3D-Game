@@ -38,7 +38,12 @@ public Boolean isValidMove(int x, int y, int playerIndex) {
     return (true);
 }
 public void initialize(){
-    java.util.Arrays.fill(gridCells, 0);
+    int outer, inner;
+    for(outer =0; outer<gridSize; outer++){
+        for(inner =0; inner<gridSize; inner++){
+            gridCells[outer][inner] = 0;
+        }
+    }
     gridCells[4][4] = 2;
     gridCells[4][5] = 1;
     gridCells[5][4] = 2;
