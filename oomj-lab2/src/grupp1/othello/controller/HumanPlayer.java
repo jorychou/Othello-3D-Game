@@ -25,8 +25,14 @@ public void initialize() {
 }
 
 @Override
-public void makeNextMove() {
+public int[] makeNextMove() {
+    System.out.println("varfan vill du sätta brickan");
 
+    int[] lol = new int[2];
+    lol[0] = 4;
+    lol[1] = 3;
+
+    return (lol);
 }
 
 @Override

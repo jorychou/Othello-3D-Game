@@ -4,7 +4,11 @@ package grupp1.othello.controller;
  * IMPORTS
  *----------------------------------------------*/
 
-//import blah;
+import grupp1.othello.controller.Player;
+import grupp1.othello.model.GameGrid;
+import grupp1.othello.exception.InvalidMoveException;
+
+import java.util.ArrayList;
 
 /*------------------------------------------------
  * CLASS
@@ -45,11 +49,11 @@ public Object play() {
     Boolean done = false;
 
     while (!done) {
-        if (validMoves(1).length() > 0) {
-            int cellIndex = player1.makeNextMove();
+        if (validMoves(1).length > 0) {
+            int[] xy = player1.makeNextMove();
             while (true) {
                 try {
-                    gameGrid.placeMarker(cellIndex, 1);
+                    gameGrid.placeMarker(xy[0], xy[1], 1);
                     break;
                 }
                 catch (InvalidMoveException e) {
@@ -58,11 +62,11 @@ public Object play() {
             }
         }
 
-        if (validMoves(2).length() > 0) {
-            cellIndex = player2.makeNextMove();
+        if (validMoves(2).length > 0) {
+            int[] xy = player2.makeNextMove();
             while (true) {
                 try {
-                    gameGrid.placeMarker(cellIndex, 2);
+                    gameGrid.placeMarker(xy[0], xy[1], 2);
                     break;
                 }
                 catch (InvalidMoveException e) {
@@ -71,7 +75,7 @@ public Object play() {
             }
         }
 
-        if (validMoves(1).length() == 0 && validMoves(2).length() == 0)
+        if (validMoves(1).length == 0 && validMoves(2).length == 0)
             done = true;
     }
 
@@ -82,17 +86,18 @@ public Object play() {
  * PRIVATE METHODS
  *----------------------------------------------*/
 
-private int[] validMoves(int playerIndex) {
-    ArrayList a = new ArrayList();
+private Integer[] validMoves(int playerIndex) {
+    ArrayList<Integer> a = new ArrayList<>();
 
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if (gameGrid.isValidMove(x, y, playerIndex))
+            if (gameGrid.isValidMove(i, j, playerIndex))
                 a.add(1337);
         }
     }
 
-    return (a.toArray());
+    Integer[] lol = new Integer[1];
+    return (a.toArray(lol));
 }
 
 }

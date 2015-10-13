@@ -25,8 +25,8 @@ public void initialize() {
 }
 
 @Override
-public void makeNextMove() {
-
+public int[] makeNextMove() {
+    return (null);
 }
 
 @Override

@@ -40,7 +40,7 @@ public void setName(String value) {
 }
 
 public abstract void initialize();
-public abstract void makeNextMove();
+public abstract int[] makeNextMove();
 public abstract void notifyInvalidMove();
 
 /*------------------------------------------------

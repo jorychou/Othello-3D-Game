@@ -4,6 +4,9 @@ package grupp1.othello;
  * IMPORTS
  *----------------------------------------------*/
 
+import grupp1.othello.controller.GameManager;
+import grupp1.othello.controller.HumanPlayer;
+import grupp1.othello.model.GameGrid;
 import grupp1.othello.controller.SetUpGameDialog;
 
 import javafx.application.Application;
@@ -52,7 +55,7 @@ public void start(Stage primaryStage) {
             //System.out.println("Player 2: " + model.getPlayer2Name());
 
             GameManager gameManager = new GameManager(
-                new HumanPlayer(), new HumanPlayer());
+                new GameGrid(8), new HumanPlayer(), new HumanPlayer());
 
             gameManager.initialize();
             gameManager.play();
