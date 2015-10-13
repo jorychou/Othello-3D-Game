@@ -1,40 +1,54 @@
 package grupp1.othello.controller;
 
 /*------------------------------------------------
- * IMPORTS
- *----------------------------------------------*/
-
-//import blah;
-
-/*------------------------------------------------
  * CLASS
  *----------------------------------------------*/
 
 /**
- * @author
+ * Abstract base class for implementing a player.
+ *
+ * @author Philip Arvidsson (S133686)
  */
 public abstract class Player {
 
-private int markerID;
-
+/**
+ * The player's name.
+ */
 private String name;
 
 /*------------------------------------------------
  * PUBLIC METHODS
  *----------------------------------------------*/
 
-public int getMarkerID() {
-    return (markerID);
+/**
+ * Constructor.
+ */
+public Player() {
 }
 
-public void setMarkerID(int value) {
-    markerID = value;
+/**
+ * Constructor.
+ *
+ * @param name The player's name.
+ */
+public Player(String name) {
+    this.name = name;
 }
 
+/**
+ * Gets the player's name.
+ *
+ * @return The player's name.
+ */
 public String getName() {
     return (name);
 }
 
+/**
+ * Sets the player's name.
+ *
+ * @param value The player's name.
+ */
 public void setName(String value) {
     name = value;
 }
@@ -42,9 +56,5 @@ public void setName(String value) {
 public abstract void initialize();
 public abstract int[] makeNextMove();
 public abstract void notifyInvalidMove();
-
-/*------------------------------------------------
- * PRIVATE METHODS
- *----------------------------------------------*/
 
 }
