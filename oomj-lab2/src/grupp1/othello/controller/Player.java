@@ -39,6 +39,7 @@ public void setName(String value) {
     name = value;
 }
 
+public abstract void initialize();
 public abstract void makeNextMove();
 public abstract void notifyInvalidMove();
 

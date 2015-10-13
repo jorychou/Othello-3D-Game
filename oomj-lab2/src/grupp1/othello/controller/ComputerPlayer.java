@@ -20,6 +20,11 @@ public class ComputerPlayer extends Player {
  *----------------------------------------------*/
 
 @Override
+public void initialize() {
+
+}
+
+@Override
 public void makeNextMove() {
 
 }
