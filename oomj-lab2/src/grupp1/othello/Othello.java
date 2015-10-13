@@ -9,6 +9,7 @@ import grupp1.othello.controller.HumanPlayer;
 import grupp1.othello.model.GameGrid;
 import grupp1.othello.controller.SetUpGameDialog;
 
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.control.Button;

@@ -1,5 +1,7 @@
 package grupp1.othello.controller;
 
+import grupp1.othello.exception.InvalidMoveException;
+
 /*------------------------------------------------
  * IMPORTS
  *----------------------------------------------*/
@@ -47,7 +49,10 @@ public void initialize() {
 
 public Object play() {
     Boolean done = false;
-
+        System.out.println(" _ _ _ _ _ _ _ _");
+        for(int inner=0; inner<8; inner++){
+        System.out.println("|_|_|_|_|_|_|_|_|");
+        }
     while (!done) {
         if (validMoves(1).length > 0) {
             while (true) {
@@ -74,7 +79,6 @@ public Object play() {
                 }
             }
         }
-
         if (validMoves(1).length == 0 && validMoves(2).length == 0)
             done = true;
     }
