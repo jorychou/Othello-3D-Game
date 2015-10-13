@@ -50,8 +50,8 @@ public Object play() {
 
     while (!done) {
         if (validMoves(1).length > 0) {
-            int[] xy = player1.makeNextMove();
             while (true) {
+                int[] xy = player1.makeNextMove();
                 try {
                     gameGrid.placeMarker(xy[0], xy[1], 1);
                     break;
@@ -63,8 +63,8 @@ public Object play() {
         }
 
         if (validMoves(2).length > 0) {
-            int[] xy = player2.makeNextMove();
             while (true) {
+                int[] xy = player2.makeNextMove();
                 try {
                     gameGrid.placeMarker(xy[0], xy[1], 2);
                     break;
