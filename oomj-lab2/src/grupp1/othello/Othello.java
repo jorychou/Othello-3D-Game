@@ -47,9 +47,16 @@ public void start(Stage primaryStage) {
     primaryStage.close();
 
     new SetUpGameDialog()
-        .onComplete((model) -> {
-            System.out.println("Player 1: " + model.getPlayer1Name());
-            System.out.println("Player 2: " + model.getPlayer2Name());
+        .onComplete(gameConfig -> {
+            //System.out.println("Player 1: " + model.getPlayer1Name());
+            //System.out.println("Player 2: " + model.getPlayer2Name());
+
+            GameManager gameManager = new GameManager(
+                new HumanPlayer(), new HumanPlayer());
+
+            gameManager.initialize();
+            gameManager.play();
+
         }).showAndWait();
 }
 

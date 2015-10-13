@@ -30,6 +30,10 @@ public GameGrid(int gridSize) {
     gridCells = new int[gridSize * gridSize];
 }
 
+public void init() {
+    // skapa 4 brickor i mitten
+}
+
 /*------------------------------------------------
  * PRIVATE METHODS
  *----------------------------------------------*/
