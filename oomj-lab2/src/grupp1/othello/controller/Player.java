@@ -40,6 +40,7 @@ public void setName(String value) {
 }
 
 public abstract void makeNextMove();
+public abstract void notifyInvalidMove();
 
 /*------------------------------------------------
  * PRIVATE METHODS

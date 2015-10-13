@@ -24,6 +24,11 @@ public void makeNextMove() {
 
 }
 
+@Override
+public void notifyInvalidMove() {
+
+}
+
 /*------------------------------------------------
  * PRIVATE METHODS
  *----------------------------------------------*/

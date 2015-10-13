@@ -24,6 +24,11 @@ public void makeNextMove() {
 
 }
 
+@Override
+public void notifyInvalidMove() {
+    System.out.println("du, det där ger du fan i!");
+}
+
 /*------------------------------------------------
  * PRIVATE METHODS
  *----------------------------------------------*/

@@ -53,7 +53,7 @@ public Object play() {
                     break;
                 }
                 catch (InvalidMoveException e) {
-                    player1.invalidMove(cellIndex);
+                    player1.notifyInvalidMove();
                 }
             }
         }
@@ -66,7 +66,7 @@ public Object play() {
                     break;
                 }
                 catch (InvalidMoveException e) {
-                    player2.invalidMove(cellIndex);
+                    player2.notifyInvalidMove();
                 }
             }
         }
