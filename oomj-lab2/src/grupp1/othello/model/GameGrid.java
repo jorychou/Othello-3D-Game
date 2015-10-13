@@ -47,8 +47,8 @@ public void initialize(){
     }
     gridCells[3][3] = 2;
     gridCells[3][4] = 1;
-    gridCells[4][3] = 2;
-    gridCells[4][4] = 1;
+    gridCells[4][3] = 1;
+    gridCells[4][4] = 2;
     printBoard();
 }
 
@@ -62,9 +62,14 @@ public void placeMarker(int x, int y, int player) throws InvalidMoveException{
 public void printBoard(){
         System.out.println(" _ _ _ _ _ _ _ _");
         for(int outer=0; outer<gridSize; outer++){
-            for(int inner=0; inner<gridSize;inner++)
-                System.out.print(gridCells[inner][outer]);
-                System.out.print("\n");
+            for(int inner=0; inner<gridSize;inner++){
+                if(gridCells[inner][outer] == 0)
+                    System.out.print("|_");
+                else
+                    System.out.print("|" +gridCells[inner][outer]);
+            }
+            System.out.print("|\n");
+            
         }   
 }
 /*------------------------------------------------
