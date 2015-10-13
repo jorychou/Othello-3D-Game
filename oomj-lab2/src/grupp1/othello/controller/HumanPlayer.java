@@ -3,7 +3,7 @@ package grupp1.othello.controller;
 /*------------------------------------------------
  * IMPORTS
  *----------------------------------------------*/
-
+import java.util.Scanner;
 //import blah;
 
 /*------------------------------------------------
@@ -26,11 +26,12 @@ public void initialize() {
 
 @Override
 public int[] makeNextMove() {
+    Scanner user_input = new Scanner( System.in );
     System.out.println("varfan vill du sätta brickan");
 
     int[] lol = new int[2];
-    lol[0] = 4;
-    lol[1] = 3;
+    lol[0] = user_input.nextInt();
+    lol[1] = user_input.nextInt();
 
     return (lol);
 }

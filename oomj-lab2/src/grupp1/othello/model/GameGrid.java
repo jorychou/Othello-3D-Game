@@ -5,6 +5,7 @@ package grupp1.othello.model;
  * IMPORTS
  *----------------------------------------------*/
 
+import java.util.ArrayList;
 
 import grupp1.othello.exception.InvalidMoveException;
 /*------------------------------------------------
@@ -18,7 +19,7 @@ public class GameGrid  {
 
 private final int gridSize;
 
-private int[][] gridCells;
+public int[][] gridCells;
 
 /*------------------------------------------------
  * PUBLIC METHODS
@@ -44,10 +45,11 @@ public void initialize(){
             gridCells[outer][inner] = 0;
         }
     }
-    gridCells[4][4] = 2;
-    gridCells[4][5] = 1;
-    gridCells[5][4] = 2;
-    gridCells[5][5] = 1;
+    gridCells[3][3] = 2;
+    gridCells[3][4] = 1;
+    gridCells[4][3] = 2;
+    gridCells[4][4] = 1;
+    printBoard();
 }
 
 public void placeMarker(int x, int y, int player) throws InvalidMoveException{
@@ -55,9 +57,17 @@ public void placeMarker(int x, int y, int player) throws InvalidMoveException{
         throw(new InvalidMoveException("fasen"));
     }
     gridCells[x][y] = player;
-        
+    printBoard();
     }
+public void printBoard(){
+        System.out.println(" _ _ _ _ _ _ _ _");
+        for(int outer=0; outer<gridSize; outer++){
+            for(int inner=0; inner<gridSize;inner++)
+                System.out.print(gridCells[inner][outer]);
+                System.out.print("\n");
+        }   
 }
 /*------------------------------------------------
  * PRIVATE METHODS
  *----------------------------------------------*/
+}
