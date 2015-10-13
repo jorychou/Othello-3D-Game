@@ -5,15 +5,15 @@ package grupp1.othello.model;
  * IMPORTS
  *----------------------------------------------*/
 
-import java.util.ArrayList;
-
 import grupp1.othello.exception.InvalidMoveException;
 /*------------------------------------------------
  * CLASS
  *----------------------------------------------*/
 
 /**
- * @author
+ * Grid setup for the game
+ * 
+ * @author Tkocz
  */
 public class GameGrid  {
 
@@ -31,13 +31,23 @@ public GameGrid(int gridSize) {
     // Allocate a square game grid of the specified size.
     gridCells = new int[gridSize][gridSize];
 }
-
+/**
+ * So far, checks whether the cell is empty, 
+ * will expand to check for all valid moves this turn.
+ * @param x 
+ * @param y
+ * @param playerIndex current player
+ * @return true for valid move, else false
+ */
 public Boolean isValidMove(int x, int y, int playerIndex) {
     if (gridCells[x][y] != 0)
         return (false);
 
     return (true);
 }
+/**
+ * Resets the grid, and sets the four middle cells to starting state
+ */
 public void initialize(){
     int outer, inner;
     for(outer =0; outer<gridSize; outer++){
@@ -59,6 +69,9 @@ public void placeMarker(int x, int y, int player) throws InvalidMoveException{
     gridCells[x][y] = player;
     printBoard();
     }
+/**
+ * Måste ju skriva ut brädet på nåt sätt innan GUI
+ */
 public void printBoard(){
         System.out.println(" _ _ _ _ _ _ _ _");
         for(int outer=0; outer<gridSize; outer++){
