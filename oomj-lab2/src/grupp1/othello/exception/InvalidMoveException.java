@@ -1,4 +1,4 @@
-package grupp1.othello.exceptions;
+package grupp1.othello.exception;
 
 /*------------------------------------------------
  * IMPORTS
