@@ -18,7 +18,7 @@ import javafx.beans.property.SimpleStringProperty;
  *
  * @author Philip Arvidsson (S133686)
  */
-public class GameConfiguration {
+public class GameConfig {
 
 /*------------------------------------------------
  * FIELDS

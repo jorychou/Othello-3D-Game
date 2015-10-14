@@ -7,7 +7,7 @@ package grupp1.othello;
 import grupp1.othello.controller.GameManager;
 import grupp1.othello.controller.HumanPlayer;
 import grupp1.othello.model.GameGrid;
-import grupp1.othello.controller.SetUpGameDialog;
+import grupp1.othello.controller.ConfigWindow;
 
 
 import javafx.application.Application;
@@ -50,7 +50,7 @@ public void start(Stage primaryStage) {
     // We don't need this crap. lol!
     primaryStage.close();
 
-    new SetUpGameDialog()
+    new ConfigWindow()
         .onComplete(gameConfig -> {
             //System.out.println("Player 1: " + model.getPlayer1Name());
             //System.out.println("Player 2: " + model.getPlayer2Name());
@@ -58,8 +58,13 @@ public void start(Stage primaryStage) {
             GameManager gameManager = new GameManager(
                 new GameGrid(8), new HumanPlayer(), new HumanPlayer());
 
-            gameManager.initialize();
-            gameManager.play();
+            try {
+                gameManager.init();
+                gameManager.play();
+            }
+            catch (Exception e) {
+                // lol
+            }
 
         }).showAndWait();
 }

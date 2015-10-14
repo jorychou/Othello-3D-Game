@@ -75,7 +75,7 @@ public GameGrid(int gridSize) {
 /**
  * Resets the grid, and sets the four middle cells to starting state
  */
-public void initialize() {
+public void init() {
     for (int i = 0; i < gridSize; i++)
         Arrays.fill(grid[i], 0);
 

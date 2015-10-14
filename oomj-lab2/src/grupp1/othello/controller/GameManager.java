@@ -5,8 +5,9 @@ package grupp1.othello.controller;
  *----------------------------------------------*/
 
 import grupp1.othello.controller.Player;
-import grupp1.othello.model.GameGrid;
 import grupp1.othello.exception.InvalidMoveException;
+import grupp1.othello.exception.InvalidPlayerException;
+import grupp1.othello.model.GameGrid;
 
 import java.util.ArrayList;
 
@@ -38,14 +39,17 @@ public GameManager(GameGrid gameGrid, Player player1, Player player2) {
     this.player2  = player2;
 }
 
-public void initialize() {
-    gameGrid.initialize();
+public void init() {
+    gameGrid.init();
 
-    player1.initialize();
-    player2.initialize();
+    player1.init();
+    player2.init();
 }
 
-public Object play() {
+// @To-do: Cleanup
+public void play()
+    throws InvalidMoveException, InvalidPlayerException
+{
     Boolean done = false;
 
     while (!done) {
@@ -76,8 +80,6 @@ public Object play() {
         if (validMoves(1).length == 0 && validMoves(2).length == 0)
             done = true;
     }
-
-    return (null);
 }
 
 /*------------------------------------------------
@@ -87,13 +89,18 @@ public Object play() {
 private Integer[] validMoves(int player) {
     ArrayList<Integer> a = new ArrayList<>();
 
+try {
+
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             if (gameGrid.isValidMove(i, j, player))
                 a.add(1337);
         }
     }
-
+}
+catch (Exception e) {
+    // lol
+}
     Integer[] lol = new Integer[1];
     return (a.toArray(lol));
 }

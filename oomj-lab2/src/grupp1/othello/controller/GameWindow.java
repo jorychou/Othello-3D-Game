@@ -23,7 +23,7 @@ import javafx.stage.Stage;
  *
  * @author Philip Arvidsson (S133686)
  */
-public class GameDialog<T> extends Stage {
+public class GameWindow<T> extends Stage {
 
 /*------------------------------------------------
  * FIELDS
@@ -53,7 +53,7 @@ private T model;
  *
  * @param model The view model.
  */
-public GameDialog(T model) {
+public GameWindow(T model) {
     String     className = getClass().getSimpleName();
     String     viewName  = "/fxml/" + className + ".fxml";
     FXMLLoader fxml      = new FXMLLoader(getClass().getResource(viewName));
@@ -77,7 +77,7 @@ public GameDialog(T model) {
  *
  * @return The stage itself.
  */
-public GameDialog<T> onComplete(Consumer<T> cb) {
+public GameWindow<T> onComplete(Consumer<T> cb) {
     completeCallback = cb;
     return (this);
 }
@@ -89,7 +89,7 @@ public GameDialog<T> onComplete(Consumer<T> cb) {
  *
  * @return The stage itself.
  */
-public GameDialog<T> onError(BiConsumer<T, Object> cb) {
+public GameWindow<T> onError(BiConsumer<T, Object> cb) {
     errorCallback = cb;
     return (this);
 }
@@ -109,7 +109,7 @@ public T getModel() {
  */
 @Override
 public void showAndWait() {
-    initialize();
+    init();
 
     // @To-do: Not sure if this is a good idea.
     sizeToScene();
@@ -138,7 +138,7 @@ protected void error(Object data) {
 /**
  * Initializes the stage.
  */
-protected void initialize() {
+protected void init() {
 }
 
 /*------------------------------------------------

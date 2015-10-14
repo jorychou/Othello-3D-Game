@@ -53,7 +53,7 @@ public void setName(String value) {
     name = value;
 }
 
-public abstract void initialize();
+public abstract void init();
 public abstract int[] makeNextMove();
 public abstract void notifyInvalidMove();
 
