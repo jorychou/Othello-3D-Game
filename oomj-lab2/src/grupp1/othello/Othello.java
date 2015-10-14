@@ -8,6 +8,7 @@ import grupp1.othello.controller.GameManager;
 import grupp1.othello.controller.HumanPlayer;
 import grupp1.othello.model.GameGrid;
 import grupp1.othello.controller.ConfigWindow;
+import grupp1.othello.controller.MainWindow;
 
 
 import javafx.application.Application;
@@ -58,13 +59,15 @@ public void start(Stage primaryStage) {
             GameManager gameManager = new GameManager(
                 new GameGrid(8), new HumanPlayer(), new HumanPlayer());
 
-            try {
+            /*try {
                 gameManager.init();
                 gameManager.play();
             }
             catch (Exception e) {
                 // lol
-            }
+            }*/
+            new MainWindow().showAndWait();
+
 
         }).showAndWait();
 }

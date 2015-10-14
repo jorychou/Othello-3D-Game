@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Scene xmlns="http://javafx.com/javafx/8"
+       xmlns:fx="http://javafx.com/fxml/1" width="720" height="720">
+    <HBox alignment="center">
+        <Label text="nothingt to see here yet" />
+    </HBox>
+</Scene>
