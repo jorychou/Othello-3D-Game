@@ -149,6 +149,7 @@ public void placeDisk(int x, int y, int player)
 
 /**
  * Måste ju skriva ut brädet på nåt sätt innan GUI
+ * @param player keeps track of tilecolour
  */
     // @To-do: Remove this.
 public void printBoard(int player){
