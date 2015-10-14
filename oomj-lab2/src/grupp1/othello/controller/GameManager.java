@@ -46,14 +46,14 @@ public void initialize() {
 }
 
 public Object play() {
-    Boolean done = false;  
-        
+    Boolean done = false;
+
     while (!done) {
         if (validMoves(1).length > 0) {
             while (true) {
                 int[] xy = player1.makeNextMove();
                 try {
-                    gameGrid.placeMarker(xy[0], xy[1], 1);
+                    gameGrid.placeDisk(xy[0], xy[1], GameGrid.PLAYER_ONE);
                     break;
                 }
                 catch (InvalidMoveException e) {
@@ -65,7 +65,7 @@ public Object play() {
             while (true) {
                 int[] xy = player2.makeNextMove();
                 try {
-                    gameGrid.placeMarker(xy[0], xy[1], 2);
+                    gameGrid.placeDisk(xy[0], xy[1], GameGrid.PLAYER_TWO);
                     break;
                 }
                 catch (InvalidMoveException e) {
@@ -84,12 +84,12 @@ public Object play() {
  * PRIVATE METHODS
  *----------------------------------------------*/
 
-private Integer[] validMoves(int playerIndex) {
+private Integer[] validMoves(int player) {
     ArrayList<Integer> a = new ArrayList<>();
 
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if (gameGrid.isValidMove(i, j, playerIndex))
+            if (gameGrid.isValidMove(i, j, player))
                 a.add(1337);
         }
     }
