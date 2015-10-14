@@ -98,14 +98,21 @@ public void printBoard(int player){
  *----------------------------------------------*/
 
 private Boolean recurseDirections(int x, int y, int player, Boolean flip) {
-    return (recurseDirection(x, y, -1, -1, player, false, flip)
-         || recurseDirection(x, y, -1,  0, player, false, flip)
-         || recurseDirection(x, y, -1,  1, player, false, flip)
-         || recurseDirection(x, y,  0, -1, player, false, flip)
-         || recurseDirection(x, y,  0,  1, player, false, flip)
-         || recurseDirection(x, y,  1, -1, player, false, flip)
-         || recurseDirection(x, y,  1,  0, player, false, flip)
-         || recurseDirection(x, y,  1,  1, player, false, flip));
+    Boolean result = false;
+
+    for (int i = -1; i <= 1; i++) {
+        for (int j = -1; j <= 1; j++) {
+            if (i == 0 && j == 0)
+                continue;
+
+            result |= recurseDirection(x, y, i, j, player, false, flip);
+
+            if (result && !flip)
+                return (result);
+        }
+    }
+
+    return (result);
 }
 
 private Boolean recurseDirection(int x, int y, int dx, int dy, int player, Boolean ok, Boolean flip) {
