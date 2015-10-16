@@ -8,8 +8,10 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
+
 <Scene xmlns="http://javafx.com/javafx/8"
        xmlns:fx="http://javafx.com/fxml/1" width="720" height="720">
+
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
       <children>
         <MenuBar prefHeight="27.0" prefWidth="640.0">
@@ -43,14 +45,10 @@
           <children>
                 <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="50.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
                     <effect>
-                      <ImageInput>
-                         <source>
-                            <Image url="/images/backgr.png" />
-                         </source>
-                      </ImageInput>
+                  <Glow />
                    </effect>
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0"/>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
@@ -74,4 +72,4 @@
         </AnchorPane>
       </children>
     </VBox>
-    </Scene>
+</Scene>
