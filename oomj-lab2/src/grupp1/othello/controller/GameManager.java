@@ -50,7 +50,7 @@ public void init() {
 public void play()
     throws InvalidMoveException, InvalidPlayerException
 {
-    Boolean done = false;
+    boolean done = false;
 
     while (!done) {
         if (validMoves(1).length > 0) {

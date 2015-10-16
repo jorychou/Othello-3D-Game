@@ -102,7 +102,7 @@ public void init() {
  *
  * @throws InvalidPlayerException The specified player index is invalid.
  */
-public Boolean isValidMove(int x, int y, int player)
+public boolean isValidMove(int x, int y, int player)
     throws InvalidPlayerException
 {
     if (player != PLAYER_ONE && player!= PLAYER_TWO)
@@ -191,8 +191,8 @@ public void printBoard(int player){
  *
  * @author Philip Arvidsson (S133686)
  */
-private Boolean checkDirections(int x, int y, int player, Boolean flip) {
-    Boolean result = false;
+private boolean checkDirections(int x, int y, int player, boolean flip) {
+    boolean result = false;
 
     // We loop through all possible directions...
     for (int i = -1; i <= 1; i++) {
@@ -229,8 +229,8 @@ private Boolean checkDirections(int x, int y, int player, Boolean flip) {
  *
  * @author Philip Arvidsson (S133686)
  */
-private Boolean recurseDirection(int x, int y, int dx, int dy, int player,
-                                 Boolean flip, Boolean flag)
+private boolean recurseDirection(int x, int y, int dx, int dy, int player,
+                                 boolean flip, boolean flag)
 {
     // Move one step in the specified direction. This is the first thing we do
     // since we don't want to check the cell we're starting on.
@@ -267,7 +267,7 @@ private Boolean recurseDirection(int x, int y, int dx, int dy, int player,
     // reacing this point, hence we set the flag parameter to true and keep
     // recursing, now looking for a same-color disk.
     flag = true;
-    Boolean result = recurseDirection(x, y, dx, dy, player, flip, flag);
+    boolean result = recurseDirection(x, y, dx, dy, player, flip, flag);
 
     // On the way back (out of the recursion nesting), we mutate the grid if
     // we've been told to flip disks.
