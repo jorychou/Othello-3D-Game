@@ -29,6 +29,9 @@ public class ConfigWindow extends GameWindow<GameConfig> {
  * FIELDS
  *----------------------------------------------*/
 
+@FXML private javafx.animation.RotateTransition kewk1;
+@FXML private javafx.animation.RotateTransition kewk2;
+
 /**
  * Button for accepting the configuration.
  */
@@ -73,6 +76,9 @@ protected void init() {
     setupModel();
     setupHandlers();
     setupBindings();
+
+    kewk1.play();
+    kewk2.play();
 }
 
 /*------------------------------------------------

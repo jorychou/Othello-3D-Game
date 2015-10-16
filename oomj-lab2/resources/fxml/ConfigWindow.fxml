@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
+<?import javafx.animation.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 
 <Scene xmlns="http://javafx.com/javafx/8"
-       xmlns:fx="http://javafx.com/fxml/1">
+       xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/css/default.css">
 
     <fx:define>
         <ToggleGroup fx:id="player1Type" />
         <ToggleGroup fx:id="player2Type" />
+
     </fx:define>
 
     <VBox spacing="16">
-
         <padding>
             <Insets top="20" right="20" bottom="20" left="20" />
         </padding>
@@ -23,6 +27,61 @@
         <HBox alignment="top_center">
             <Label style="-fx-font-size: 32;" text="Othello" />
             <Label style="-fx-font-size: 10;" text="Not for Noobs Edition" />
+
+            <SubScene width="64" height="64" depthBuffer="true">
+                <antiAliasing>
+                    <SceneAntialiasing fx:constant="BALANCED" />
+                </antiAliasing>
+                <camera>
+                    <PerspectiveCamera translateX="-32.0" translateY="-32.0" translateZ="-2.0" />
+                </camera>
+                <root>
+                    <Group fx:id="disk1">
+                        <Group fx:id="disk">
+                            <Group rotate="90.0">
+                                <Cylinder  radius="24.0" height="3.0" translateY="1.5">
+                                    <material>
+                                        <PhongMaterial diffuseColor="white" specularColor="white" />
+                                    </material>
+                                </Cylinder>
+                                <Cylinder radius="24.0" height="3.0" translateY="-1.5">
+                                    <material>
+                                        <PhongMaterial diffuseColor="black" specularColor="white" />
+                                    </material>
+                                </Cylinder>
+
+                                 <rotationAxis>
+                                    <Point3D x="1.0" y="0.0" z="0.0" />
+                                </rotationAxis>
+                            </Group>
+                        </Group>
+
+                        <rotationAxis>
+                            <Point3D x="1.0" y="0.0" z="0.0" />
+                        </rotationAxis>
+                    </Group>
+                </root>
+
+                <fx:define>
+                    <RotateTransition fx:id="kewk1" node="${disk1}" byAngle="360" duration="7000ms" cycleCount="999">
+                        <axis>
+                            <Point3D x="1.0" y="0.0" z="0.0" />
+                        </axis>
+                        <interpolator>
+                            <Interpolator fx:constant="LINEAR" />
+                        </interpolator>
+                    </RotateTransition>
+
+                    <RotateTransition fx:id="kewk2" node="${disk}" byAngle="360" duration="2000ms" cycleCount="999">
+                        <axis>
+                            <Point3D x="0.0" y="1.0" z="0.0" />
+                        </axis>
+                        <interpolator>
+                            <Interpolator fx:constant="LINEAR" />
+                        </interpolator>
+                    </RotateTransition>
+                </fx:define>
+            </SubScene>
         </HBox>
 
         <Label text="Welcome to the most awesome game ever created in Java/FX!&#10;Configure your game session below and press the play button&#10;to get started." />

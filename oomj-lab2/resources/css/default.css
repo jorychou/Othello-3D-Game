@@ -1,0 +1,21 @@
+Button {
+    -fx-background-insets: 0,0,0;
+    -fx-background-radius: 0,0;
+    -fx-border-width: 0;
+    -fx-color: #e04020;
+    -fx-cursor: hand;
+}
+
+Label {
+    -fx-text-fill: #cccccc;
+}
+
+TextField {
+    -fx-background-radius: 0,0;
+    -fx-control-inner-background: #303030;
+    -fx-text-box-border: #909090;
+}
+
+.root {
+    -fx-background: #202020;
+}

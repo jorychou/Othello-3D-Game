@@ -66,7 +66,7 @@ public void start(Stage primaryStage) {
             catch (Exception e) {
                 // lol
             }*/
-            new MainWindow().showAndWait();
+            //new MainWindow().showAndWait();
 
 
         }).showAndWait();
