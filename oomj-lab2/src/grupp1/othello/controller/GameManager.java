@@ -93,7 +93,7 @@ public void play() {
     boolean done = false;
 
     while (!done) {
-        if (validMoves(1).length > 0) {
+        if (validMoves(PLAYER_ONE).length > 0) {
             while (true) {
                 DiskPlacement diskPlacement = player1.makeNextMove();
                 try {
@@ -105,7 +105,7 @@ public void play() {
                 }
             }
         }
-        if (validMoves(2).length > 0) {
+        if (validMoves(PLAYER_TWO).length > 0) {
             while (true) {
                 DiskPlacement diskPlacement = player2.makeNextMove();
                 try {
