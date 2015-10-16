@@ -20,7 +20,7 @@ import javafx.scene.image.Image;
  *----------------------------------------------*/
 
 /**
- * Initial dialog for configuring the game session.
+ * Winner dialog for celebrating the winner when the game is over.
  *
  * @author Philip Arvidsson (S133686)
  */
