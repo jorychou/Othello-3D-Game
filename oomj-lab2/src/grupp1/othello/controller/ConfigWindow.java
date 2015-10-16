@@ -30,9 +30,6 @@ public class ConfigWindow extends GameWindow<GameConfig> {
  * FIELDS
  *----------------------------------------------*/
 
-@FXML private javafx.animation.RotateTransition kewk1;
-@FXML private javafx.animation.RotateTransition kewk2;
-
 /**
  * Button for accepting the configuration.
  */
@@ -50,6 +47,19 @@ private TextField player1Name;
  */
 @FXML
 private TextField player2Name;
+
+/**
+ * Disk rotate transition 1.
+ */
+@FXML
+private javafx.animation.RotateTransition rotateTransition1;
+
+/**
+ * Disk rotate transition 2. Used in conjunction with the other transition to
+ * create a double-axis rotation effect.
+ */
+@FXML
+private javafx.animation.RotateTransition rotateTransition2;
 
 /*------------------------------------------------
  * PUBLIC METHODS
@@ -78,9 +88,7 @@ protected void init() {
     setupModel();
     setupHandlers();
     setupBindings();
-
-    kewk1.play();
-    kewk2.play();
+    setupTransitions();
 }
 
 /*------------------------------------------------
@@ -122,6 +130,14 @@ private void setupModel() {
 
     getModel().setPlayer2Name("Computer");
     getModel().setPlayer2Type(PlayerType.COMPUTER);
+}
+
+/**
+ * Initializes the transitions and starts them.
+ */
+private void setupTransitions() {
+    rotateTransition1.play();
+    rotateTransition2.play();
 }
 
 }

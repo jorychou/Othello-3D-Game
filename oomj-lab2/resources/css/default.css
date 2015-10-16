@@ -4,6 +4,7 @@ Button {
     -fx-border-width: 0;
     -fx-color: #e04020;
     -fx-cursor: hand;
+    -fx-font-weight: bold;
 }
 
 Label {
