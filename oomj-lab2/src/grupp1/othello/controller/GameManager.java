@@ -11,6 +11,8 @@ import grupp1.othello.model.DiskPlacement;
 import grupp1.othello.model.GameGrid;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 /*------------------------------------------------
  * CLASS
@@ -46,6 +48,10 @@ public static final int PLAYER_TWO = 2;
  * FIELDS
  *----------------------------------------------*/
 
+private BiConsumer<Player, DiskPlacement> diskPlacedCallback;
+
+private BiConsumer<Player, DiskPlacement> invalidMoveCallback;
+
 /**
  * First player.
  */
@@ -78,14 +84,39 @@ public GameManager(GameGrid gameGrid, Player player1, Player player2) {
     this.player2  = player2;
 }
 
+public GameGrid getGameGrid() {
+    return (gameGrid);
+}
+
+public Player getPlayer1() {
+    return (player1);
+}
+
+public Player getPlayer2() {
+    return (player2);
+}
+
 /**
  * Initializes the game.
  */
 public void init() {
     initGameGrid();
 
+    // @To-do: We can probably remove these?
     player1.init();
     player2.init();
+
+    diskPlaced(null, null);
+}
+
+public GameManager onDiskPlaced(BiConsumer<Player, DiskPlacement> cb) {
+    diskPlacedCallback = cb;
+    return (this);
+}
+
+public GameManager onInvalidMove(BiConsumer<Player, DiskPlacement> cb) {
+    invalidMoveCallback = cb;
+    return (this);
 }
 
 // @To-do: Cleanup. This method should return the game result as well.
@@ -98,10 +129,11 @@ public void play() {
                 DiskPlacement diskPlacement = player1.makeNextMove();
                 try {
                     placeDisk(diskPlacement, PLAYER_ONE);
+                    diskPlaced(player1, diskPlacement);
                     break;
                 }
                 catch (InvalidMoveException e) {
-                    player1.notifyInvalidMove();
+                    invalidMove(player2, diskPlacement);
                 }
             }
         }
@@ -110,12 +142,14 @@ public void play() {
                 DiskPlacement diskPlacement = player2.makeNextMove();
                 try {
                     placeDisk(diskPlacement, PLAYER_TWO);
+                    diskPlaced(player2, diskPlacement);
                     break;
                 }
                 catch (InvalidMoveException e) {
-                    player2.notifyInvalidMove();
+                    invalidMove(player2, diskPlacement);
                 }
             }
+
         }
 
         if (validMoves(1).length == 0 && validMoves(2).length == 0)
@@ -126,6 +160,16 @@ public void play() {
 /*------------------------------------------------
  * PRIVATE METHODS
  *----------------------------------------------*/
+
+private void diskPlaced(Player player, DiskPlacement diskPlacement) {
+    if (diskPlacedCallback != null)
+        diskPlacedCallback.accept(player, diskPlacement);
+}
+
+private void invalidMove(Player player, DiskPlacement diskPlacement) {
+    if (invalidMoveCallback != null)
+        invalidMoveCallback.accept(player, diskPlacement);
+}
 
 /**
  * Initializes the game grid to its starting state.

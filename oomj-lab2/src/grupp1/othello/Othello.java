@@ -11,6 +11,7 @@ import grupp1.othello.controller.MainWindow;
 import grupp1.othello.controller.WinnerDialog;
 import grupp1.othello.model.GameGrid;
 
+import grupp1.othello.view.StdoutGameView;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -61,19 +62,20 @@ public void start(Stage primaryStage) {
             GameManager gameManager = new GameManager(
                 new GameGrid(8), new HumanPlayer(), new HumanPlayer());
 
-            /*try {
+            StdoutGameView sgv = new StdoutGameView(gameManager);
+            try {
                 gameManager.init();
                 gameManager.play();
             }
             catch (Exception e) {
                 // lol
-            }*/
+            }
             //new MainWindow().showAndWait();
 
             // @To-do:
             // 1. Starta en tråd som kör gameManager.play()
             // 2. Visa huvudfönstret för spelet.
-            new WinnerDialog().showAndWait();
+            //new WinnerDialog().showAndWait();
 
         }).showAndWait();
 }
