@@ -50,6 +50,7 @@ public static void main(String[] args) {
 public void start(Stage primaryStage) {
     // We don't need this crap. lol!
     primaryStage.close();
+    primaryStage = null;
 
     new ConfigWindow()
         .onComplete(gameConfig -> {
