@@ -246,7 +246,7 @@ private Boolean recurseDirection(int x, int y, int dx, int dy, int player,
         return (false);
 
     // This is a special case: If we encounter the same color disk that we
-    // started with, it can mean two things:
+    // started with, it can mean one of two things:
     //
     //   1. The direction is invalid because the first disk we encountered was
     //      the same color as our first.
