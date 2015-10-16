@@ -88,6 +88,7 @@ public class GameFrame{
     borderPane.setBottom(statusBar);
     // Create a scene and place it in the stage
     Scene scene = new Scene(borderPane, 450, 450);
+    this.primaryStage.getIcons().add(new Image("images/reversi.png"));
     this.primaryStage.setScene(scene);
     this.primaryStage.show();
 
