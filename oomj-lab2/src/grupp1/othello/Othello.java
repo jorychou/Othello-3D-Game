@@ -54,8 +54,8 @@ public void start(Stage primaryStage) {
 
     new ConfigWindow()
         .onComplete(gameConfig -> {
-            System.out.println("Player 1: " + model.getPlayer1Name());
-            System.out.println("Player 2: " + model.getPlayer2Name());
+            System.out.println("Player 1: " + gameConfig.getPlayer1Name());
+            System.out.println("Player 2: " + gameConfig.getPlayer2Name());
 
             GameManager gameManager = new GameManager(
                 new GameGrid(8), new HumanPlayer(), new HumanPlayer());
