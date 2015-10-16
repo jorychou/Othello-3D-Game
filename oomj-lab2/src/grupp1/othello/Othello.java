@@ -60,7 +60,10 @@ public void start(Stage primaryStage) {
             System.out.println("Player 2: " + gameConfig.getPlayer2Name());
 
             GameManager gameManager = new GameManager(
-                new GameGrid(8), new HumanPlayer(), new HumanPlayer());
+                new GameGrid(12),
+                new HumanPlayer(gameConfig.getPlayer1Name()),
+                new HumanPlayer(gameConfig.getPlayer2Name())
+            );
 
             StdoutGameView sgv = new StdoutGameView(gameManager);
             try {

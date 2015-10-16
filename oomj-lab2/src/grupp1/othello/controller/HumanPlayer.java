@@ -21,6 +21,10 @@ public class HumanPlayer extends Player {
  * PUBLIC METHODS
  *----------------------------------------------*/
 
+public HumanPlayer(String name) {
+    super(name);
+}
+
 @Override
 public void init() {
 

@@ -133,7 +133,7 @@ public void play() {
                     break;
                 }
                 catch (InvalidMoveException e) {
-                    invalidMove(player2, diskPlacement);
+                    invalidMove(player1, diskPlacement);
                 }
             }
         }
@@ -180,10 +180,10 @@ private void initGameGrid() {
     int n = gameGrid.getSize() / 2;
 
     // Place the starting disks on the grid...
-    gameGrid.setCellData(n-1, n-1, PLAYER_ONE);
-    gameGrid.setCellData(n-1, n  , PLAYER_TWO);
-    gameGrid.setCellData(n  , n-1, PLAYER_TWO);
-    gameGrid.setCellData(n  , n  , PLAYER_ONE);
+    gameGrid.setCellData(n-1, n-1, PLAYER_TWO);
+    gameGrid.setCellData(n-1, n  , PLAYER_ONE);
+    gameGrid.setCellData(n  , n-1, PLAYER_ONE);
+    gameGrid.setCellData(n  , n  , PLAYER_TWO);
 }
 
 /**
