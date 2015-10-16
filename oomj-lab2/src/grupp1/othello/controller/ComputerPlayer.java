@@ -4,7 +4,7 @@ package grupp1.othello.controller;
  * IMPORTS
  *----------------------------------------------*/
 
-//import blah;
+import grupp1.othello.model.DiskPlacement;
 
 /*------------------------------------------------
  * CLASS
@@ -25,7 +25,7 @@ public void init() {
 }
 
 @Override
-public int[] makeNextMove() {
+public DiskPlacement makeNextMove() {
     return (null);
 }
 

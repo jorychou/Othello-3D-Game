@@ -3,8 +3,10 @@ package grupp1.othello.controller;
 /*------------------------------------------------
  * IMPORTS
  *----------------------------------------------*/
-import java.util.Scanner;
-//import blah;
+
+import grupp1.othello.model.DiskPlacement;
+
+import java.util.Scanner; // @To-do: Remove.
 
 /*------------------------------------------------
  * CLASS
@@ -25,7 +27,7 @@ public void init() {
 }
 
 @Override
-public int[] makeNextMove() {
+public DiskPlacement makeNextMove() {
     Scanner user_input = new Scanner( System.in );
     System.out.println("varfan vill du sätta brickan");
 
@@ -33,7 +35,7 @@ public int[] makeNextMove() {
     lol[0] = user_input.nextInt();
     lol[1] = user_input.nextInt();
 
-    return (lol);
+    return (new DiskPlacement(lol[0], lol[1]));
 }
 
 @Override

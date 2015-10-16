@@ -4,10 +4,11 @@ package grupp1.othello;
  * IMPORTS
  *----------------------------------------------*/
 
-import grupp1.othello.controller.ConfigWindow;
+import grupp1.othello.controller.ConfigDialog;
 import grupp1.othello.controller.GameManager;
 import grupp1.othello.controller.HumanPlayer;
 import grupp1.othello.controller.MainWindow;
+import grupp1.othello.controller.WinnerDialog;
 import grupp1.othello.model.GameGrid;
 
 
@@ -52,7 +53,7 @@ public void start(Stage primaryStage) {
     primaryStage.close();
     primaryStage = null;
 
-    new ConfigWindow()
+    new ConfigDialog()
         .onComplete(gameConfig -> {
             System.out.println("Player 1: " + gameConfig.getPlayer1Name());
             System.out.println("Player 2: " + gameConfig.getPlayer2Name());
@@ -72,7 +73,7 @@ public void start(Stage primaryStage) {
             // @To-do:
             // 1. Starta en tråd som kör gameManager.play()
             // 2. Visa huvudfönstret för spelet.
-
+            new WinnerDialog().showAndWait();
 
         }).showAndWait();
 }

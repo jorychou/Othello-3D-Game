@@ -1,6 +1,12 @@
 package grupp1.othello.controller;
 
 /*------------------------------------------------
+ * IMPORTS
+ *----------------------------------------------*/
+
+import grupp1.othello.model.DiskPlacement;
+
+/*------------------------------------------------
  * CLASS
  *----------------------------------------------*/
 
@@ -54,7 +60,7 @@ public void setName(String value) {
 }
 
 public abstract void init();
-public abstract int[] makeNextMove();
+public abstract DiskPlacement makeNextMove();
 public abstract void notifyInvalidMove();
 
 }
