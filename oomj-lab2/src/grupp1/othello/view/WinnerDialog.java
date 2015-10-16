@@ -50,10 +50,7 @@ public WinnerDialog() {
  */
 @Override
 protected void init() {
-    setResizable(false);
-    setTitle("Winner!");
-    getIcons().add(new Image("images/reversi.png"));
-
+    setupWindow();
     setupModel();
     setupHandlers();
     setupBindings();
@@ -86,6 +83,16 @@ private void setupModel() {
  * Initializes the transitions and starts them.
  */
 private void setupTransitions() {
+}
+
+/**
+ * Initializes the window/stage.
+ */
+private void setupWindow() {
+    setResizable(false);
+    setTitle("asyar14h/oomu/lab.2");
+
+    getIcons().add(new Image("images/reversi.png"));
 }
 
 }
