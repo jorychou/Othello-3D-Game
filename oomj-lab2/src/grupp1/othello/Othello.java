@@ -4,11 +4,11 @@ package grupp1.othello;
  * IMPORTS
  *----------------------------------------------*/
 
+import grupp1.othello.controller.ConfigWindow;
 import grupp1.othello.controller.GameManager;
 import grupp1.othello.controller.HumanPlayer;
-import grupp1.othello.model.GameGrid;
-import grupp1.othello.controller.ConfigWindow;
 import grupp1.othello.controller.MainWindow;
+import grupp1.othello.model.GameGrid;
 
 
 import javafx.application.Application;
@@ -53,8 +53,8 @@ public void start(Stage primaryStage) {
 
     new ConfigWindow()
         .onComplete(gameConfig -> {
-            //System.out.println("Player 1: " + model.getPlayer1Name());
-            //System.out.println("Player 2: " + model.getPlayer2Name());
+            System.out.println("Player 1: " + model.getPlayer1Name());
+            System.out.println("Player 2: " + model.getPlayer2Name());
 
             GameManager gameManager = new GameManager(
                 new GameGrid(8), new HumanPlayer(), new HumanPlayer());
@@ -67,6 +67,10 @@ public void start(Stage primaryStage) {
                 // lol
             }*/
             //new MainWindow().showAndWait();
+
+            // @To-do:
+            // 1. Starta en tråd som kör gameManager.play()
+            // 2. Visa huvudfönstret för spelet.
 
 
         }).showAndWait();
