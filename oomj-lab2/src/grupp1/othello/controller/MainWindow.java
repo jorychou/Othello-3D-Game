@@ -4,7 +4,7 @@ package grupp1.othello.controller;
  * IMPORTS
  *----------------------------------------------*/
 
-import grupp1.othello.controller.GameWindow;
+import grupp1.othello.controller.GameWindowBase;
 import grupp1.othello.model.GameConfig;
 import grupp1.othello.model.PlayerType;
 
@@ -23,7 +23,7 @@ import javafx.scene.control.TextField;
  *
  * @author Philip Arvidsson (S133686)
  */
-public class MainWindow extends GameWindow<Object> {
+public class MainWindow extends GameWindowBase<Object> {
 
 /*------------------------------------------------
  * FIELDS

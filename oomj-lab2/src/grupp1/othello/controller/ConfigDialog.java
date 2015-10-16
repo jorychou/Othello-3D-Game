@@ -4,11 +4,10 @@ package grupp1.othello.controller;
  * IMPORTS
  *----------------------------------------------*/
 
-import grupp1.othello.controller.GameWindow;
+import grupp1.othello.controller.GameWindowBase;
 import grupp1.othello.model.GameConfig;
 import grupp1.othello.model.PlayerType;
 
-import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -24,7 +23,7 @@ import javafx.scene.image.Image;
  *
  * @author Philip Arvidsson (S133686)
  */
-public class ConfigDialog extends GameWindow<GameConfig> {
+public class ConfigDialog extends GameWindowBase<GameConfig> {
 
 /*------------------------------------------------
  * FIELDS
@@ -81,10 +80,7 @@ public ConfigDialog() {
  */
 @Override
 protected void init() {
-    setResizable(false);
-    setTitle("asyar14h/oomu/lab.2");
-    getIcons().add(new Image("images/reversi.png"));
-
+    setupWindow();
     setupModel();
     setupHandlers();
     setupBindings();
@@ -138,6 +134,16 @@ private void setupModel() {
 private void setupTransitions() {
     rotateTransition1.play();
     rotateTransition2.play();
+}
+
+/**
+ * Initializes the window/stage.
+ */
+private void setupWindow() {
+    setResizable(false);
+    setTitle("asyar14h/oomu/lab.2");
+
+    getIcons().add(new Image("images/reversi.png"));
 }
 
 }

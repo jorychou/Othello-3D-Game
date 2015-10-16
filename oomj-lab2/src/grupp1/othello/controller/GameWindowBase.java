@@ -23,7 +23,7 @@ import javafx.stage.Stage;
  *
  * @author Philip Arvidsson (S133686)
  */
-public class GameWindow<T> extends Stage {
+public class GameWindowBase<T> extends Stage {
 
 /*------------------------------------------------
  * FIELDS
@@ -53,7 +53,7 @@ private T model;
  *
  * @param model The view model.
  */
-public GameWindow(T model) {
+public GameWindowBase(T model) {
     String     className = getClass().getSimpleName();
     String     viewName  = "/fxml/" + className + ".fxml";
     FXMLLoader fxml      = new FXMLLoader(getClass().getResource(viewName));
@@ -77,7 +77,7 @@ public GameWindow(T model) {
  *
  * @return The stage itself.
  */
-public GameWindow<T> onComplete(Consumer<T> cb) {
+public GameWindowBase<T> onComplete(Consumer<T> cb) {
     completeCallback = cb;
     return (this);
 }
@@ -89,7 +89,7 @@ public GameWindow<T> onComplete(Consumer<T> cb) {
  *
  * @return The stage itself.
  */
-public GameWindow<T> onError(BiConsumer<T, Object> cb) {
+public GameWindowBase<T> onError(BiConsumer<T, Object> cb) {
     errorCallback = cb;
     return (this);
 }
