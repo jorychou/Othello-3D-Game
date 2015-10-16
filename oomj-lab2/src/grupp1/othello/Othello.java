@@ -10,6 +10,7 @@ import grupp1.othello.controller.HumanPlayer;
 import grupp1.othello.controller.MainWindow;
 import grupp1.othello.controller.WinnerDialog;
 import grupp1.othello.model.GameGrid;
+import grupp1.othello.view.GameFrame;
 
 import grupp1.othello.view.StdoutGameView;
 
@@ -50,10 +51,8 @@ public static void main(String[] args) {
  */
 @Override
 public void start(Stage primaryStage) {
-    // We don't need this crap. lol!
-    primaryStage.close();
-    primaryStage = null;
-
+    //primaryStage = null;
+    
     new ConfigDialog()
         .onComplete(gameConfig -> {
             System.out.println("Player 1: " + gameConfig.getPlayer1Name());
@@ -65,22 +64,29 @@ public void start(Stage primaryStage) {
                 new HumanPlayer(gameConfig.getPlayer2Name())
             );
 
-            StdoutGameView sgv = new StdoutGameView(gameManager);
+           /* StdoutGameView sgv = new StdoutGameView(gameManager);
             try {
                 gameManager.init();
                 gameManager.play();
             }
             catch (Exception e) {
                 // lol
-            }
+            }*/
             //new MainWindow().showAndWait();
+                       
 
             // @To-do:
             // 1. Starta en tråd som kör gameManager.play()
+            //Thread gameThread = new Thread(new GameManager(new GameGrid(), Player1, Player2));
+            //gameThread.start();
             // 2. Visa huvudfönstret för spelet.
+           
+
             //new WinnerDialog().showAndWait();
 
         }).showAndWait();
+     GameFrame gameFrame = new GameFrame(primaryStage);  
+   
 }
 
 /*------------------------------------------------
