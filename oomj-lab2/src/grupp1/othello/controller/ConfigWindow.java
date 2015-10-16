@@ -13,6 +13,7 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 
 /*------------------------------------------------
  * CLASS
@@ -72,6 +73,7 @@ public ConfigWindow() {
 protected void init() {
     setResizable(false);
     setTitle("asyar14h/oomu/lab.2");
+    getIcons().add(new Image("images/reversi.png"));
 
     setupModel();
     setupHandlers();
