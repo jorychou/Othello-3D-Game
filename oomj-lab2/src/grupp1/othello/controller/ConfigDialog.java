@@ -24,7 +24,7 @@ import javafx.scene.image.Image;
  *
  * @author Philip Arvidsson (S133686)
  */
-public class ConfigWindow extends GameWindow<GameConfig> {
+public class ConfigDialog extends GameWindow<GameConfig> {
 
 /*------------------------------------------------
  * FIELDS
@@ -68,7 +68,7 @@ private javafx.animation.RotateTransition rotateTransition2;
 /**
  * Constructor.
  */
-public ConfigWindow() {
+public ConfigDialog() {
     super(new GameConfig());
 }
 
@@ -96,7 +96,7 @@ protected void init() {
  *----------------------------------------------*/
 
 /**
- * Sets up all bindings. Some in a slightly more inane manner than others.
+ * Sets up all bindings.
  */
 private void setupBindings() {
     player1Name.textProperty().bindBidirectional(

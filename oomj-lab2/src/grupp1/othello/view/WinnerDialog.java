@@ -1,26 +1,91 @@
-package grupp1.othello.view;
+package grupp1.othello.controller;
 
 /*------------------------------------------------
  * IMPORTS
  *----------------------------------------------*/
 
-//import blah;
+import grupp1.othello.controller.GameWindow;
+import grupp1.othello.model.GameConfig;
+import grupp1.othello.model.PlayerType;
+
+import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 
 /*------------------------------------------------
  * CLASS
  *----------------------------------------------*/
 
 /**
- * @author
+ * Initial dialog for configuring the game session.
+ *
+ * @author Philip Arvidsson (S133686)
  */
-public class WinnerDialog  {
+public class WinnerDialog extends GameWindow<Object> {
+
+/*------------------------------------------------
+ * FIELDS
+ *----------------------------------------------*/
 
 /*------------------------------------------------
  * PUBLIC METHODS
  *----------------------------------------------*/
 
+/**
+ * Constructor.
+ */
+public WinnerDialog() {
+    super(null);
+}
+
+/*------------------------------------------------
+ * PROTECTED METHODS
+ *----------------------------------------------*/
+
+/**
+ * Initializes the stage.
+ */
+@Override
+protected void init() {
+    setResizable(false);
+    setTitle("Winner!");
+    getIcons().add(new Image("images/reversi.png"));
+
+    setupModel();
+    setupHandlers();
+    setupBindings();
+    setupTransitions();
+}
+
 /*------------------------------------------------
  * PRIVATE METHODS
  *----------------------------------------------*/
+
+/**
+ * Sets up all bindings.
+ */
+private void setupBindings() {
+}
+
+/**
+ * Sets up the control event handlers.
+ */
+private void setupHandlers() {
+}
+
+/**
+ * Initializes the model to some defaults.
+ */
+private void setupModel() {
+}
+
+/**
+ * Initializes the transitions and starts them.
+ */
+private void setupTransitions() {
+}
 
 }
