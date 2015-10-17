@@ -4,9 +4,7 @@ package grupp1.othello.view;
  * IMPORTS
  *----------------------------------------------*/
 
-import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -31,9 +29,8 @@ public class GameFrame{
  *----------------------------------------------*/
     
   public GameFrame(Stage primaryStage) {
+      
         this.primaryStage = primaryStage;
-        
-
         
         Alert aboutGame = new Alert(Alert.AlertType.INFORMATION);
         aboutGame.setTitle("About Othello: Not for N00bs Edition");
@@ -41,12 +38,7 @@ public class GameFrame{
         aboutGame.setContentText("Philip Arvidsson (S133686) & "
                 + "Martin Bergqvist (S141564) created this Epic game-replica for"
                 + " recreational & laborative purposes. Enjoy!"); 
-        
-        /*Alert aboutMenu = new Alert(Alert.AlertType.INFORMATION);
-        aboutGame.setTitle(null);
-        aboutGame.setHeaderText(null);
-        aboutGame.setContentText(event); */
-        
+               
     BorderPane borderPane = new BorderPane();
     borderPane.setStyle("-fx-background: #202020;");
     
@@ -84,15 +76,16 @@ public class GameFrame{
     menuBar.getMenus().addAll(gameMenu, editMenu, helpMenu);
     
     borderPane.setTop(menuBar);
+    
     board = new GameBoard();
-    borderPane.setCenter(board.getGameBoard());   //Här skall GameBoard anropas istället
+    borderPane.setCenter(board.getGameBoard());
 
     Label statusBar = new Label("   statusBar, possibly SpyBar");
     statusBar.setStyle("-fx-border-color: #303030;");
     statusBar.setMinWidth(450);
     borderPane.setBottom(statusBar);
     
-    // Create a scene and place it in the stage
+    // Create the scene and place it in the stage
     Scene scene = new Scene(borderPane, 450, 450);
     this.primaryStage.getIcons().add(new Image("images/reversi.png"));
     this.primaryStage.setResizable(false);

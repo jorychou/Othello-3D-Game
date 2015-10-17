@@ -3,11 +3,14 @@ package grupp1.othello.view;
 import grupp1.othello.controller.Player;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.effect.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.event.EventHandler;
 
 /*------------------------------------------------
  * IMPORTS
@@ -20,9 +23,11 @@ import javafx.scene.shape.Circle;
  *----------------------------------------------*/
 
 /**
- * @author
+ * 
+ * @author Tkocz
  */
 public class GameBoard  {
+    
 private GridPane board;
 /*------------------------------------------------
  * PUBLIC METHODS
@@ -49,16 +54,28 @@ public GameBoard(){
                 board.add(tile, i ,j);   
             }
         }
+        setPlacing(3,3, Color.WHITE);
+        setPlacing(3,4, Color.BLACK);
+        setPlacing(4,3, Color.BLACK);
+        setPlacing(4,4, Color.WHITE);
+        board.setOnMouseClicked(e -> setPlacing(4,5, Color.WHITE));
         
-     board.setOnMouseClicked(e -> setPlacing(3,4, Color.WHITE));
-
+        /*
+        board.setOnMouseClicked((MouseEvent e) -> {
+            for(Node node: board.getChildren()){
+                if(node instanceof StackPane) {
+                    setPlacing(GridPane.getRowIndex(node), GridPane.getColumnIndex(node), Color.WHITE);
+                }
+            }
+        });
+        */
 }
 
 public GridPane getGameBoard(){
     return board;
 }
 
-public void setPlacing(int x, int y, Color color){
+private void setPlacing(int x, int y, Color color){
     Circle marker = new Circle(10, color);
     board.add(marker, x,y);
     GridPane.setMargin(marker,new Insets(5));
