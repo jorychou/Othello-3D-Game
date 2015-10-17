@@ -1,5 +1,6 @@
 package grupp1.othello.view;
 
+import javafx.geometry.Pos;
 import javafx.scene.effect.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -29,9 +30,12 @@ public GameBoard(){
         shade.setColor(Color.GREEN);
     
         board = new GridPane();
-        board.setStyle("-fx-background-image: url(images/backgr.png);-fx-background-repeat: stretch;");       
+        board.setStyle("-fx-background-image: url(images/backgr.png);"
+                + "-fx-background-repeat: stretch;"
+                + "-fx-background-position: center center;");       
         board.setGridLinesVisible(true);
         board.setEffect(shade);
+        board.setAlignment(Pos.CENTER);
 
         int i, j;
         for(i = 0; i < 8; i++){
