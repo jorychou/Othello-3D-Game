@@ -6,12 +6,9 @@ package grupp1.othello.view;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -74,7 +71,9 @@ public class GameFrame{
     exitMenuItem.setOnAction(actionEvent -> Platform.exit());
     aboutMenuItem.setOnAction(actionEvent -> aboutGame.showAndWait());
     
-    gameMenu.getItems().addAll(newMenuItem, openMenuItem, openRecentMenuItem, closeMenuItem, saveMenuItem, saveAsMenuItem, exitMenuItem);
+    gameMenu.getItems().addAll(newMenuItem,openMenuItem,new SeparatorMenuItem(),
+            openRecentMenuItem,closeMenuItem,saveMenuItem,saveAsMenuItem,
+            new SeparatorMenuItem(),exitMenuItem);
     editMenu.getItems().add(undoMenuItem);
     helpMenu.getItems().add(aboutMenuItem);
     
@@ -82,13 +81,18 @@ public class GameFrame{
     
     borderPane.setTop(menuBar);
 
-    //borderPane.setCenter(new GameBoard());
+    borderPane.setCenter(new GridPane());   //Här skall GameBoard anropas istället
 
-    Label statusBar = new Label("statusBar, possibly SpyBar");
+    Label statusBar = new Label("   statusBar, possibly SpyBar");
+    statusBar.setStyle("-fx-border-color: #303030;");
+    statusBar.setMinWidth(450);
     borderPane.setBottom(statusBar);
+    
     // Create a scene and place it in the stage
     Scene scene = new Scene(borderPane, 450, 450);
     this.primaryStage.getIcons().add(new Image("images/reversi.png"));
+    this.primaryStage.setResizable(false);
+    this.primaryStage.setTitle("Othello: Not for N00bs Edition");
     this.primaryStage.setScene(scene);
     this.primaryStage.show();
 
