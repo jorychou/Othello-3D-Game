@@ -1,10 +1,13 @@
 package grupp1.othello.view;
 
+import grupp1.othello.controller.Player;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.effect.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 /*------------------------------------------------
  * IMPORTS
@@ -42,13 +45,23 @@ public GameBoard(){
             for(j = 0; j < 8; j++){
                 StackPane tile = new StackPane();
                 tile.setMinSize(30,30);
-                board.add(tile, i ,j);
+                tile.setStyle("-fx-border-color: white");
+                board.add(tile, i ,j);   
             }
         }
+        
+     board.setOnMouseClicked(e -> setPlacing(3,4, Color.WHITE));
+
 }
 
 public GridPane getGameBoard(){
     return board;
+}
+
+public void setPlacing(int x, int y, Color color){
+    Circle marker = new Circle(10, color);
+    board.add(marker, x,y);
+    GridPane.setMargin(marker,new Insets(5));
 }
 /*------------------------------------------------
  * PRIVATE METHODS
