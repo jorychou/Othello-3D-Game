@@ -24,12 +24,16 @@ import javafx.stage.Stage;
 
 public class GameFrame{
      private Stage primaryStage;
+     private GameBoard board;
+
 /*------------------------------------------------
  * PUBLIC METHODS
  *----------------------------------------------*/
     
   public GameFrame(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        
+
         
         Alert aboutGame = new Alert(Alert.AlertType.INFORMATION);
         aboutGame.setTitle("About Othello: Not for N00bs Edition");
@@ -80,8 +84,8 @@ public class GameFrame{
     menuBar.getMenus().addAll(gameMenu, editMenu, helpMenu);
     
     borderPane.setTop(menuBar);
-
-    borderPane.setCenter(new GridPane());   //Här skall GameBoard anropas istället
+    board = new GameBoard();
+    borderPane.setCenter(board.getGameBoard());   //Här skall GameBoard anropas istället
 
     Label statusBar = new Label("   statusBar, possibly SpyBar");
     statusBar.setStyle("-fx-border-color: #303030;");
