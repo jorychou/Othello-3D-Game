@@ -60,7 +60,7 @@ public void setName(String value) {
 }
 
 public abstract void init();
-public abstract DiskPlacement makeNextMove();
+public abstract DiskPlacement makeNextMove(GameManager gameManager);
 public abstract void notifyInvalidMove();
 
 }

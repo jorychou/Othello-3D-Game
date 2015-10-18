@@ -26,13 +26,22 @@ import java.util.Arrays;
 public class GameGrid  {
 
 /*------------------------------------------------
+ * CONSTANTS
+ *----------------------------------------------*/
+
+/**
+ * The default game grid size.
+ */
+public static final int DEFAULT_SIZE = 8;
+
+/*------------------------------------------------
  * FIELDS
  *----------------------------------------------*/
 
 /**
  * The grid contents.
  */
-public int[][] grid;
+private int[][] grid;
 
 /**
  * The width and height of the grid, in number of cells.
@@ -42,6 +51,16 @@ private final int gridSize;
 /*------------------------------------------------
  * PUBLIC METHODS
  *----------------------------------------------*/
+
+/**
+ * Constructs a game grid of default size.
+ */
+public GameGrid() {
+    this.gridSize = DEFAULT_SIZE;
+
+    // Allocate a square game grid of the specified size.
+    grid = new int[gridSize][gridSize];
+}
 
 /**
  * Constructor.

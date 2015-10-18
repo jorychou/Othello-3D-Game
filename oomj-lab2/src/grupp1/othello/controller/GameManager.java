@@ -48,9 +48,12 @@ public static final int PLAYER_TWO = 2;
  * FIELDS
  *----------------------------------------------*/
 
-private BiConsumer<Player, DiskPlacement> diskPlacedCallback;
+/**
+ * The game grid to play on.
+ */
+private final GameGrid gameGrid;
 
-private BiConsumer<Player, DiskPlacement> invalidMoveCallback;
+private int currentPlayerIndex;
 
 /**
  * First player.
@@ -63,9 +66,14 @@ private final Player player1;
 private final Player player2;
 
 /**
- * The game grid to play on.
+ * The function to call after a disk has been placed.
  */
-private final GameGrid gameGrid;
+private BiConsumer<Player, DiskPlacement> diskPlacedCallback;
+
+/**
+ * The function to call after an attempt has been made to do an invalid move.
+ */
+private BiConsumer<Player, DiskPlacement> invalidMoveCallback;
 
 /*------------------------------------------------
  * PUBLIC METHODS
@@ -84,6 +92,10 @@ public GameManager(GameGrid gameGrid, Player player1, Player player2) {
     this.player2  = player2;
 }
 
+public int getCurrentPlayerIndex() {
+    return (currentPlayerIndex);
+}
+
 public GameGrid getGameGrid() {
     return (gameGrid);
 }
@@ -94,6 +106,43 @@ public Player getPlayer1() {
 
 public Player getPlayer2() {
     return (player2);
+}
+
+/**
+ * Checks whether it is considered a valid move to place a disk for the
+ * specified player on the board at the given coordinates.
+ *
+ * @param x      The x-coordinate of the cell to check.
+ * @param y      The x-coordinate of the cell to check.
+ * @param player The player (player one or player two).
+ *
+ * @return True if the specified move is considered valid.
+ *
+ * @throws InvalidPlayerException The specified player index is invalid.
+ */
+public boolean isValidMove(int x, int y, int player) {
+    // Check if we're out of bounds.
+    if (x < 0 || x >= gameGrid.getSize() || y < 0 || y >= gameGrid.getSize())
+        return (false);
+
+    // New disks can only be placed on empty cells.
+    if (gameGrid.getCellData(x, y) != EMPTY)
+        return (false);
+
+    return (checkMove(x, y, player));
+}
+
+public DiskPlacement[] findValidDiskPlacements(int player) {
+    ArrayList<DiskPlacement> a = new ArrayList<>();
+
+    for (int x = 0; x < gameGrid.getSize(); x++) {
+        for (int y = 0; y < gameGrid.getSize(); y++) {
+            if (isValidMove(x, y, player))
+                a.add(new DiskPlacement(x, y));
+        }
+    }
+
+    return (a.toArray(new DiskPlacement[0]));
 }
 
 /**
@@ -124,9 +173,10 @@ public void play() {
     boolean done = false;
 
     while (!done) {
-        if (validMoves(PLAYER_ONE).length > 0) {
+        currentPlayerIndex = PLAYER_ONE;
+        if (findValidDiskPlacements(PLAYER_ONE).length > 0) {
             while (true) {
-                DiskPlacement diskPlacement = player1.makeNextMove();
+                DiskPlacement diskPlacement = player1.makeNextMove(this);
                 try {
                     placeDisk(diskPlacement, PLAYER_ONE);
                     diskPlaced(player1, diskPlacement);
@@ -137,9 +187,11 @@ public void play() {
                 }
             }
         }
-        if (validMoves(PLAYER_TWO).length > 0) {
+
+        currentPlayerIndex = PLAYER_TWO;
+        if (findValidDiskPlacements(PLAYER_TWO).length > 0) {
             while (true) {
-                DiskPlacement diskPlacement = player2.makeNextMove();
+                DiskPlacement diskPlacement = player2.makeNextMove(this);
                 try {
                     placeDisk(diskPlacement, PLAYER_TWO);
                     diskPlaced(player2, diskPlacement);
@@ -149,11 +201,13 @@ public void play() {
                     invalidMove(player2, diskPlacement);
                 }
             }
-
         }
 
-        if (validMoves(1).length == 0 && validMoves(2).length == 0)
+        if (findValidDiskPlacements(PLAYER_ONE).length == 0
+         && findValidDiskPlacements(PLAYER_TWO).length == 0)
+        {
             done = true;
+        }
     }
 }
 
@@ -184,30 +238,6 @@ private void initGameGrid() {
     gameGrid.setCellData(n-1, n  , PLAYER_ONE);
     gameGrid.setCellData(n  , n-1, PLAYER_ONE);
     gameGrid.setCellData(n  , n  , PLAYER_TWO);
-}
-
-/**
- * Checks whether it is considered a valid move to place a disk for the
- * specified player on the board at the given coordinates.
- *
- * @param x      The x-coordinate of the cell to check.
- * @param y      The x-coordinate of the cell to check.
- * @param player The player (player one or player two).
- *
- * @return True if the specified move is considered valid.
- *
- * @throws InvalidPlayerException The specified player index is invalid.
- */
-private boolean isValidMove(int x, int y, int player) {
-    // Check if we're out of bounds.
-    if (x < 0 || x >= gameGrid.getSize() || y < 0 || y >= gameGrid.getSize())
-        return (false);
-
-    // New disks can only be placed on empty cells.
-    if (gameGrid.getCellData(x, y) != EMPTY)
-        return (false);
-
-    return (checkMove(x, y, player));
 }
 
 /**
@@ -338,25 +368,6 @@ private boolean recurseDirection(int x, int y, int dx, int dy, int player,
         gameGrid.setCellData(x, y, player);
 
     return (result);
-}
-
-private Integer[] validMoves(int player) {
-    ArrayList<Integer> a = new ArrayList<>();
-
-try {
-
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
-            if (isValidMove(i, j, player))
-                a.add(1337);
-        }
-    }
-}
-catch (Exception e) {
-    // lol
-}
-    Integer[] lol = new Integer[1];
-    return (a.toArray(lol));
 }
 
 }

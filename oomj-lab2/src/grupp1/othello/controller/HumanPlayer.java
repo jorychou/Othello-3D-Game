@@ -31,7 +31,7 @@ public void init() {
 }
 
 @Override
-public DiskPlacement makeNextMove() {
+public DiskPlacement makeNextMove(GameManager gameManager) {
     Scanner user_input = new Scanner( System.in );
     System.out.println("varfan vill du sätta brickan");
 

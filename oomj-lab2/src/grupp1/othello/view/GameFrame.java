@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  *----------------------------------------------*/
 
 /**
- * 
+ *
  * @author Martin
  */
 
@@ -27,21 +27,21 @@ public class GameFrame{
 /*------------------------------------------------
  * PUBLIC METHODS
  *----------------------------------------------*/
-    
+
   public GameFrame(Stage primaryStage) {
-      
+
         this.primaryStage = primaryStage;
-        
+
         Alert aboutGame = new Alert(Alert.AlertType.INFORMATION);
         aboutGame.setTitle("About Othello: Not for N00bs Edition");
         aboutGame.setHeaderText(null);
         aboutGame.setContentText("Philip Arvidsson (S133686) & "
                 + "Martin Bergqvist (S141564) created this Epic game-replica for"
-                + " recreational & laborative purposes. Enjoy!"); 
-               
+                + " recreational & laborative purposes. Enjoy!");
+
     BorderPane borderPane = new BorderPane();
     borderPane.setStyle("-fx-background: #202020;");
-    
+
     MenuBar menuBar = new MenuBar();
     Menu gameMenu = new Menu("Game");
         MenuItem newMenuItem = new MenuItem("New Game");
@@ -57,7 +57,7 @@ public class GameFrame{
         MenuItem undoMenuItem = new MenuItem("Undo last Move");
     Menu helpMenu = new Menu("Help");
         MenuItem aboutMenuItem = new MenuItem("About Othello");
-        
+
     /*newMenuItem.setOnAction(actionEvent -> aboutMenu.show(e));
     openMenuItem.setOnAction(actionEvent -> aboutMenu.show(e));
     openRecentMenuItem.setOnAction(actionEvent -> aboutMenu.show(e));
@@ -66,17 +66,17 @@ public class GameFrame{
     saveAsMenuItem.setOnAction(actionEvent -> aboutMenu.show(e));*/
     exitMenuItem.setOnAction(actionEvent -> Platform.exit());
     aboutMenuItem.setOnAction(actionEvent -> aboutGame.showAndWait());
-    
+
     gameMenu.getItems().addAll(newMenuItem,openMenuItem,new SeparatorMenuItem(),
             openRecentMenuItem,closeMenuItem,saveMenuItem,saveAsMenuItem,
             new SeparatorMenuItem(),exitMenuItem);
     editMenu.getItems().add(undoMenuItem);
     helpMenu.getItems().add(aboutMenuItem);
-    
+
     menuBar.getMenus().addAll(gameMenu, editMenu, helpMenu);
-    
+
     borderPane.setTop(menuBar);
-    
+
     board = new GameBoard();
     borderPane.setCenter(board.getGameBoard());
 
@@ -84,16 +84,16 @@ public class GameFrame{
     statusBar.setStyle("-fx-border-color: #303030;");
     statusBar.setMinWidth(450);
     borderPane.setBottom(statusBar);
-    
+
     // Create the scene and place it in the stage
     Scene scene = new Scene(borderPane, 450, 450);
     this.primaryStage.getIcons().add(new Image("images/reversi.png"));
     this.primaryStage.setResizable(false);
     this.primaryStage.setTitle("Othello: Not for N00bs Edition");
     this.primaryStage.setScene(scene);
-    this.primaryStage.show();
+    this.primaryStage.showAndWait();
 
-  
+
   }
 /*------------------------------------------------
  * PRIVATE METHODS

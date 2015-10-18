@@ -4,20 +4,10 @@ package grupp1.othello;
  * IMPORTS
  *----------------------------------------------*/
 
-import grupp1.othello.controller.ConfigDialog;
-import grupp1.othello.controller.GameManager;
-import grupp1.othello.controller.HumanPlayer;
-import grupp1.othello.controller.MainWindow;
-import grupp1.othello.controller.WinnerDialog;
-import grupp1.othello.model.GameGrid;
-import grupp1.othello.view.GameFrame;
-
+import grupp1.othello.controller.OthelloGame;
 import grupp1.othello.view.StdoutGameView;
 
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.scene.control.Button;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /*------------------------------------------------
@@ -37,6 +27,7 @@ public class Othello extends Application {
 
 /**
  * Program entry point.
+ *
  * @param args Command line arguments.
  */
 public static void main(String[] args) {
@@ -47,46 +38,16 @@ public static void main(String[] args) {
 
 /**
  * This method initializes the game and starts it.
+ *
  * @param primaryStage Stage to use for displaying the game in a visual fashion.
  */
 @Override
 public void start(Stage primaryStage) {
-    //primaryStage = null;
+    // Don't need this crap stage! lulz
+    primaryStage.close();
+    primaryStage = null; // This might allow the GC to collect it earlier?
 
-    new ConfigDialog()
-        .onComplete(gameConfig -> {
-            System.out.println("Player 1: " + gameConfig.getPlayer1Name());
-            System.out.println("Player 2: " + gameConfig.getPlayer2Name());
-
-            GameManager gameManager = new GameManager(
-                new GameGrid(8),
-                new HumanPlayer(gameConfig.getPlayer1Name()),
-                new HumanPlayer(gameConfig.getPlayer2Name())
-            );
-
-            StdoutGameView sgv = new StdoutGameView(gameManager);
-            try {
-                gameManager.init();
-                gameManager.play();
-            }
-            catch (Exception e) {
-                // lol
-            }
-            //new MainWindow().showAndWait();
-
-
-            // @To-do:
-            // 1. Starta en tråd som kör gameManager.play()
-            //Thread gameThread = new Thread(new GameManager(new GameGrid(), Player1, Player2));
-            //gameThread.start();
-            // 2. Visa huvudfönstret för spelet.
-
-
-            //new WinnerDialog().showAndWait();
-
-        }).showAndWait();
-     GameFrame gameFrame = new GameFrame(primaryStage);
-
+    new OthelloGame().run();
 }
 
 /*------------------------------------------------
@@ -95,6 +56,7 @@ public void start(Stage primaryStage) {
 
 /**
  * Retrieves the program authors.
+ *
  * @return An array of strings with the program authors' names.
  */
 private static String[] getAuthors() {

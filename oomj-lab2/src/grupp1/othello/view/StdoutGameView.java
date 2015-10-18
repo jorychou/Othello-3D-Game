@@ -42,10 +42,10 @@ public StdoutGameView(GameManager gameManager) {
     this.gameManager = gameManager;
 
     gameManager.onDiskPlaced((player, diskPlacement) -> {
-                                 printGrid()
+                                 printGrid();
                              })
                .onInvalidMove((player, diskPlacement) -> {
-                                  notifyInvalidMove(player, diskPlacement)
+                                  notifyInvalidMove(player, diskPlacement);
                               });
 }
 
@@ -78,7 +78,7 @@ private void printGrid() {
 
             switch (data) {
 
-            case 0:
+            case GameManager.EMPTY:
                 System.out.print("_");
                 break;
 
@@ -99,6 +99,8 @@ private void printGrid() {
 
         System.out.println("|");
     }
+
+    System.out.println("");
 }
 
 }

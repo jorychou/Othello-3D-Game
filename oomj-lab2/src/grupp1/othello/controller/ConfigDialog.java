@@ -122,7 +122,7 @@ private void setupHandlers() {
  */
 private void setupModel() {
     getModel().setPlayer1Name("Player");
-    getModel().setPlayer1Type(PlayerType.HUMAN);
+    getModel().setPlayer1Type(PlayerType.COMPUTER);
 
     getModel().setPlayer2Name("Computer");
     getModel().setPlayer2Type(PlayerType.COMPUTER);
