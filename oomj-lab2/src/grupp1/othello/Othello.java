@@ -25,6 +25,9 @@ public class Othello extends Application {
  * CONSTANTS
  *----------------------------------------------*/
 
+/**
+ * True to enable printing of game state to stdout.
+ */
 public static final boolean enableConsoleView = true;
 
 /*------------------------------------------------

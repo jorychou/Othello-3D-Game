@@ -70,6 +70,12 @@ private void notifyInvalidMove(Player player, DiskPlacement diskPlacement) {
  */
 private void printGrid() {
     // Lots of gets, but who cares..?
+    for (int x = 0; x < gameManager.getGameGrid().getSize(); x++) {
+        System.out.print(" _");
+    }
+
+    System.out.println("");
+
     for (int y = 0; y < gameManager.getGameGrid().getSize(); y++) {
         for (int x = 0; x < gameManager.getGameGrid().getSize(); x++) {
             int data = gameManager.getGameGrid().getCellData(x, y);
@@ -91,7 +97,7 @@ private void printGrid() {
                 break;
 
             default:
-                System.out.print("?");
+                System.out.print(data);
                 break;
 
             }

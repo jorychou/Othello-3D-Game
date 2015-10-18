@@ -42,6 +42,13 @@ public DiskPlacement makeNextMove(GameManager gameManager) {
     DiskPlacement[] diskPlacements = gameManager.findValidDiskPlacements(i);
 
     int n = ThreadLocalRandom.current().nextInt(0, diskPlacements.length);
+
+    // Look thoughtful for a bit. :-)
+    try {
+        Thread.sleep(ThreadLocalRandom.current().nextInt(500, 2000));
+    }
+    catch (InterruptedException e) {}
+
     return (diskPlacements[n]);
 }
 

@@ -72,6 +72,15 @@ public ConfigDialog() {
     super(new GameConfig());
 }
 
+/**
+ * Constructor.
+ *
+ * @param model The model to use.
+ */
+public ConfigDialog(GameConfig model) {
+    super(model);
+}
+
 /*------------------------------------------------
  * PROTECTED METHODS
  *----------------------------------------------*/
