@@ -40,10 +40,20 @@ public DiskPlacement(int x, int y) {
     this.y = y;
 }
 
+/**
+ * Gets the x-coordinate of the disk placement.
+ *
+ * @return The x-coordinate of the disk placement.
+ */
 public int getX() {
     return (x);
 }
 
+/**
+ * Gets the y-coordinate of the disk placement.
+ *
+ * @return The y-coordinate of the disk placement.
+ */
 public int getY() {
     return (y);
 }
