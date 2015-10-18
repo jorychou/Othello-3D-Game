@@ -40,7 +40,7 @@ public void run() {
     // 1. CONFIGURE AND INITIALIZE
     //--------------------------------------------
 
-    boolean       stdoutView  = true;
+    boolean       stdoutView  = true; //<- Set to false to disable console view.
     GameConfig    config      = askUserToConfigureGame();
     PlayerFactory factory     = new PlayerFactory();
     GameManager   gameManager = new GameManager(
@@ -102,6 +102,7 @@ private GameConfig askUserToConfigureGame() {
 private Thread fork(Runnable runnable) {
     Thread thread = new Thread(runnable);
     thread.start();
+
     return (thread);
 }
 
