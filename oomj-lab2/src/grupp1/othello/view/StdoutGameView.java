@@ -69,10 +69,10 @@ private void notifyInvalidMove(Player player, DiskPlacement diskPlacement) {
  * Prints the game grid.
  */
 private void printGrid() {
-    // Lots of gets, but who cares..?
-    for (int x = 0; x < gameManager.getGameGrid().getSize(); x++) {
+    // Lots of gets below, but who cares..? Speed isn't important here.
+
+    for (int x = 0; x < gameManager.getGameGrid().getSize(); x++)
         System.out.print(" _");
-    }
 
     System.out.println("");
 
