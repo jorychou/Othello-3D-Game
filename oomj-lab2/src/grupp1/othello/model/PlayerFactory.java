@@ -13,6 +13,11 @@ import grupp1.othello.model.PlayerType;
  * CLASS
  *----------------------------------------------*/
 
+/**
+ * Factory for creating players.
+ *
+ * @author Philip Arvidsson (S133686)
+ */
 public class PlayerFactory {
 
 /*------------------------------------------------
@@ -24,6 +29,8 @@ public class PlayerFactory {
  *
  * @param name The player name.
  * @param type The player type.
+ *
+ * @return A new player instance.
  */
 public Player getPlayer(String name, PlayerType type) {
     switch (type) {
