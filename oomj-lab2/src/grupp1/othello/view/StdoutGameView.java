@@ -84,17 +84,9 @@ private void printGrid() {
 
             switch (data) {
 
-            case GameManager.EMPTY:
-                System.out.print("_");
-                break;
-
-            case GameManager.PLAYER_ONE:
-                System.out.print("B");
-                break;
-
-            case GameManager.PLAYER_TWO:
-                System.out.print("W");
-                break;
+            case GameManager.EMPTY     : System.out.print("_"); break;
+            case GameManager.PLAYER_ONE: System.out.print("B"); break;
+            case GameManager.PLAYER_TWO: System.out.print("W"); break;
 
             default:
                 System.out.print(data);
