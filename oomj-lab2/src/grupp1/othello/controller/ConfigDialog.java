@@ -8,6 +8,7 @@ import grupp1.othello.controller.GameWindowBase;
 import grupp1.othello.model.GameConfig;
 import grupp1.othello.model.PlayerType;
 
+import javafx.animation.RotateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -51,14 +52,14 @@ private TextField player2Name;
  * Disk rotate transition 1.
  */
 @FXML
-private javafx.animation.RotateTransition rotateTransition1;
+private RotateTransition rotateTransition1;
 
 /**
  * Disk rotate transition 2. Used in conjunction with the other transition to
  * create a double-axis rotation effect.
  */
 @FXML
-private javafx.animation.RotateTransition rotateTransition2;
+private RotateTransition rotateTransition2;
 
 /*------------------------------------------------
  * PUBLIC METHODS
@@ -141,7 +142,7 @@ private void setupTransitions() {
  */
 private void setupWindow() {
     setResizable(false);
-    setTitle("asyar14h/oomu/lab.2");
+    setTitle("asyar14h/oomu/lab.2 - grupp 1");
 
     getIcons().add(new Image("images/reversi.png"));
 }

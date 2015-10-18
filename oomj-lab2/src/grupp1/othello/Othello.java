@@ -22,6 +22,12 @@ import javafx.stage.Stage;
 public class Othello extends Application {
 
 /*------------------------------------------------
+ * CONSTANTS
+ *----------------------------------------------*/
+
+public static final boolean enableConsoleView = true;
+
+/*------------------------------------------------
  * PUBLIC METHODS
  *----------------------------------------------*/
 

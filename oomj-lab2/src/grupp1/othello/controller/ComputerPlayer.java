@@ -23,13 +23,17 @@ public class ComputerPlayer extends Player {
  * PUBLIC METHODS
  *----------------------------------------------*/
 
+/**
+ * Constructor.
+ *
+ * @param name The player name.
+ */
 public ComputerPlayer(String name) {
     super(name);
 }
 
 @Override
 public void init() {
-
 }
 
 @Override
@@ -43,7 +47,6 @@ public DiskPlacement makeNextMove(GameManager gameManager) {
 
 @Override
 public void notifyInvalidMove() {
-
 }
 
 /*------------------------------------------------

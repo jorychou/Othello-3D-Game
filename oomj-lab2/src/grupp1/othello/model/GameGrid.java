@@ -5,7 +5,6 @@ package grupp1.othello.model;
  *----------------------------------------------*/
 
 import grupp1.othello.exception.InvalidMoveException;
-import grupp1.othello.exception.InvalidPlayerException;
 
 import java.util.Arrays;
 

@@ -5,7 +5,8 @@ package grupp1.othello.model;
  *----------------------------------------------*/
 
 import grupp1.othello.controller.ComputerPlayer;
-import grupp1.othello.controller.HumanPlayer;
+import grupp1.othello.controller.GuiHumanPlayer;
+import grupp1.othello.controller.StdinHumanPlayer;
 import grupp1.othello.controller.Player;
 import grupp1.othello.model.PlayerType;
 
@@ -35,8 +36,8 @@ public class PlayerFactory {
 public Player getPlayer(String name, PlayerType type) {
     switch (type) {
 
-    case COMPUTER: return (new ComputerPlayer(name));
-    case HUMAN   : return (new HumanPlayer   (name));
+    case COMPUTER: return (new ComputerPlayer  (name));
+    case HUMAN   : return (new StdinHumanPlayer(name));
 
     }
 

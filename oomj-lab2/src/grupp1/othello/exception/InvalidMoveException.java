@@ -24,8 +24,4 @@ public InvalidMoveException(String message) {
     super(message);
 }
 
-/*------------------------------------------------
- * PRIVATE METHODS
- *----------------------------------------------*/
-
 }

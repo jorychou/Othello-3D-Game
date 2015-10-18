@@ -6,9 +6,9 @@ package grupp1.othello.controller;
 
 import grupp1.othello.controller.Player;
 import grupp1.othello.exception.InvalidMoveException;
-import grupp1.othello.exception.InvalidPlayerException;
 import grupp1.othello.model.DiskPlacement;
 import grupp1.othello.model.GameGrid;
+import grupp1.othello.model.GameResult;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
@@ -53,6 +53,9 @@ public static final int PLAYER_TWO = 2;
  */
 private final GameGrid gameGrid;
 
+/**
+ * The current player index (1 or 2).
+ */
 private int currentPlayerIndex;
 
 /**
@@ -117,8 +120,6 @@ public Player getPlayer2() {
  * @param player The player (player one or player two).
  *
  * @return True if the specified move is considered valid.
- *
- * @throws InvalidPlayerException The specified player index is invalid.
  */
 public boolean isValidMove(int x, int y, int player) {
     // Check if we're out of bounds.
@@ -158,50 +159,44 @@ public void init() {
     diskPlaced(null, null);
 }
 
+/**
+ * Sets the function to be called when a disk has been placed on the grid.
+ *
+ * @param cb The callback function.
+ *
+ * @return The game manager instance.
+ */
 public GameManager onDiskPlaced(BiConsumer<Player, DiskPlacement> cb) {
     diskPlacedCallback = cb;
     return (this);
 }
 
+/**
+ * Sets the function to be called when an attempt has been made to do an invalid
+ * move.
+ *
+ * @param cb The callback function.
+ *
+ * @return The game manager instance.
+ */
 public GameManager onInvalidMove(BiConsumer<Player, DiskPlacement> cb) {
     invalidMoveCallback = cb;
     return (this);
 }
 
 // @To-do: Cleanup. This method should return the game result as well.
-public void play() {
+/**
+ * Plays the game and returns when the game is over.
+ *
+ * @return The game result.
+ */
+public GameResult play() {
+    GameResult result = new GameResult();
+
     boolean done = false;
-
     while (!done) {
-        currentPlayerIndex = PLAYER_ONE;
-        if (findValidDiskPlacements(PLAYER_ONE).length > 0) {
-            while (true) {
-                DiskPlacement diskPlacement = player1.makeNextMove(this);
-                try {
-                    placeDisk(diskPlacement, PLAYER_ONE);
-                    diskPlaced(player1, diskPlacement);
-                    break;
-                }
-                catch (InvalidMoveException e) {
-                    invalidMove(player1, diskPlacement);
-                }
-            }
-        }
-
-        currentPlayerIndex = PLAYER_TWO;
-        if (findValidDiskPlacements(PLAYER_TWO).length > 0) {
-            while (true) {
-                DiskPlacement diskPlacement = player2.makeNextMove(this);
-                try {
-                    placeDisk(diskPlacement, PLAYER_TWO);
-                    diskPlaced(player2, diskPlacement);
-                    break;
-                }
-                catch (InvalidMoveException e) {
-                    invalidMove(player2, diskPlacement);
-                }
-            }
-        }
+        playOneTurn(player1, PLAYER_ONE);
+        playOneTurn(player2, PLAYER_TWO);
 
         if (findValidDiskPlacements(PLAYER_ONE).length == 0
          && findValidDiskPlacements(PLAYER_TWO).length == 0)
@@ -209,6 +204,8 @@ public void play() {
             done = true;
         }
     }
+
+    return (result);
 }
 
 /*------------------------------------------------
@@ -238,6 +235,26 @@ private void initGameGrid() {
     gameGrid.setCellData(n-1, n  , PLAYER_ONE);
     gameGrid.setCellData(n  , n-1, PLAYER_ONE);
     gameGrid.setCellData(n  , n  , PLAYER_TWO);
+}
+
+private void playOneTurn(Player player, int playerIndex) {
+    currentPlayerIndex = playerIndex;
+
+    if (findValidDiskPlacements(playerIndex).length == 0)
+        return;
+
+    boolean done = false;
+    while (!done) {
+        DiskPlacement diskPlacement = player.makeNextMove(this);
+        try {
+            placeDisk(diskPlacement, playerIndex);
+            diskPlaced(player, diskPlacement);
+            done = true;
+        }
+        catch (InvalidMoveException e) {
+            invalidMove(player, diskPlacement);
+        }
+    }
 }
 
 /**
@@ -277,12 +294,8 @@ private void makeMove(int x, int y, int player) {
  * @param flip   True to actually flip disks (and mutate the grid state).
  *
  * @return True if any flippable disks were found.
- *
- * @author Philip Arvidsson (S133686)
  */
-private boolean checkDirections(int x, int y, int player,
-                                boolean flip)
-{
+private boolean checkDirections(int x, int y, int player, boolean flip) {
     // This variable indicates whether any viable direction contains flippable
     // disks.
     boolean result = false;
@@ -319,8 +332,6 @@ private boolean checkDirections(int x, int y, int player,
  * @param player The player index. (1 or 2).
  * @param flip   True if disks should be flipped when found flippable.
  * @param flag   MUST be set to false when called externally.
- *
- * @author Philip Arvidsson (S133686)
  */
 private boolean recurseDirection(int x, int y, int dx, int dy, int player,
                                  boolean flip, boolean flag)

@@ -6,8 +6,6 @@ package grupp1.othello.controller;
 
 import grupp1.othello.model.DiskPlacement;
 
-import java.util.Scanner; // @To-do: Remove.
-
 /*------------------------------------------------
  * CLASS
  *----------------------------------------------*/
@@ -15,13 +13,18 @@ import java.util.Scanner; // @To-do: Remove.
 /**
  * @author
  */
-public class HumanPlayer extends Player {
+public class GuiHumanPlayer extends Player {
 
 /*------------------------------------------------
  * PUBLIC METHODS
  *----------------------------------------------*/
 
-public HumanPlayer(String name) {
+/**
+ * Constructor.
+ *
+ * @param name The player name.
+ */
+public GuiHumanPlayer(String name) {
     super(name);
 }
 
@@ -32,19 +35,11 @@ public void init() {
 
 @Override
 public DiskPlacement makeNextMove(GameManager gameManager) {
-    Scanner user_input = new Scanner( System.in );
-    System.out.println("varfan vill du sätta brickan");
-
-    int[] lol = new int[2];
-    lol[0] = user_input.nextInt();
-    lol[1] = user_input.nextInt();
-
-    return (new DiskPlacement(lol[0], lol[1]));
+    return (null);
 }
 
 @Override
 public void notifyInvalidMove() {
-    System.out.println("du, det där ger du fan i!");
 }
 
 /*------------------------------------------------

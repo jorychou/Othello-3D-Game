@@ -4,6 +4,7 @@ package grupp1.othello.controller;
  * IMPORTS
  *----------------------------------------------*/
 
+import grupp1.othello.Othello;
 import grupp1.othello.controller.ConfigDialog;
 import grupp1.othello.controller.GameManager;
 import grupp1.othello.controller.HumanPlayer;
@@ -40,7 +41,6 @@ public void run() {
     // 1. CONFIGURE AND INITIALIZE
     //--------------------------------------------
 
-    boolean       stdoutView  = true; //<- Set to false to disable console view.
     GameConfig    config      = askUserToConfigureGame();
     PlayerFactory factory     = new PlayerFactory();
     GameManager   gameManager = new GameManager(
@@ -50,7 +50,7 @@ public void run() {
     );
 
     // @To-do: Figure out if GC is a problem here since we don't keep a ref.
-    if (stdoutView)
+    if (Othello.enableConsoleView)
         new StdoutGameView(gameManager);
 
     gameManager.init();
