@@ -22,7 +22,7 @@ import java.util.Arrays;
  *
  * @author Martin Bergqvist (S133686)
  */
-public class GameGrid  {
+public class GameGrid {
 
 /*------------------------------------------------
  * CONSTANTS
