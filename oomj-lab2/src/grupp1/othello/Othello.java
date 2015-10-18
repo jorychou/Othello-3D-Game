@@ -52,7 +52,7 @@ public static void main(String[] args) {
 @Override
 public void start(Stage primaryStage) {
     //primaryStage = null;
-    
+
     new ConfigDialog()
         .onComplete(gameConfig -> {
             System.out.println("Player 1: " + gameConfig.getPlayer1Name());
@@ -64,29 +64,29 @@ public void start(Stage primaryStage) {
                 new HumanPlayer(gameConfig.getPlayer2Name())
             );
 
-           /* StdoutGameView sgv = new StdoutGameView(gameManager);
+            StdoutGameView sgv = new StdoutGameView(gameManager);
             try {
                 gameManager.init();
                 gameManager.play();
             }
             catch (Exception e) {
                 // lol
-            }*/
+            }
             //new MainWindow().showAndWait();
-                       
+
 
             // @To-do:
             // 1. Starta en tråd som kör gameManager.play()
             //Thread gameThread = new Thread(new GameManager(new GameGrid(), Player1, Player2));
             //gameThread.start();
             // 2. Visa huvudfönstret för spelet.
-           
+
 
             //new WinnerDialog().showAndWait();
 
         }).showAndWait();
-     GameFrame gameFrame = new GameFrame(primaryStage);  
-   
+     GameFrame gameFrame = new GameFrame(primaryStage);
+
 }
 
 /*------------------------------------------------
