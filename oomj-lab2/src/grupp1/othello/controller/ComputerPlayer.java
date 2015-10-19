@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *----------------------------------------------*/
 
 /**
- * Represents an A.I. controlled player.
+ * Represents an A.I. (artificially idiotic) player.
  *
  * @author Philip Arvidsson (S133686)
  */
