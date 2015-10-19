@@ -43,6 +43,9 @@ private Button playButton;
 @FXML
 private TextField player1Name;
 
+/**
+ * The type selection for player one.
+ */
 @FXML
 private ToggleGroup player1Type;
 
@@ -52,6 +55,9 @@ private ToggleGroup player1Type;
 @FXML
 private TextField player2Name;
 
+/**
+ * The type selection for player two.
+ */
 @FXML
 private ToggleGroup player2Type;
 

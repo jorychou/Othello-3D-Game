@@ -327,10 +327,24 @@ private void placeDisk(DiskPlacement diskPlacement, int player)
     gameGrid.setCellData(diskPlacement.getX(), diskPlacement.getY(), player);
 }
 
+/**
+ * Checks whether the specified move is valid.
+ *
+ * @param x      The x-coordinate of the disk placement.
+ * @param y      The y-coordinate of the disk placement.
+ * @param player The index of the player making the move.
+ */
 private boolean checkMove(int x, int y, int player) {
     return (checkDirections(x, y, player, false));
 }
 
+/**
+ * Performs a move by placing a disk at the specified position.
+ *
+ * @param x      The x-coordinate of the disk placement.
+ * @param y      The y-coordinate of the disk placement.
+ * @param player The index of player making the move.
+ */
 private void makeMove(int x, int y, int player) {
     checkDirections(x, y, player, true);
 }
