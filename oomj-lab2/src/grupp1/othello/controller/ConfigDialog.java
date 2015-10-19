@@ -151,19 +151,15 @@ private void setupBindings() {
         )
     );*/
 
-    player1Type.selectedToggleProperty()
-        .addListener((observable) -> {
-            Object data = player1Type.getSelectedToggle().getUserData();
-            getModel().setPlayer1Type((PlayerType)data);
-        }
-    );
+    player1Type.selectedToggleProperty().addListener((observable) -> {
+        Object data = player1Type.getSelectedToggle().getUserData();
+        getModel().setPlayer1Type((PlayerType)data);
+    });
 
-    player2Type.selectedToggleProperty()
-        .addListener((observable) -> {
-            Object data = player2Type.getSelectedToggle().getUserData();
-            getModel().setPlayer2Type((PlayerType)data);
-        }
-    );
+    player2Type.selectedToggleProperty().addListener((observable) -> {
+        Object data = player2Type.getSelectedToggle().getUserData();
+        getModel().setPlayer2Type((PlayerType)data);
+    });
 
     // Disable play button when a name is missing.
     playButton.disableProperty().bind(
