@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import grupp1.othello.model.PlayerType?>
 <?import javafx.animation.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
@@ -110,6 +111,9 @@
                         <Image url="/images/human.png" />
                     </ImageView>
                 </graphic>
+                <userData>
+                    <PlayerType fx:constant="HUMAN" />
+                </userData>
             </RadioButton>
 
             <RadioButton toggleGroup="$player1Type">
@@ -118,6 +122,9 @@
                         <Image url="/images/computer.png" />
                     </ImageView>
                 </graphic>
+                <userData>
+                    <PlayerType fx:constant="COMPUTER" />
+                </userData>
             </RadioButton>
         </HBox>
 
@@ -131,6 +138,9 @@
                         <Image url="/images/human.png" />
                     </ImageView>
                 </graphic>
+                <userData>
+                    <PlayerType fx:constant="HUMAN" />
+                </userData>
             </RadioButton>
 
             <RadioButton toggleGroup="$player2Type" selected="true">
@@ -139,6 +149,9 @@
                         <Image url="/images/computer.png" />
                     </ImageView>
                 </graphic>
+                <userData>
+                    <PlayerType fx:constant="COMPUTER" />
+                </userData>
             </RadioButton>
         </HBox>
 

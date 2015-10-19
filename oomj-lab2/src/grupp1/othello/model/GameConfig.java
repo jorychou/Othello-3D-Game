@@ -6,6 +6,8 @@ package grupp1.othello.model;
 
 import grupp1.othello.model.PlayerType;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -30,9 +32,10 @@ public class GameConfig {
 private final StringProperty player1NameProperty = new SimpleStringProperty();
 
 /**
- * First player's type.
+ * First player's type property.
  */
-private PlayerType player1Type = PlayerType.HUMAN;
+private final ObjectProperty<PlayerType> player1TypeProperty =
+    new SimpleObjectProperty<>(PlayerType.HUMAN);
 
 /**
  * Second player's name property.
@@ -40,9 +43,10 @@ private PlayerType player1Type = PlayerType.HUMAN;
 private final StringProperty player2NameProperty = new SimpleStringProperty();
 
 /**
- * Second player's type.
+ * Second player's type property.
  */
-private PlayerType player2Type = PlayerType.COMPUTER;
+private final ObjectProperty<PlayerType> player2TypeProperty =
+    new SimpleObjectProperty<>(PlayerType.COMPUTER);
 
 /*------------------------------------------------
  * PUBLIC METHODS
@@ -57,6 +61,10 @@ public final StringProperty player1NameProperty() {
     return (player1NameProperty);
 }
 
+public final ObjectProperty<PlayerType> player1TypeProperty() {
+    return (player1TypeProperty);
+}
+
 /**
  * Gets the second player's name property.
  *
@@ -64,6 +72,10 @@ public final StringProperty player1NameProperty() {
  */
 public final StringProperty player2NameProperty() {
     return (player2NameProperty);
+}
+
+public final ObjectProperty<PlayerType> player2TypeProperty() {
+    return (player2TypeProperty);
 }
 
 /**
@@ -90,7 +102,7 @@ public void setPlayer1Name(String value) {
  * @return The first player's type.
  */
 public PlayerType getPlayer1Type() {
-    return (player1Type);
+    return (player1TypeProperty.getValue());
 }
 
 /**
@@ -99,7 +111,7 @@ public PlayerType getPlayer1Type() {
  * @param value Player type.
  */
 public void setPlayer1Type(PlayerType value) {
-    player1Type = value;
+    player1TypeProperty.setValue(value);
 }
 
 /**
@@ -126,7 +138,7 @@ public void setPlayer2Name(String value) {
  * @return The first player's type.
  */
 public PlayerType getPlayer2Type() {
-    return (player2Type);
+    return (player2TypeProperty.getValue());
 }
 
 /**
@@ -135,7 +147,7 @@ public PlayerType getPlayer2Type() {
  * @param value Player type.
  */
 public void setPlayer2Type(PlayerType value) {
-    player2Type = value;
+    player2TypeProperty.setValue(value);
 }
 
 }

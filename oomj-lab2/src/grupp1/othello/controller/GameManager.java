@@ -142,6 +142,9 @@ public Player getPlayer2() {
  * @return True if the specified move is considered valid.
  */
 public boolean isValidMove(int x, int y, int player) {
+    if (player != PLAYER_ONE && player != PLAYER_TWO)
+        return (false);
+
     // Check if we're out of bounds.
     if (x < 0 || x >= gameGrid.getSize() || y < 0 || y >= gameGrid.getSize())
         return (false);

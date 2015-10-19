@@ -13,6 +13,7 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 
 /*------------------------------------------------
@@ -42,11 +43,17 @@ private Button playButton;
 @FXML
 private TextField player1Name;
 
+@FXML
+private ToggleGroup player1Type;
+
 /**
  * Text field for entering the second player's name.
  */
 @FXML
 private TextField player2Name;
+
+@FXML
+private ToggleGroup player2Type;
 
 /**
  * Disk rotate transition 1.
@@ -107,15 +114,40 @@ protected void initialize() {
 private void setupBindings() {
     player1Name.textProperty().bindBidirectional(
         getModel().player1NameProperty());
+
     player2Name.textProperty().bindBidirectional(
         getModel().player2NameProperty());
+
+    getModel().player1TypeProperty().bind(
+        Bindings.createObjectBinding(() ->
+            // Value binding.
+            (PlayerType)player1Type.getSelectedToggle().getUserData(),
+
+            // Dependencies.
+            player1Type.selectedToggleProperty()
+        )
+    );
+
+    getModel().player2TypeProperty().bind(
+        Bindings.createObjectBinding(() ->
+            // Value binding.
+            (PlayerType)player2Type.getSelectedToggle().getUserData(),
+
+            // Dependencies.
+            player2Type.selectedToggleProperty()
+        )
+    );
 
     // Disable play button when a name is missing.
     playButton.disableProperty().bind(
         Bindings.createBooleanBinding(() ->
-            getModel().player1NameProperty().isEmpty().getValue()
-         || getModel().player2NameProperty().isEmpty().getValue(),
-            getModel().player1NameProperty(), getModel().player2NameProperty()
+            // Value binding.
+            (player1Name.getText().length() == 0)
+         || (player2Name.getText().length() == 0),
+
+            // Dependencies.
+            player1Name.textProperty(),
+            player2Name.textProperty()
         )
     );
 }
