@@ -4,6 +4,7 @@ package grupp1.othello.view;
  *----------------------------------------------*/
 
 import grupp1.othello.controller.Player;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -16,6 +17,7 @@ import javafx.scene.shape.Circle;
 import javafx.event.EventHandler;
 import javafx.event.EventTarget;
 import javafx.scene.Cursor;
+import javafx.scene.control.Button;
 
 /*------------------------------------------------
  * CLASS
@@ -48,12 +50,17 @@ public GameBoard(){
         int i, j;
         for(i = 0; i < 8; i++){
             for(j = 0; j < 8; j++){
-                StackPane tile = new StackPane();
+                Button tile = new Button();
                 tile.setMinSize(60,60);
-                tile.setStyle("-fx-border-color: white");
+                tile.setStyle("-fx-border-color: white; -fx-background-color: transparent");
                 GridPane.setRowIndex(tile, i);
                 GridPane.setColumnIndex(tile, j);
-                //System.out.println( "Node: " + tile + " at " + GridPane.getRowIndex(tile) + "/" + GridPane.getColumnIndex(tile)); 
+                tile.setOnAction(new EventHandler<ActionEvent>(){
+                    @Override
+                    public void handle(ActionEvent e){
+                        setPlacing(GridPane.getRowIndex(tile), GridPane.getColumnIndex(tile), Color.BLACK);
+                    }});
+
                 board.getChildren().add(tile);
             }
         }
@@ -62,27 +69,7 @@ public GameBoard(){
         setPlacing(4,3, Color.BLACK);
         setPlacing(4,4, Color.WHITE);
         board.setFocusTraversable(true);
-        board.setOnMouseClicked(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent e) {
-                for(Node node : board.getChildren()){
-                    if(node instanceof StackPane){
-                        if(node.getBoundsInParent().contains(e.getSceneX(),  e.getSceneY())){
-                            
-                            System.out.println( "Player: " /*+ getPlayer();*/ + " at x" + GridPane.getRowIndex( node) + "/ y" + GridPane.getColumnIndex( node)); 
-                           
-                            //possibly, it focuses on the lower side of the mouse...
-                            
-                            setPlacing(GridPane.getRowIndex( node), GridPane.getColumnIndex( node), Color.BLACK);
-                            break;
-                            //@todo Check for validity against the GameGrid, and add if valid
-                            //probably want to replace the whole setPlacing for a replot-GameGrid-function
-                        }
-                    }
-                }
-               
-            }
-        });
+       
 }
 
 public GridPane getGameBoard(){
