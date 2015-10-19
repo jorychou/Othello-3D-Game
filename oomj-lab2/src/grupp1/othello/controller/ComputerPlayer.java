@@ -33,8 +33,7 @@ public ComputerPlayer(String name) {
 }
 
 @Override
-public void init() {
-}
+public void init() {}
 
 @Override
 public DiskPlacement makeNextMove(GameManager gameManager) {
@@ -53,8 +52,7 @@ public DiskPlacement makeNextMove(GameManager gameManager) {
 }
 
 @Override
-public void notifyInvalidMove() {
-}
+public void notifyInvalidMove() {}
 
 /*------------------------------------------------
  * PRIVATE METHODS
