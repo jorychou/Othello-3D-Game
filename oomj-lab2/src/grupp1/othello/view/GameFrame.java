@@ -55,7 +55,7 @@ public class GameFrame{
     Menu helpMenu = new Menu("Help");
         MenuItem aboutMenuItem = new MenuItem("About Othello");
 
-    exitMenuItem.setOnAction(actionEvent -> Platform.exit());
+    exitMenuItem.setOnAction(actionEvent -> System.exit(0));
     aboutMenuItem.setOnAction(actionEvent -> aboutGame.showAndWait());
 
     gameMenu.getItems().addAll(newMenuItem, new SeparatorMenuItem(), 
@@ -76,7 +76,7 @@ public class GameFrame{
 
                 Button endGameButton = new Button();
                     endGameButton.setText("Exit");
-                    endGameButton.setOnMouseClicked(e -> Platform.exit());
+                    endGameButton.setOnMouseClicked(e -> System.exit(0));
 
             buttons.getItems().addAll(newGameButton,new Separator(), endGameButton);
             buttons.setOrientation(Orientation.VERTICAL);
