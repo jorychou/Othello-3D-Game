@@ -277,6 +277,12 @@ private void initGameGrid() {
     gameGrid.setCellData(n  , n  , PLAYER_TWO);
 }
 
+/**
+ * Plays one turn.
+ *
+ * @param player      The player that should make a move.
+ * @param playerIndex The index of the player that should make a move.
+ */
 private void playOneTurn(Player player, int playerIndex) {
     currentPlayerIndex = playerIndex;
 
@@ -295,6 +301,8 @@ private void playOneTurn(Player player, int playerIndex) {
             invalidMove(player, diskPlacement);
         }
     }
+
+    // -
 }
 
 /**

@@ -13,7 +13,7 @@ import grupp1.othello.model.DiskPlacement;
 /**
  * @author
  */
-public class GuiHumanPlayer extends Player {
+public class GUIHumanPlayer extends Player {
 
 /*------------------------------------------------
  * PUBLIC METHODS
@@ -24,7 +24,7 @@ public class GuiHumanPlayer extends Player {
  *
  * @param name The player name.
  */
-public GuiHumanPlayer(String name) {
+public GUIHumanPlayer(String name) {
     super(name);
 }
 
@@ -32,9 +32,7 @@ public GuiHumanPlayer(String name) {
  * Initializes the player.
  */
 @Override
-public void initialize() {
-
-}
+public void initialize() {}
 
 /**
  * Asks the player to place a disk on the grid.
