@@ -47,6 +47,7 @@ public void initialize() {}
  */
 @Override
 public DiskPlacement makeNextMove(GameManager gameManager) {
+    // This AI (artifical idiot) basically just picks a random, valid move.
     int i = gameManager.getCurrentPlayerIndex();
     DiskPlacement[] diskPlacements = gameManager.findValidDiskPlacements(i);
 
