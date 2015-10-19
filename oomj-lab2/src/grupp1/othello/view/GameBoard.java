@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.event.EventHandler;
 import javafx.event.EventTarget;
+import javafx.scene.Cursor;
 
 /*------------------------------------------------
  * CLASS
@@ -48,7 +49,7 @@ public GameBoard(){
         for(i = 0; i < 8; i++){
             for(j = 0; j < 8; j++){
                 StackPane tile = new StackPane();
-                tile.setMinSize(30,30);
+                tile.setMinSize(60,60);
                 tile.setStyle("-fx-border-color: white");
                 GridPane.setRowIndex(tile, i);
                 GridPane.setColumnIndex(tile, j);
@@ -68,17 +69,18 @@ public GameBoard(){
                     if(node instanceof StackPane){
                         if(node.getBoundsInParent().contains(e.getSceneX(),  e.getSceneY())){
                             
-                            System.out.println( "Node: " + node + " at x" + GridPane.getRowIndex( node) + "/ y" + GridPane.getColumnIndex( node)); 
-                            //Cannot for the life of me figure out why , but x0 is the row ABOVE first row, and the last row is out of bounds
+                            System.out.println( "Player: " /*+ getPlayer();*/ + " at x" + GridPane.getRowIndex( node) + "/ y" + GridPane.getColumnIndex( node)); 
+                           
+                            //possibly, it focuses on the lower side of the mouse...
                             
-                            //the setPlacing works this way, except the last row is out of bounds, and exceptions are thrown to the left and right
-                            setPlacing(GridPane.getRowIndex( node)-1, GridPane.getColumnIndex( node), Color.BLACK);
-                            
+                            setPlacing(GridPane.getRowIndex( node), GridPane.getColumnIndex( node), Color.BLACK);
+                            break;
                             //@todo Check for validity against the GameGrid, and add if valid
                             //probably want to replace the whole setPlacing for a replot-GameGrid-function
                         }
                     }
                 }
+               
             }
         });
 }
@@ -92,8 +94,8 @@ public GridPane getGameBoard(){
 
 private void setPlacing(int x, int y, Color color){
     
-    Circle marker = new Circle(10, color);
+    Circle marker = new Circle(20, color);
     board.add(marker, y, x);
-    GridPane.setMargin(marker,new Insets(5));
+    GridPane.setMargin(marker,new Insets(10));
 }
 }
