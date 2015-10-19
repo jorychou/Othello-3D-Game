@@ -45,6 +45,7 @@ public void initialize() {
  */
 @Override
 public DiskPlacement makeNextMove(GameManager gameManager) {
+    // @To-do: Get move from GUI.
     return (null);
 }
 
@@ -54,8 +55,7 @@ public DiskPlacement makeNextMove(GameManager gameManager) {
  * @param diskPlacement The invalid disk placement.
  */
 @Override
-public void notifyInvalidMove(DiskPlacement diskPlacement) {
-}
+public void notifyInvalidMove(DiskPlacement diskPlacement) {}
 
 /*------------------------------------------------
  * PRIVATE METHODS

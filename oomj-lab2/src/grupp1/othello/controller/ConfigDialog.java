@@ -90,10 +90,10 @@ public ConfigDialog(GameConfig model) {
  */
 @Override
 protected void initialize() {
-    setupWindow();
-    setupModel();
-    setupHandlers();
-    setupBindings();
+    setupStage      ();
+    setupModel      ();
+    setupHandlers   ();
+    setupBindings   ();
     setupTransitions();
 }
 
@@ -147,9 +147,9 @@ private void setupTransitions() {
 }
 
 /**
- * Initializes the window/stage.
+ * Initializes the stage/window.
  */
-private void setupWindow() {
+private void setupStage() {
     setResizable(false);
     setTitle("asyar14h/oomu/lab.2 - grupp 1");
 
