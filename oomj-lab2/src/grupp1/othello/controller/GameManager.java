@@ -56,7 +56,7 @@ private int currentPlayerIndex;
 /**
  * The game grid to play on.
  */
-private final GameGrid gameGrid;
+private GameGrid gameGrid;
 
 /**
  * First player.
@@ -314,6 +314,7 @@ private void playOneTurn(Player player, int playerIndex) {
  * @param diskPlacement The disk placement.
  * @param player        The player (player one or player two).
  *
+ * @throws InvalidMoveException The specified disk placement is invalid.
  */
 private void placeDisk(DiskPlacement diskPlacement, int player)
     throws InvalidMoveException
