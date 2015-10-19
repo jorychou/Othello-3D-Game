@@ -149,12 +149,12 @@ public DiskPlacement[] findValidDiskPlacements(int player) {
 /**
  * Initializes the game.
  */
-public void init() {
+public void initialize() {
     initGameGrid();
 
     // @To-do: We can probably remove these?
-    player1.init();
-    player2.init();
+    player1.initialize();
+    player2.initialize();
 
     diskPlaced(null, null);
 }
@@ -212,12 +212,26 @@ public GameResult play() {
  * PRIVATE METHODS
  *----------------------------------------------*/
 
+/**
+ * Calls the disk placed handler function.
+ *
+ * @param player        The player that placed the disk.
+ * @param diskPlacement The disk placement.
+ */
 private void diskPlaced(Player player, DiskPlacement diskPlacement) {
     if (diskPlacedCallback != null)
         diskPlacedCallback.accept(player, diskPlacement);
 }
 
+/**
+ * Calls the invalid move handler function.
+ *
+ * @param player        The player that attempted the move.
+ * @param diskPlacement The disk placement.
+ */
 private void invalidMove(Player player, DiskPlacement diskPlacement) {
+    player.notifyInvalidMove(diskPlacement);
+
     if (invalidMoveCallback != null)
         invalidMoveCallback.accept(player, diskPlacement);
 }

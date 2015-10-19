@@ -51,7 +51,7 @@ public void run() {
     if (Othello.enableConsoleView)
         new StdoutGameView(gameManager);
 
-    gameManager.init();
+    gameManager.initialize();
 
     //--------------------------------------------
     // 2. FORK GAME THREAD

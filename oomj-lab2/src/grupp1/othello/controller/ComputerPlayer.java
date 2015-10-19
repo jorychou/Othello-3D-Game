@@ -32,9 +32,19 @@ public ComputerPlayer(String name) {
     super(name);
 }
 
+/**
+ * Initializes the player.
+ */
 @Override
-public void init() {}
+public void initialize() {}
 
+/**
+ * Asks the player to place a disk on the grid.
+ *
+ * @param gameManager The game manager requesting the move.
+ *
+ * @return The disk placement.
+ */
 @Override
 public DiskPlacement makeNextMove(GameManager gameManager) {
     int i = gameManager.getCurrentPlayerIndex();
@@ -51,8 +61,13 @@ public DiskPlacement makeNextMove(GameManager gameManager) {
     return (diskPlacements[n]);
 }
 
+/**
+ * Notifies a player that the attempted move is invalid.
+ *
+ * @param diskPlacement The invalid disk placement.
+ */
 @Override
-public void notifyInvalidMove() {}
+public void notifyInvalidMove(DiskPlacement diskPlacement) {}
 
 /*------------------------------------------------
  * PRIVATE METHODS

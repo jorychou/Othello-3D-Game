@@ -59,8 +59,25 @@ public void setName(String value) {
     name = value;
 }
 
-public abstract void init();
+/**
+ * Initializes the player.
+ */
+public abstract void initialize();
+
+/**
+ * Asks the player to place a disk on the grid.
+ *
+ * @param gameManager The game manager requesting the move.
+ *
+ * @return The disk placement.
+ */
 public abstract DiskPlacement makeNextMove(GameManager gameManager);
-public abstract void notifyInvalidMove();
+
+/*
+ * Notifies a player that the attempted move is invalid.
+ *
+ * @param diskPlacement The invalid disk placement.
+ */
+public abstract void notifyInvalidMove(DiskPlacement diskPlacement);
 
 }

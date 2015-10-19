@@ -109,7 +109,7 @@ public T getModel() {
  */
 @Override
 public void showAndWait() {
-    init();
+    initialize();
 
     // @To-do: Not sure if this is a good idea.
     sizeToScene();
@@ -138,7 +138,7 @@ protected void error(Object data) {
 /**
  * Initializes the stage.
  */
-protected void init() {
+protected void initialize() {
 }
 
 /*------------------------------------------------

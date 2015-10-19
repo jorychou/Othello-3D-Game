@@ -89,7 +89,7 @@ public ConfigDialog(GameConfig model) {
  * Initializes the stage.
  */
 @Override
-protected void init() {
+protected void initialize() {
     setupWindow();
     setupModel();
     setupHandlers();
