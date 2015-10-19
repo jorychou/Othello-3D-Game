@@ -12,6 +12,10 @@ import javafx.animation.RotateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+
+import javafx.beans.value.ChangeListener;
+import javafx.scene.control.RadioButton;
+
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -124,7 +128,10 @@ private void setupBindings() {
     player2Name.textProperty().bindBidirectional(
         getModel().player2NameProperty());
 
-    getModel().player1TypeProperty().bind(
+    // For whatever reason, the commented code below is broken, so I decided to
+    // add listeners directly instead. Wtf?
+
+    /*getModel().player1TypeProperty().bind(
         Bindings.createObjectBinding(() ->
             // Value binding.
             (PlayerType)player1Type.getSelectedToggle().getUserData(),
@@ -142,6 +149,20 @@ private void setupBindings() {
             // Dependencies.
             player2Type.selectedToggleProperty()
         )
+    );*/
+
+    player1Type.selectedToggleProperty()
+        .addListener((observable) -> {
+            Object data = player1Type.getSelectedToggle().getUserData();
+            getModel().setPlayer1Type((PlayerType)data);
+        }
+    );
+
+    player2Type.selectedToggleProperty()
+        .addListener((observable) -> {
+            Object data = player2Type.getSelectedToggle().getUserData();
+            getModel().setPlayer2Type((PlayerType)data);
+        }
     );
 
     // Disable play button when a name is missing.
