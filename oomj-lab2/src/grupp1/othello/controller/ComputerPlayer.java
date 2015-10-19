@@ -47,7 +47,10 @@ public void initialize() {}
  */
 @Override
 public DiskPlacement makeNextMove(GameManager gameManager) {
-    // This AI (artifical idiot) basically just picks a random, valid move.
+    // This AI (artifical idiot) basically just picks a random, valid move. It
+    // is, in every sense of the word, retarded. But hey, beginner's luck might
+    // get you somewhere! Right!?
+
     int i = gameManager.getCurrentPlayerIndex();
     DiskPlacement[] diskPlacements = gameManager.findValidDiskPlacements(i);
 
