@@ -49,14 +49,14 @@ public static final int PLAYER_TWO = 2;
  *----------------------------------------------*/
 
 /**
- * The game grid to play on.
- */
-private final GameGrid gameGrid;
-
-/**
  * The current player index (1 or 2).
  */
 private int currentPlayerIndex;
+
+/**
+ * The game grid to play on.
+ */
+private final GameGrid gameGrid;
 
 /**
  * First player.
@@ -95,18 +95,38 @@ public GameManager(GameGrid gameGrid, Player player1, Player player2) {
     this.player2  = player2;
 }
 
+/**
+ * Gets the index of the current player.
+ *
+ * @return The current player index.
+ */
 public int getCurrentPlayerIndex() {
     return (currentPlayerIndex);
 }
 
+/**
+ * Gets the game grid.
+ *
+ * @return The game grid.
+ */
 public GameGrid getGameGrid() {
     return (gameGrid);
 }
 
+/**
+ * Gets the first player.
+ *
+ * @return The first player.
+ */
 public Player getPlayer1() {
     return (player1);
 }
 
+/**
+ * Gets the second player.
+ *
+ * @return The second player.
+ */
 public Player getPlayer2() {
     return (player2);
 }
@@ -133,6 +153,13 @@ public boolean isValidMove(int x, int y, int player) {
     return (checkMove(x, y, player));
 }
 
+/**
+ * Finds all valid disk placements and returns them in an array.
+ *
+ * @param The index of the player to find all possible disk placements for.
+ *
+ * @return An array containing all valid moves for the specified player.
+ */
 public DiskPlacement[] findValidDiskPlacements(int player) {
     ArrayList<DiskPlacement> a = new ArrayList<>();
 
@@ -184,7 +211,6 @@ public GameManager onInvalidMove(BiConsumer<Player, DiskPlacement> cb) {
     return (this);
 }
 
-// @To-do: Cleanup. This method should return the game result as well.
 /**
  * Plays the game and returns when the game is over.
  *
