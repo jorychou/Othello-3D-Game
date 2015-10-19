@@ -84,7 +84,7 @@ public class GameFrame{
             buttons.setMaxHeight(100);
         buttonPane.getChildren().add(buttons);
         buttonPane.setAlignment(Pos.CENTER);
-    borderPane.setLeft(buttonPane);
+    borderPane.setRight(buttonPane);
     
     Label statusBar = new Label("   statusBar, possibly SpyBar");
     statusBar.setStyle("-fx-border-color: #303030;");

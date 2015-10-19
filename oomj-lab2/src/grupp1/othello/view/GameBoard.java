@@ -61,7 +61,7 @@ public GameBoard(){
         setPlacing(3,4, Color.BLACK);
         setPlacing(4,3, Color.BLACK);
         setPlacing(4,4, Color.WHITE);
-        
+        board.setFocusTraversable(true);
         board.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent e) {
