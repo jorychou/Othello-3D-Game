@@ -86,8 +86,8 @@ private BiConsumer<Player, DiskPlacement> invalidMoveCallback;
  * Constructor.
  *
  * @param gameGrid The game grid to use.
- * @param player1 Player one.
- * @param player2 Player two.
+ * @param player1  Player one.
+ * @param player2  Player two.
  */
 public GameManager(GameGrid gameGrid, Player player1, Player player2) {
     this.gameGrid = gameGrid;
