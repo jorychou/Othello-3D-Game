@@ -26,12 +26,12 @@
         <HBox alignment="top_center">
             <Label style="-fx-font-size: 32;" text="Othello" />
             <Label style="-fx-font-size: 10;" text="Not for Noobs Edition" />
-            <SubScene width="64" height="64" depthBuffer="true">
+            <SubScene width="76" height="52" depthBuffer="true">
                 <antiAliasing>
                     <SceneAntialiasing fx:constant="BALANCED" />
                 </antiAliasing>
                 <camera>
-                    <PerspectiveCamera translateX="-32.0" translateY="-32.0"
+                    <PerspectiveCamera translateX="-38.0" translateY="-26.0"
                                        translateZ="-2.0" />
                 </camera>
                 <root>
