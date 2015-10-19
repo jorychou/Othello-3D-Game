@@ -56,7 +56,7 @@ private int currentPlayerIndex;
 /**
  * The game grid to play on.
  */
-private GameGrid gameGrid;
+private final GameGrid gameGrid;
 
 /**
  * First player.
