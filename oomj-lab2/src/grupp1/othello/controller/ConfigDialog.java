@@ -12,10 +12,6 @@ import javafx.animation.RotateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-
-import javafx.beans.value.ChangeListener;
-import javafx.scene.control.RadioButton;
-
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
