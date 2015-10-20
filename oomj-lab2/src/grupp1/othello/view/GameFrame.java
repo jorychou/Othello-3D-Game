@@ -4,6 +4,8 @@ package grupp1.othello.view;
  * IMPORTS
  *----------------------------------------------*/
 
+import grupp1.othello.controller.GameManager;
+
 import java.awt.Color;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,17 +30,19 @@ import javafx.stage.Stage;
 public class GameFrame{
      private Stage primaryStage;
      private GameBoard board;
+     private GameManager gameManager;
 
 /*------------------------------------------------
  * PUBLIC METHODS
  *----------------------------------------------*/
 
-  public GameFrame(Stage primaryStage) {
-
+  public GameFrame(Stage primaryStage, GameManager gameManager) {
+//((GUIHumanPlayer)gameManager.getCurrentPlayer()).placeDisk(x, y);
         this.primaryStage = primaryStage;
+        this.gameManager = gameManager;
 
     AboutGameDialog aboutGame = new AboutGameDialog();
-    
+
     BorderPane borderPane = new BorderPane();
     borderPane.setStyle("-fx-background: #202020;");
 
@@ -53,7 +57,7 @@ public class GameFrame{
     exitMenuItem.setOnAction(actionEvent -> System.exit(0));
     aboutMenuItem.setOnAction(actionEvent -> aboutGame.aboutGameDialog());
 
-    gameMenu.getItems().addAll(newMenuItem, new SeparatorMenuItem(), 
+    gameMenu.getItems().addAll(newMenuItem, new SeparatorMenuItem(),
             closeMenuItem, new SeparatorMenuItem(), exitMenuItem);
     helpMenu.getItems().add(aboutMenuItem);
 
@@ -80,7 +84,7 @@ public class GameFrame{
         buttonPane.getChildren().add(buttons);
         buttonPane.setAlignment(Pos.CENTER);
     borderPane.setRight(buttonPane);
-    
+
     Label statusBar = new Label("   statusBar, possibly SpyBar");
     statusBar.setStyle("-fx-border-color: #303030;");
     statusBar.setMinWidth(600);

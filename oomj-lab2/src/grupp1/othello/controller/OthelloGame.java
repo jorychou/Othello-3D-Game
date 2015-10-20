@@ -60,7 +60,7 @@ public void run() {
     // 3. GUI THREAD
     //--------------------------------------------
 
-    GameFrame gameFrame = new GameFrame(new Stage());
+    GameFrame gameFrame = new GameFrame(new Stage(), gameManager);
 
     //--------------------------------------------
     // 4. GAME OVER

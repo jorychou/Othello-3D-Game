@@ -43,7 +43,8 @@ public void initialize() {}
  */
 @Override
 public DiskPlacement makeNextMove(GameManager gameManager) {
-    // @To-do: Get move from GUI.
+    // wait for disk placement to be set
+    // then return diskplacement
     return (null);
 }
 
