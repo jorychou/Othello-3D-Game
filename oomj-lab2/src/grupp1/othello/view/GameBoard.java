@@ -51,19 +51,20 @@ public GameBoard(GameManager gameManager){
     board.setEffect(shade);
     board.setAlignment(Pos.CENTER);
 
-    int i, j;
-    for(i = 0; i < 8; i++){
-        for(j = 0; j < 8; j++){
+    int row, column;
+    for(row = 0; row < 8; row++){
+        for(column = 0; column < 8; column++){
             Button tile = new Button();
             tile.setMinSize(60,60);
             tile.setMaxSize(60,60);
             tile.setStyle("-fx-border-color: white; "
                     + "-fx-background-color: transparent");
-            GridPane.setRowIndex(tile, i);
-            GridPane.setColumnIndex(tile, j);
+            GridPane.setRowIndex(tile, row);
+            GridPane.setColumnIndex(tile, column);
             tile.setOnAction((ActionEvent e) -> {
-                setPlacing(GridPane.getRowIndex(tile),
-                        GridPane.getColumnIndex(tile), gameManager.getCurrentPlayer());
+                setPlacing(GridPane.getColumnIndex(tile),
+                        GridPane.getRowIndex(tile), 
+                        gameManager.getCurrentPlayer());
             });
 
             board.getChildren().add(tile);
@@ -88,17 +89,17 @@ private void updateGameBoard(){
     GameGrid updateGame;
     updateGame = gameManager.getGameGrid();
     //board.getChildren().clear();
-    int i, j;
-    for(j = 0; j < 8; j++){
-        for(i = 0; i < 8; i++){
-            if(updateGame.getCellData(i, j) == 1){
+    int row, column;
+    for(row = 0; row < 8; row++){
+        for(column = 0; column < 8; column++){
+            if(updateGame.getCellData(row, column) == 1){
                 Circle blackMarker = new Circle(20, Color.BLACK);
-                board.add(blackMarker, j, i);
+                board.add(blackMarker, row, column);
                 GridPane.setMargin(blackMarker,new Insets(10));
             }
-            if(updateGame.getCellData(i, j) == 2){
+            if(updateGame.getCellData(row, column) == 2){
                 Circle whiteMarker =new Circle(20, Color.WHITE);
-                board.add(whiteMarker, j, i);
+                board.add(whiteMarker, row, column);
                 GridPane.setMargin(whiteMarker,new Insets(10));
             }
         }
