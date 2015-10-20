@@ -237,7 +237,7 @@ public void initialize() {
 }
 
 /**
- * Sets the function to be called when a disk has been placed on the grid.
+ * Adds a function to be called when a disk has been placed on the grid.
  *
  * @param cb The callback function.
  *
@@ -248,13 +248,20 @@ public GameManager onDiskPlaced(BiConsumer<Player, DiskPlacement> cb) {
     return (this);
 }
 
+/**
+ * Adds a function to be called when the game has ended.
+ *
+ * @param cb The callback function.
+ *
+ * @return The game manager instance.
+ */
 public GameManager onGameOver(Consumer<GameResult> cb) {
     gameOverCallbacks.add(cb);
     return (this);
 }
 
 /**
- * Sets the function to be called when an attempt has been made to do an invalid
+ * Adds a function to be called when an attempt has been made to do an invalid
  * move.
  *
  * @param cb The callback function.
@@ -305,7 +312,7 @@ public GameResult play() {
  *----------------------------------------------*/
 
 /**
- * Calls the disk placed handler function.
+ * Calls the disk placed handler functions.
  *
  * @param player        The player that placed the disk.
  * @param diskPlacement The disk placement.
@@ -315,13 +322,18 @@ private void diskPlaced(Player player, DiskPlacement diskPlacement) {
         cb.accept(player, diskPlacement);
 }
 
+/**
+ * Calls the game over handler functions.
+ *
+ * @param gameResult The game result.
+ */
 private void gameOver(GameResult gameResult) {
     for (Consumer<GameResult> cb : gameOverCallbacks)
         cb.accept(gameResult);
 }
 
 /**
- * Calls the invalid move handler function.
+ * Calls the invalid move handler functions.
  *
  * @param player        The player that attempted the move.
  * @param diskPlacement The disk placement.
