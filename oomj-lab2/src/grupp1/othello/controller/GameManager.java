@@ -96,6 +96,23 @@ public GameManager(GameGrid gameGrid, Player player1, Player player2) {
 }
 
 /**
+ * Gets the current player.
+ *
+ * @return The current player.
+ */
+public Player getCurrentPlayer() {
+    switch (currentPlayerIndex) {
+
+    case PALYER_ONE: return (player1);
+    case PALYER_TWO: return (player2);
+
+    }
+
+    // No current player (game hasn't begun).
+    return (null);
+}
+
+/**
  * Gets the index of the current player.
  *
  * @return The current player index.
@@ -173,6 +190,7 @@ public DiskPlacement[] findValidDiskPlacements(int player) {
         }
     }
 
+    // Java type inference sucks. lol
     return (a.toArray(new DiskPlacement[0]));
 }
 
