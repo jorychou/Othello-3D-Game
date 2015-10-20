@@ -103,8 +103,8 @@ public GameManager(GameGrid gameGrid, Player player1, Player player2) {
 public Player getCurrentPlayer() {
     switch (currentPlayerIndex) {
 
-    case PALYER_ONE: return (player1);
-    case PALYER_TWO: return (player2);
+    case PLAYER_ONE: return (player1);
+    case PLAYER_TWO: return (player2);
 
     }
 
