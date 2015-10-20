@@ -5,7 +5,6 @@ package grupp1.othello.controller;
  *----------------------------------------------*/
 
 import java.io.IOException;
-import java.lang.reflect.ParameterizedType;
 import java.util.function.Consumer;
 import java.util.function.BiConsumer;
 
@@ -20,6 +19,8 @@ import javafx.stage.Stage;
 /**
  * Provides an intermediary FXML loader class that automatically loads its
  * associated view upon instantiation.
+ *
+ * @param T The type of the model associated with the controller (stage).
  *
  * @author Philip Arvidsson (S133686)
  */
@@ -138,8 +139,7 @@ protected void error(Object data) {
 /**
  * Initializes the stage.
  */
-protected void initialize() {
-}
+protected void initialize() {}
 
 /*------------------------------------------------
  * PRIVATE METHODS

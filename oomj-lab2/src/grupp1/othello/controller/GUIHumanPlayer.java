@@ -12,7 +12,9 @@ import grupp1.othello.model.DiskPlacement;
  *----------------------------------------------*/
 
 /**
- * @author
+ * A human player controlled through GUI.
+ *
+ * @author Philip Arvidsson (S133686)
  */
 public class GUIHumanPlayer extends Player {
 
@@ -20,7 +22,14 @@ public class GUIHumanPlayer extends Player {
  * FIELDS
  *----------------------------------------------*/
 
+/**
+ * The displacement. Most likely set from the GUI thread.
+ */
 private DiskPlacement diskPlacement;
+
+/**
+ * Object used for thread synchronization.
+ */
 private final Object lock = new Object();
 
 /*------------------------------------------------
@@ -90,9 +99,5 @@ public void setNextMove(int x, int y) {
         lock.notify();
     }
 }
-
-/*------------------------------------------------
- * PRIVATE METHODS
- *----------------------------------------------*/
 
 }

@@ -69,14 +69,16 @@ private final Player player1;
 private final Player player2;
 
 /**
- * The function to call after a disk has been placed.
+ * The functions to call after a disk has been placed.
  */
-private BiConsumer<Player, DiskPlacement> diskPlacedCallback;
+private ArrayList<BiConsumer<Player, DiskPlacement>> diskPlacedCallbacks =
+    new ArrayList<>();
 
 /**
- * The function to call after an attempt has been made to do an invalid move.
+ * The functions to call after an attempt has been made to do an invalid move.
  */
-private BiConsumer<Player, DiskPlacement> invalidMoveCallback;
+private ArrayList<BiConsumer<Player, DiskPlacement>> invalidMoveCallbacks =
+    new ArrayList<>();
 
 /*------------------------------------------------
  * PUBLIC METHODS
@@ -119,6 +121,28 @@ public Player getCurrentPlayer() {
  */
 public int getCurrentPlayerIndex() {
     return (currentPlayerIndex);
+}
+
+/**
+ * Gets the score for the player with the specified index (1 or 2).
+ *
+ * @param player The index of the player to find the score for.
+ *
+ * @return The score for the specified player.
+ */
+public int getCurrentScore(int player) {
+    assert(player == 1 || player == 2);
+
+    int score = 0;
+
+    for (int x = 0; x < gameGrid.getSize(); x++) {
+        for (int y = 0; y < gameGrid.getSize(); y++) {
+            if (gameGrid.getCellData(x, y) == player)
+                score++;
+        }
+    }
+
+    return (score);
 }
 
 /**
@@ -215,7 +239,7 @@ public void initialize() {
  * @return The game manager instance.
  */
 public GameManager onDiskPlaced(BiConsumer<Player, DiskPlacement> cb) {
-    diskPlacedCallback = cb;
+    diskPlacedCallbacks.add(cb);
     return (this);
 }
 
@@ -228,7 +252,7 @@ public GameManager onDiskPlaced(BiConsumer<Player, DiskPlacement> cb) {
  * @return The game manager instance.
  */
 public GameManager onInvalidMove(BiConsumer<Player, DiskPlacement> cb) {
-    invalidMoveCallback = cb;
+    invalidMoveCallbacks.add(cb);
     return (this);
 }
 
@@ -252,6 +276,15 @@ public GameResult play() {
         }
     }
 
+    int player1Score = getCurrentScore(PLAYER_ONE);
+    int player2Score = getCurrentScore(PLAYER_TWO);
+
+         if (player1Score > player2Score) result.setWinner(player1);
+    else if (player2Score > player1Score) result.setWinner(player2);
+    else                                  result.setWinner(null);
+
+    result.setPlayers(player1, player2);
+
     return (result);
 }
 
@@ -266,8 +299,8 @@ public GameResult play() {
  * @param diskPlacement The disk placement.
  */
 private void diskPlaced(Player player, DiskPlacement diskPlacement) {
-    if (diskPlacedCallback != null)
-        diskPlacedCallback.accept(player, diskPlacement);
+    for (BiConsumer<Player, DiskPlacement> cb : diskPlacedCallbacks)
+        cb.accept(player, diskPlacement);
 }
 
 /**
@@ -279,8 +312,8 @@ private void diskPlaced(Player player, DiskPlacement diskPlacement) {
 private void invalidMove(Player player, DiskPlacement diskPlacement) {
     player.notifyInvalidMove(diskPlacement);
 
-    if (invalidMoveCallback != null)
-        invalidMoveCallback.accept(player, diskPlacement);
+    for (BiConsumer<Player, DiskPlacement> cb : invalidMoveCallbacks)
+        cb.accept(player, diskPlacement);
 }
 
 /**
