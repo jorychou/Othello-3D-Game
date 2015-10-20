@@ -75,6 +75,11 @@ private ArrayList<BiConsumer<Player, DiskPlacement>> diskPlacedCallbacks =
     new ArrayList<>();
 
 /**
+ * The functions to call after a game has ended.
+ */
+private ArrayList<Consumer<GameResult>> gameOverCallbacks = new ArrayList<>();
+
+/**
  * The functions to call after an attempt has been made to do an invalid move.
  */
 private ArrayList<BiConsumer<Player, DiskPlacement>> invalidMoveCallbacks =
@@ -243,6 +248,11 @@ public GameManager onDiskPlaced(BiConsumer<Player, DiskPlacement> cb) {
     return (this);
 }
 
+public GameManager onGameOver(Consumer<GameResult> cb) {
+    gameOverCallbacks.add(cb);
+    return (this);
+}
+
 /**
  * Sets the function to be called when an attempt has been made to do an invalid
  * move.
@@ -285,6 +295,8 @@ public GameResult play() {
 
     result.setPlayers(player1, player2);
 
+    gameOver(result);
+
     return (result);
 }
 
@@ -301,6 +313,11 @@ public GameResult play() {
 private void diskPlaced(Player player, DiskPlacement diskPlacement) {
     for (BiConsumer<Player, DiskPlacement> cb : diskPlacedCallbacks)
         cb.accept(player, diskPlacement);
+}
+
+private void gameOver(GameResult gameResult) {
+    for (Consumer<GameResult> cb : gameOverCallbacks)
+        cb.accept(gameResult);
 }
 
 /**
