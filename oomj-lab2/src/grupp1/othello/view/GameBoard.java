@@ -3,6 +3,11 @@ package grupp1.othello.view;
  * IMPORTS
  *----------------------------------------------*/
 
+import grupp1.othello.controller.GUIHumanPlayer;
+import grupp1.othello.controller.GameManager;
+import grupp1.othello.controller.Player;
+import grupp1.othello.model.GameGrid;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -24,12 +29,16 @@ import javafx.scene.control.Button;
 public class GameBoard  {
     
 private GridPane board;
+private GameManager gameManager;
 
 /*------------------------------------------------
  * PUBLIC METHODS
  *----------------------------------------------*/
-public GameBoard(){
-
+public GameBoard(GameManager gameManager){
+    this.gameManager = gameManager;
+    gameManager.onDiskPlaced((player, diskPlacement) -> {
+        Platform.runLater(() -> updateGameBoard());
+    });
     DropShadow shade = new DropShadow();
     shade.setColor(Color.GREEN);
 
@@ -54,20 +63,15 @@ public GameBoard(){
             GridPane.setColumnIndex(tile, j);
             tile.setOnAction((ActionEvent e) -> {
                 setPlacing(GridPane.getRowIndex(tile),
-                        GridPane.getColumnIndex(tile), Color.BLACK);
+                        GridPane.getColumnIndex(tile), gameManager.getCurrentPlayer());
             });
 
             board.getChildren().add(tile);
         }
     }
     
-    setPlacing(3,3, Color.WHITE);
-    setPlacing(3,4, Color.BLACK);
-    setPlacing(4,3, Color.BLACK);
-    setPlacing(4,4, Color.WHITE);
-    
     board.setFocusTraversable(true);
-
+    Platform.runLater(() -> updateGameBoard());
 }
 
 public GridPane getGameBoard(){
@@ -77,10 +81,27 @@ public GridPane getGameBoard(){
  * PRIVATE METHODS
  *----------------------------------------------*/
 
-private void setPlacing(int x, int y, Color color){
-    
-    Circle marker = new Circle(20, color);
-    board.add(marker, y, x);
-    GridPane.setMargin(marker,new Insets(10));
+private void setPlacing(int x, int y, Player player){
+    ((GUIHumanPlayer)player).setNextMove(x,y);
+}
+private void updateGameBoard(){
+    GameGrid updateGame;
+    updateGame = gameManager.getGameGrid();
+    //board.getChildren().clear();
+    int i, j;
+    for(j = 0; j < 8; j++){
+        for(i = 0; i < 8; i++){
+            if(updateGame.getCellData(i, j) == 1){
+                Circle blackMarker = new Circle(20, Color.BLACK);
+                board.add(blackMarker, j, i);
+                GridPane.setMargin(blackMarker,new Insets(10));
+            }
+            if(updateGame.getCellData(i, j) == 2){
+                Circle whiteMarker =new Circle(20, Color.WHITE);
+                board.add(whiteMarker, j, i);
+                GridPane.setMargin(whiteMarker,new Insets(10));
+            }
+        }
+    }
 }
 }

@@ -65,7 +65,7 @@ public class GameFrame{
 
     borderPane.setTop(menuBar);
 
-    board = new GameBoard();
+    board = new GameBoard(gameManager);
     borderPane.setCenter(board.getGameBoard());
 
         HBox buttonPane = new HBox();
