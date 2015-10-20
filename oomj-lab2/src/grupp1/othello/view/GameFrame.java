@@ -5,6 +5,7 @@ package grupp1.othello.view;
  *----------------------------------------------*/
 
 import grupp1.othello.controller.GameManager;
+import grupp1.othello.model.GameResult;
 
 import java.awt.Color;
 import java.util.HashSet;
@@ -37,7 +38,7 @@ public class GameFrame{
  *----------------------------------------------*/
 
   public GameFrame(Stage primaryStage, GameManager gameManager) {
-//((GUIHumanPlayer)gameManager.getCurrentPlayer()).placeDisk(x, y);
+      
         this.primaryStage = primaryStage;
         this.gameManager = gameManager;
 
@@ -90,6 +91,17 @@ public class GameFrame{
     statusBar.setMinWidth(600);
     borderPane.setBottom(statusBar);
 
+    gameManager.onDiskPlaced((player, diskPlacement) -> {
+        Platform.runLater(() -> statusBar.setText("Current Score: Player 1(Black) " 
+                +gameManager.getPlayer1().getName() +": " 
+                +gameManager.getCurrentScore(1) +" "
+                +"Player 2 (White) "
+                +gameManager.getPlayer2().getName() +": " 
+                +gameManager.getCurrentScore(2)));         
+    });
+    
+    gameManager.onGameOver((result) -> Platform.runLater(() -> displayEnd(result)));
+    
     // Create the scene and place it in the stage
     Scene scene = new Scene(borderPane, 600, 600);
     this.primaryStage.getIcons().add(new Image("images/reversi.png"));
@@ -103,5 +115,14 @@ public class GameFrame{
 /*------------------------------------------------
  * PRIVATE METHODS
  *----------------------------------------------*/
-
+private void displayEnd(GameResult result){
+    if(result.getWinner() == null){
+        new DrawnDialog();
+        
+    }
+    else{
+        new WinnerDialog(result);
+        
+    }
+}
 }

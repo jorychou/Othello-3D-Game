@@ -43,7 +43,7 @@ public GameBoard(GameManager gameManager){
     shade.setColor(Color.GREEN);
 
     board = new GridPane();
-    board.setStyle("-fx-background-image: url(images/backgr.png);"
+    board.setStyle("-fx-background-image: url(images/green.png);"
             + "-fx-background-repeat: stretch;"
             + "-fx-background-size: 480 480;"
             + "-fx-background-position: center center;");       
