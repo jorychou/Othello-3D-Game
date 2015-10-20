@@ -5,9 +5,6 @@ package grupp1.othello.controller;
  *----------------------------------------------*/
 
 import grupp1.othello.Othello;
-import grupp1.othello.controller.ConfigDialog;
-import grupp1.othello.controller.GameManager;
-import grupp1.othello.controller.WinnerDialog;
 import grupp1.othello.model.GameGrid;
 import grupp1.othello.model.PlayerFactory;
 import grupp1.othello.model.GameConfig;

@@ -37,13 +37,8 @@ public class GameFrame{
 
         this.primaryStage = primaryStage;
 
-        Alert aboutGame = new Alert(Alert.AlertType.INFORMATION);
-        aboutGame.setTitle("About Othello: Not for N00bs Edition");
-        aboutGame.setHeaderText(null);
-        aboutGame.setContentText("Philip Arvidsson (S133686) & "
-                + "Martin Bergqvist (S141564) created this Epic game-replica for"
-                + " recreational & laborative purposes. Enjoy!");
-
+    AboutGameDialog aboutGame = new AboutGameDialog();
+    
     BorderPane borderPane = new BorderPane();
     borderPane.setStyle("-fx-background: #202020;");
 
@@ -56,7 +51,7 @@ public class GameFrame{
         MenuItem aboutMenuItem = new MenuItem("About Othello");
 
     exitMenuItem.setOnAction(actionEvent -> System.exit(0));
-    aboutMenuItem.setOnAction(actionEvent -> aboutGame.showAndWait());
+    aboutMenuItem.setOnAction(actionEvent -> aboutGame.aboutGameDialog());
 
     gameMenu.getItems().addAll(newMenuItem, new SeparatorMenuItem(), 
             closeMenuItem, new SeparatorMenuItem(), exitMenuItem);
