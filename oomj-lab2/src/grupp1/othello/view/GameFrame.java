@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Martin
+ * @author Martin Bergqvist (S141564)
  */
 
 public class GameFrame{

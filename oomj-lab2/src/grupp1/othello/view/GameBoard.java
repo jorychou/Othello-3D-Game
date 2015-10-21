@@ -15,7 +15,6 @@ import javafx.scene.effect.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
 /*------------------------------------------------
@@ -23,13 +22,14 @@ import javafx.scene.control.Button;
  *----------------------------------------------*/
 
 /**
- *
- * @author Martin
+ * 
+ * @author Martin Bergqvist (S141564)
  */
 public class GameBoard  {
 
 private GridPane board;
 private GameManager gameManager;
+private Circle[][] marker = new Circle[8][8];
 
 /*------------------------------------------------
  * PUBLIC METHODS
@@ -59,14 +59,17 @@ public GameBoard(GameManager gameManager){
             tile.setMaxSize(60,60);
             tile.setStyle("-fx-border-color: white; "
                     + "-fx-background-color: transparent");
+            marker[column][row] = new Circle(20, Color.TRANSPARENT);   
+            marker[column][row].setMouseTransparent(true);
             GridPane.setRowIndex(tile, row);
             GridPane.setColumnIndex(tile, column);
+            GridPane.setMargin(marker[column][row],new Insets(10));
+            board.add(marker[column][row], row, column);
             tile.setOnAction((ActionEvent e) -> {
                 setPlacing(GridPane.getColumnIndex(tile),
                         GridPane.getRowIndex(tile),
                         gameManager.getCurrentPlayer());
             });
-
             board.getChildren().add(tile);
         }
     }
@@ -88,19 +91,14 @@ private void setPlacing(int x, int y, Player player){
 private void updateGameBoard(){
     GameGrid updateGame;
     updateGame = gameManager.getGameGrid();
-    //board.getChildren().clear();
     int row, column;
     for(row = 0; row < 8; row++){
         for(column = 0; column < 8; column++){
             if(updateGame.getCellData(row, column) == 1){
-                Circle blackMarker = new Circle(20, Color.BLACK);
-                board.add(blackMarker, row, column);
-                GridPane.setMargin(blackMarker,new Insets(10));
+                marker[column][row].setFill(Color.BLACK);
             }
             if(updateGame.getCellData(row, column) == 2){
-                Circle whiteMarker =new Circle(20, Color.WHITE);
-                board.add(whiteMarker, row, column);
-                GridPane.setMargin(whiteMarker,new Insets(10));
+                marker[column][row].setFill(Color.WHITE);
             }
         }
     }

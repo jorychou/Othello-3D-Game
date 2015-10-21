@@ -1,12 +1,10 @@
 package grupp1.othello.view;
 
 import javafx.scene.control.Alert;
-import javafx.scene.control.Dialog;
-import javafx.scene.image.ImageView;
 
 /**
  *
- * @author Martin
+ * @author Martin Bergqvist (S141564)
  */
 public class DrawnDialog{
 
