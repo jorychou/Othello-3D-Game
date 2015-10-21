@@ -4,7 +4,6 @@ package grupp1.othello.controller;
  * IMPORTS
  *----------------------------------------------*/
 
-import grupp1.othello.exception.InvalidMoveException;
 import grupp1.othello.model.DiskPlacement;
 import grupp1.othello.view.InvalidMoveDialog;
 import javafx.application.Platform;

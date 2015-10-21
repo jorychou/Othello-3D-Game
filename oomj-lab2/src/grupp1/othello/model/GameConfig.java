@@ -4,8 +4,6 @@ package grupp1.othello.model;
  * IMPORTS
  *----------------------------------------------*/
 
-import grupp1.othello.model.PlayerType;
-
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;

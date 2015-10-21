@@ -5,7 +5,6 @@ package grupp1.othello;
  *----------------------------------------------*/
 
 import grupp1.othello.controller.OthelloGame;
-import grupp1.othello.view.StdoutGameView;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

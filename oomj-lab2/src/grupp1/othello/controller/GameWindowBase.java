@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.function.Consumer;
 import java.util.function.BiConsumer;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
@@ -152,5 +151,4 @@ private void complete() {
     if (completeCallback != null)
         completeCallback.accept(model);
 }
-
 }

@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
  *----------------------------------------------*/
 
 /**
+ * The GameBoard is the playfield
  * 
  * @author Martin Bergqvist (S141564)
  */
@@ -34,6 +35,12 @@ private Circle[][] marker = new Circle[8][8];
 /*------------------------------------------------
  * PUBLIC METHODS
  *----------------------------------------------*/
+
+/**
+ * Creates the GameBoard, constructed with a GridPane of buttons
+ * 
+ * @param gameManager 
+ */
 public GameBoard(GameManager gameManager){
     this.gameManager = gameManager;
     gameManager.onDiskPlaced((player, diskPlacement) -> {
@@ -65,6 +72,7 @@ public GameBoard(GameManager gameManager){
             GridPane.setColumnIndex(tile, column);
             GridPane.setMargin(marker[column][row],new Insets(10));
             board.add(marker[column][row], row, column);
+            tile.setFocusTraversable(true);
             tile.setOnAction((ActionEvent e) -> {
                 setPlacing(GridPane.getColumnIndex(tile),
                         GridPane.getRowIndex(tile),
@@ -74,13 +82,17 @@ public GameBoard(GameManager gameManager){
         }
     }
 
-    board.setFocusTraversable(true);
     Platform.runLater(() -> updateGameBoard());
 }
 
+/**
+ * 
+ * @return The GridPane representing the board
+ */
 public GridPane getGameBoard(){
-    return board;
+    return (board);
 }
+
 /*------------------------------------------------
  * PRIVATE METHODS
  *----------------------------------------------*/
@@ -89,8 +101,9 @@ private void setPlacing(int x, int y, Player player){
     try{
         ((GUIHumanPlayer)player).setNextMove(x,y);
     }
-        catch (Exception e) {}
+    catch (Exception e) {}  //Catches attempts to make move when it's not players turn
 }
+
 private void updateGameBoard(){
     GameGrid updateGame;
     updateGame = gameManager.getGameGrid();

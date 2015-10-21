@@ -4,8 +4,6 @@ package grupp1.othello.model;
  * IMPORTS
  *----------------------------------------------*/
 
-import grupp1.othello.exception.InvalidMoveException;
-
 import java.util.Arrays;
 
 /*------------------------------------------------
