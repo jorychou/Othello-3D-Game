@@ -37,7 +37,8 @@
         <java jar="${jar-dir}/${jar-name}" fork="true" />
     </target>
 
-    <!-- NetBeans sux. lol! -->
+    <!-- NetBeans sux. lol! ant ftw. Yes, this means that this beautiful build
+         file (excepting the two lines below) is written by hand! :-) -->
     <target name="jfx-build" depends="jar" />
     <target name="jfxsa-run" depends="run" />
 </project>
