@@ -73,6 +73,7 @@ public class GameFrame{
             ToolBar buttons = new ToolBar();
                 Button newGameButton = new Button();
                     newGameButton.setText("New Game");
+                    //newGameButton.setOnMouseClicked(e -> REBOOT);
 
                 Button endGameButton = new Button();
                     endGameButton.setText("Exit");
@@ -92,11 +93,12 @@ public class GameFrame{
     borderPane.setBottom(statusBar);
 
     gameManager.onDiskPlaced((player, diskPlacement) -> {
-        Platform.runLater(() -> statusBar.setText("Current Score: Player 1(Black) " 
-                +gameManager.getPlayer1().getName() +": " 
-                +gameManager.getCurrentScore(1) +" "
+        Platform.runLater(() -> statusBar.setText("Current Score: "
+                + "Player 1 (Black) " 
+                +gameManager.getPlayer1().getName() +" : " 
+                +gameManager.getCurrentScore(1) +"      ||        "
                 +"Player 2 (White) "
-                +gameManager.getPlayer2().getName() +": " 
+                +gameManager.getPlayer2().getName() +" : " 
                 +gameManager.getCurrentScore(2)));         
     });
     

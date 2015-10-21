@@ -86,7 +86,10 @@ public GridPane getGameBoard(){
  *----------------------------------------------*/
 
 private void setPlacing(int x, int y, Player player){
-    ((GUIHumanPlayer)player).setNextMove(x,y);
+    try{
+        ((GUIHumanPlayer)player).setNextMove(x,y);
+    }
+        catch (Exception e) {}
 }
 private void updateGameBoard(){
     GameGrid updateGame;

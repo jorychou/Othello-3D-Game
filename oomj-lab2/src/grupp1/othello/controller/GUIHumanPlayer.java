@@ -6,6 +6,8 @@ package grupp1.othello.controller;
 
 import grupp1.othello.exception.InvalidMoveException;
 import grupp1.othello.model.DiskPlacement;
+import grupp1.othello.view.InvalidMoveDialog;
+import javafx.application.Platform;
 
 /*------------------------------------------------
  * CLASS
@@ -84,7 +86,10 @@ public DiskPlacement makeNextMove(GameManager gameManager) {
  * @param diskPlacement The invalid disk placement.
  */
 @Override
-public void notifyInvalidMove(DiskPlacement diskPlacement) {}
+public void notifyInvalidMove(DiskPlacement diskPlacement) {
+    Platform.runLater(() -> new InvalidMoveDialog());
+
+}
 
 /**
  * Sets the next move (and allows the makeNextMove() method to stop blocking
