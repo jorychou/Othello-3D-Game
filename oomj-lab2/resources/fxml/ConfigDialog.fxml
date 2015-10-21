@@ -10,6 +10,11 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
+<!--
+ - This is the FXML describing the game config dialog. Indeed written by hand.
+ -
+ - @author Philip Arvidsson (S133686)
+-->
 <Scene stylesheets="@/css/default.css" xmlns="http://javafx.com/javafx/8"
        xmlns:fx="http://javafx.com/fxml/1">
 
@@ -69,6 +74,7 @@
                     <RotateTransition fx:id="rotateTransition1" byAngle="360"
                                       duration="4000ms" node="$diskXform1">
                         <axis>
+                            <!-- This axis is random to give an rotation. -->
                             <Point3D x="0.2" y="0.9" z="0.3" />
                         </axis>
                         <cycleCount>
@@ -82,6 +88,7 @@
                     <RotateTransition fx:id="rotateTransition2" byAngle="360"
                                       duration="3000ms" node="$diskXform2">
                         <axis>
+                            <!-- Also random. -->
                             <Point3D x="0.8" y="0.5" z="0.1" />
                         </axis>
                         <cycleCount>
@@ -95,6 +102,8 @@
             </SubScene>
         </HBox>
 
+        <!-- For whatever reason, assigning the text to the attribute vs. inner
+             XML gives different results. Very weird! -->
         <Label text="Welcome to the most awesome game ever created in Java/FX!&#10;Configure your game session below and press the play button&#10;to get started." />
         <Label text="        by Martin Bergqvist (S141564) &amp; Philip Arvidsson (S133686)" style="-fx-font-size: 10;" />
 
