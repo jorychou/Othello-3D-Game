@@ -5,6 +5,7 @@ package grupp1.othello.view;
  *----------------------------------------------*/
 
 import grupp1.othello.controller.GameManager;
+import grupp1.othello.controller.OthelloGame;
 import grupp1.othello.model.GameResult;
 
 import java.awt.Color;
@@ -73,7 +74,10 @@ public class GameFrame{
             ToolBar buttons = new ToolBar();
                 Button newGameButton = new Button();
                     newGameButton.setText("New Game");
-                    //newGameButton.setOnMouseClicked(e -> REBOOT);
+                    newGameButton.setOnMouseClicked(e -> {
+                        primaryStage.close();
+                        new OthelloGame().run();
+                            });
 
                 Button endGameButton = new Button();
                     endGameButton.setText("Exit");
