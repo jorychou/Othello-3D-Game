@@ -36,8 +36,7 @@ public StdinHumanPlayer(String name) {
  * Initializes the player.
  */
 @Override
-public void initialize() {
-}
+public void initialize() {}
 
 /**
  * Asks the player to place a disk on the grid.
@@ -61,9 +60,5 @@ public DiskPlacement makeNextMove(GameManager gameManager) {
  */
 @Override
 public void notifyInvalidMove(DiskPlacement diskPlacement) {}
-
-/*------------------------------------------------
- * PRIVATE METHODS
- *----------------------------------------------*/
 
 }

@@ -61,13 +61,6 @@ public void run() {
     //--------------------------------------------
 
     GameFrame gameFrame = new GameFrame(new Stage(), gameManager);
-
-    //--------------------------------------------
-    // 4. GAME OVER
-    //--------------------------------------------
-
-    // visa resultat i nån förbaskad dialog
-
 }
 
 /*------------------------------------------------

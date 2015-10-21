@@ -17,8 +17,8 @@ import java.util.Arrays;
  *
  * Comment: This class became redundant when game logic was moved over to the
  *          game manager class. What is left is basically a wrapper for a two-
- *          dimensional array. Still, this class will be kept in the project to
- *          stay true to the assignment specification. // Philip Arvidsson
+ *          dimensional array. Still, this class will be kept in the project for
+ *          it to stay true to the assignment specification. // Philip Arvidsson
  *
  * @author Martin Bergqvist (S133686)
  */

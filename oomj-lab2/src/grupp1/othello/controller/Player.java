@@ -29,8 +29,7 @@ private String name;
 /**
  * Constructor.
  */
-public Player() {
-}
+public Player() {}
 
 /**
  * Constructor.

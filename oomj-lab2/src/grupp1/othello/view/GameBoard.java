@@ -23,11 +23,11 @@ import javafx.scene.control.Button;
  *----------------------------------------------*/
 
 /**
- * 
- * @author Tkocz
+ *
+ * @author Martin
  */
 public class GameBoard  {
-    
+
 private GridPane board;
 private GameManager gameManager;
 
@@ -46,7 +46,7 @@ public GameBoard(GameManager gameManager){
     board.setStyle("-fx-background-image: url(images/green.png);"
             + "-fx-background-repeat: stretch;"
             + "-fx-background-size: 480 480;"
-            + "-fx-background-position: center center;");       
+            + "-fx-background-position: center center;");
     board.setGridLinesVisible(true);
     board.setEffect(shade);
     board.setAlignment(Pos.CENTER);
@@ -63,14 +63,14 @@ public GameBoard(GameManager gameManager){
             GridPane.setColumnIndex(tile, column);
             tile.setOnAction((ActionEvent e) -> {
                 setPlacing(GridPane.getColumnIndex(tile),
-                        GridPane.getRowIndex(tile), 
+                        GridPane.getRowIndex(tile),
                         gameManager.getCurrentPlayer());
             });
 
             board.getChildren().add(tile);
         }
     }
-    
+
     board.setFocusTraversable(true);
     Platform.runLater(() -> updateGameBoard());
 }

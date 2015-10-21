@@ -73,8 +73,4 @@ public DiskPlacement makeNextMove(GameManager gameManager) {
 @Override
 public void notifyInvalidMove(DiskPlacement diskPlacement) {}
 
-/*------------------------------------------------
- * PRIVATE METHODS
- *----------------------------------------------*/
-
 }

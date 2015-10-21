@@ -61,6 +61,11 @@ public final StringProperty player1NameProperty() {
     return (player1NameProperty);
 }
 
+/**
+ * Gets the first player's type property.
+ *
+ * @return The first player's type property.
+ */
 public final ObjectProperty<PlayerType> player1TypeProperty() {
     return (player1TypeProperty);
 }
@@ -74,6 +79,11 @@ public final StringProperty player2NameProperty() {
     return (player2NameProperty);
 }
 
+/**
+ * Gets the second player's type property.
+ *
+ * @return The second player's type property.
+ */
 public final ObjectProperty<PlayerType> player2TypeProperty() {
     return (player2TypeProperty);
 }
