@@ -30,7 +30,7 @@ private final int y;
  *----------------------------------------------*/
 
 /**
- * Construcctor.
+ * Constructor.
  *
  * @param x The x-coordinate of the placement.
  * @param y The y-coordinate of the placement.
