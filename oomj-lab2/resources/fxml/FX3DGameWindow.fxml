@@ -62,6 +62,8 @@
 
                     <Group fx:id="gameDisksGroup" />
                     <Group fx:id="validMovesGroup" />
+        <Group fx:id="confettiGroup">
+        </Group>
                 </Group>
             </root>
         </SubScene>
@@ -86,21 +88,31 @@
             </HBox>
         </Group>
 
+        <Group fx:id="drawGroup" visible="false">
+            <Rectangle fill="#000000a0" width="720" height="640" />
+
+            <VBox translateX="92" translateY="134" spacing="4" alignment="center">
+                <Text text="The game was a draw..." style="-fx-font-size: 32; -fx-font-weight: bold; -fx-stroke: white; -fx-stroke-width: 1; -fx-fill: black;" />
+                <Text text="No winner this time!" style="-fx-font-size: 54; -fx-font-weight: bold; -fx-stroke: white; -fx-stroke-width: 2; -fx-fill: black;" />
+                <Text text=":-(" style="-fx-rotate: 32.0; -fx-font-size: 142; -fx-font-weight: bold; -fx-stroke: white; -fx-stroke-width: 2; -fx-fill: black;" />
+            </VBox>
+        </Group>
+
         <Group fx:id="winnerGroup" visible="false">
             <Rectangle fill="#000000a0" width="720" height="640" />
 
-            <FlowPane translateX="136" translateY="62" columnHalignment="center" rowValignment="center">
-                <Text text="Watch out guys, we're" style="-fx-font-size: 46; -fx-font-weight: bold; -fx-stroke: white; -fx-stroke-width: 1; -fx-fill: black;" />
-                <Text text="dealing with a " style="-fx-font-size: 48; -fx-font-weight: bold; -fx-stroke: white; -fx-stroke-width: 1; -fx-fill: black;" />
-                <Text text="badass" style="-fx-font-size: 58; -fx-font-weight: bold; -fx-stroke: white; -fx-stroke-width: 2; -fx-fill: black;" />
-                <Text text=" over here!" style="-fx-font-size: 42; -fx-font-weight: bold; -fx-stroke: white; -fx-stroke-width: 1; -fx-fill: black;" />
-            </FlowPane>
-
-            <ImageView translateX="32" translateY="296">
+            <ImageView translateX="72" translateY="96">
                 <Image url="/images/crown.png" />
             </ImageView>
 
-            <Text fx:id="winnerText" translateX="156" translateY="456" style="-fx-font-size: 76; -fx-font-weight: bold; -fx-stroke: white; -fx-stroke-width: 2; -fx-fill: black;" />
+            <VBox translateX="192" translateY="134" spacing="-10" alignment="center">
+                <Text text="The winner is..." style="-fx-font-size: 32; -fx-font-weight: bold; -fx-stroke: white; -fx-stroke-width: 1; -fx-fill: black;" />
+                <Text fx:id="winnerText" style="-fx-font-size: 78; -fx-font-weight: bold; -fx-stroke: white; -fx-stroke-width: 2; -fx-fill: black;" />
+            </VBox>
+
+            <ImageView translateX="262" translateY="318">
+                <Image url="/images/badass.png" />
+            </ImageView>
         </Group>
 
         <Group fx:id="buttonGroup">
@@ -111,8 +123,8 @@
             </VBox>
 
             <HBox translateX="538" translateY="598" spacing="26">
-                <Button fx:id="newGameButton" text="NEW GAME" defaultButton="true"
-                        scaleX="1.2" scaleY="1.2" />
+                <Button fx:id="newGameButton" text="NEW GAME" scaleX="1.2"
+                        scaleY="1.2" />
                 <Button fx:id="exitButton" text="EXIT" scaleX="1.2" scaleY="1.2" />
             </HBox>
         </Group>

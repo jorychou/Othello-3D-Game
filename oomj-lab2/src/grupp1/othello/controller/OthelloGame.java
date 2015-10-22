@@ -96,6 +96,7 @@ private GameConfig askUserToConfigureGame() {
  */
 private Thread fork(Runnable runnable) {
     Thread thread = new Thread(runnable);
+    thread.setPriority(Thread.MAX_PRIORITY);
     thread.start();
 
     return (thread);

@@ -19,6 +19,8 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Material;
@@ -41,6 +43,11 @@ public class FX3DGameWindow extends GameWindowBase<GameResult> {
 /*------------------------------------------------
  * FIELDS
  *----------------------------------------------*/
+
+/**
+ * Indicate whether the stage is closing.
+ */
+private boolean closing;
 
 /**
  * The current camera index. Used to switch between camera views. See the
@@ -88,6 +95,12 @@ private Group validMovesGroup;
  */
 @FXML
 private Group buttonGroup;
+
+/**
+ * The group that is displayed when a tie/draw occurs.
+ */
+@FXML
+private Group drawGroup;
 
 /**
  * The group that displays game score info.
@@ -289,7 +302,7 @@ private void createGridLines() {
         box2.setHeight    (x2 - x1         );
         box2.setDepth     (0.0001f         );
 
-        Material mat = new PhongMaterial(new Color(0.7f, 0.7f, 0.7f, 0.0f));
+        Material mat = new PhongMaterial(new Color(0.2f, 0.2f, 0.2f, 0.0f));
 
         box1.setMaterial(mat);
         box2.setMaterial(mat);
@@ -394,11 +407,49 @@ private void flipNext(Stack<Group> disks) {
 }
 
 /**
+ * Handles key presses to allow the player to use the keyboard.
+ *
+ * @param e Key data.
+ */
+private void handleKeyPress(KeyEvent e) {
+    Player p = gameManager.getCurrentPlayer();
+    if (!(p instanceof GUIHumanPlayer)) {
+        // Human isn't playing right now, so don't indicate anything.
+        hideIndicator();
+        return;
+    }
+
+    int x = (int)((indicator.getTranslateX() + 250.0f) / 62.5f);
+    int y = (int)((indicator.getTranslateY() + 250.0f) / 62.5f);
+
+    if (e.getCode() == KeyCode.LEFT
+     || e.getCode() == KeyCode.RIGHT
+     || e.getCode() == KeyCode.UP
+     || e.getCode() == KeyCode.DOWN)
+    {
+        switch (e.getCode()) {
+
+        case LEFT : x--; break;
+        case RIGHT: x++; break;
+        case UP   : y--; break;
+        case DOWN : y++; break;
+
+        }
+
+        showIndicator(x, y);
+    }
+    else if (e.getCode() == KeyCode.ENTER) {
+        GUIHumanPlayer player = (GUIHumanPlayer)p;
+        player.setNextMove(x, y);
+    }
+}
+
+/**
  * Places a disk (triggered by a mouse click).
  *
  * @param e Mouse click data.
  */
-private void placeDisk(MouseEvent e) {
+private void handleMouseClick(MouseEvent e) {
     Player p = gameManager.getCurrentPlayer();
     if (!(p instanceof GUIHumanPlayer))
         return;
@@ -409,6 +460,25 @@ private void placeDisk(MouseEvent e) {
     int y = (int)((e.getY() + 250.0f) / 62.5f);
 
     player.setNextMove(x, y);
+}
+
+/**
+ * Handles mouse move events.
+ *
+ * @param e Mouse move data.
+ */
+private void handleMouseMove(MouseEvent e) {
+    Player p = gameManager.getCurrentPlayer();
+    if (!(p instanceof GUIHumanPlayer)) {
+        // Human isn't playing right now, so don't indicate anything.
+        hideIndicator();
+        return;
+    }
+
+    int x = (int)((e.getX() + 250.0f) / 62.5f);
+    int y = (int)((e.getY() + 250.0f) / 62.5f);
+
+    showIndicator(x, y);
 }
 
 /**
@@ -488,7 +558,8 @@ private void setupHandlers() {
         getModel().setPlayers(gameResult.getPlayers());
         getModel().setWinner (gameResult.getWinner ());
 
-        Platform.runLater(() -> showGameResult(gameResult));
+        if (!closing)
+            Platform.runLater(() -> showGameResult(gameResult));
     });
 
     // Show some feedback for invalid moves.
@@ -508,13 +579,15 @@ private void setupHandlers() {
         });
     });
 
-    gameBoardGroup.setOnMouseClicked((e) -> placeDisk(e)    );
-    gameBoardGroup.setOnMouseMoved  ((e) -> showIndicator(e));
-    gameBoardGroup.setOnMouseExited ((e) -> hideIndicator() );
+    gameBoardGroup.setOnMouseClicked((e) -> handleMouseClick(e));
+    gameBoardGroup.setOnMouseMoved  ((e) -> handleMouseMove(e) );
+    gameBoardGroup.setOnMouseExited ((e) -> hideIndicator()    );
 
     switchCamera.setOnMouseClicked((e) -> switchToNextCamera());
 
     exitButton.setOnAction((e) -> {
+        closing = true;
+
         gameManager.quit();
 
         Player p = gameManager.getCurrentPlayer();
@@ -528,6 +601,9 @@ private void setupHandlers() {
 
     // Probably not entirely thread-safe, but whatever...
     newGameButton.setOnAction((e) -> resetGame());
+
+    // For using the keyboard as input.
+    getScene().setOnKeyPressed((e) -> handleKeyPress(e));
 
     // Make sure same thing happens when the window is closed, as when the exit
     // button is pressed.
@@ -565,52 +641,14 @@ private void hideIndicator() {
 }
 
 /**
- * Shows the game result from a game session.
+ * Shows the indicator at the specified grid cell.
  *
- * @param gameResult The game result.
+ * @param x The x-coordinate of the cell to show the indicator at.
+ * @param y The y-coordinate of the cell to show the indicator at.
  */
-private void showGameResult(GameResult gameResult) {
-    if (gameResult.getWinner() != null) {
-        winnerText.setText(gameResult.getWinner().getName() + " won!");
-
-        buttonGroup.setVisible(false);
-        versusText .setVisible(false);
-        winnerGroup.setVisible(true );
-
-        FadeTransition fade =
-            new FadeTransition(Duration.millis(800), winnerGroup);
-
-        fade.setFromValue(0.0f);
-        fade.setToValue(1.0f);
-
-        fade.play();
-
-        if (currentCamera == 0)
-            switchToNextCamera();
-    }
-    else {
-        // Draw.
-    }
-}
-
-/**
- * Shows the indicator if the mouse data represents a valid move.
- *
- * @param e Mouse move data.
- */
-private void showIndicator(MouseEvent e) {
-    Player p = gameManager.getCurrentPlayer();
-    if (!(p instanceof GUIHumanPlayer)) {
-        // Human isn't playing right now, so don't indicate anything.
-        indicator.setVisible(false);
-        return;
-    }
-
+private void showIndicator(int x, int y) {
     int size     = gameManager.getGameGrid().getSize();
     int halfSize = size / 2;
-
-    int x = (int)((e.getX() + 250.0f) / 62.5f);
-    int y = (int)((e.getY() + 250.0f) / 62.5f);
 
     if (x < 0       ) x = 0;
     if (x > (size-1)) x = (size-1);
@@ -631,6 +669,47 @@ private void showIndicator(MouseEvent e) {
     indicator.setTranslateX((x - halfSize) * 62.5f + 31.25f);
     indicator.setTranslateY((y - halfSize) * 62.5f + 31.25f);
     indicator.setVisible(true);
+}
+
+/**
+ * Shows the game result from a game session.
+ *
+ * @param gameResult The game result.
+ */
+private void showGameResult(GameResult gameResult) {
+    if (gameResult.getWinner() != null) {
+        winnerText.setText(gameResult.getWinner().getName() + "!");
+
+        buttonGroup.setVisible(false);
+        versusText .setVisible(false);
+        winnerGroup.setVisible(true );
+
+        FadeTransition fade =
+            new FadeTransition(Duration.millis(800), winnerGroup);
+
+        fade.setFromValue(0.0f);
+        fade.setToValue  (1.0f);
+
+        fade.play();
+
+        if (currentCamera == 0)
+            switchToNextCamera();
+    }
+    else {
+        // Draw.
+        buttonGroup.setVisible(false);
+        versusText .setVisible(false);
+        drawGroup  .setVisible(true );
+
+        FadeTransition fade =
+            new FadeTransition(Duration.millis(800), drawGroup);
+
+        fade.setFromValue(0.0f);
+        fade.setToValue  (1.0f);
+
+        if (currentCamera == 0)
+            switchToNextCamera();
+    }
 }
 
 /**
@@ -657,7 +736,7 @@ private void switchToNextCamera() {
         rotation.setAxis   (new Point3D(1.0f, 0.4f, 0.25f));
         rotation.setToAngle(-30.0f                        );
 
-        translation.setToY(310.0f );
+        translation.setToY( 310.0f);
         translation.setToZ(-160.0f);
     }
 
@@ -669,6 +748,10 @@ private void switchToNextCamera() {
  * Updates the view by adding and flipping disks, etc.
  */
 private void updateView() {
+    // Make sure we let the game manager switch to the next player before we
+    // update the view.
+    Thread.yield();
+
     int size     = gameManager.getGameGrid().getSize();
     int halfSize = size / 2;
 
