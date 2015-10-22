@@ -9,6 +9,7 @@ import grupp1.othello.model.GameResult;
 import java.util.Stack;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
 import javafx.animation.PauseTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
@@ -381,9 +382,12 @@ private void flipDisk(Group disk, boolean toBlack) {
     // Jump the disk while flipping it.
     TranslateTransition translation =
         new TranslateTransition(Duration.millis(200), disk);
-    translation.setAutoReverse(true  );
-    translation.setByZ        (-70.0f);
-    translation.setCycleCount (2     );
+
+
+    translation.setAutoReverse (true                 );
+    translation.setByZ         (-70.0f               );
+    translation.setCycleCount  (2                    );
+    translation.setInterpolator(Interpolator.EASE_OUT);
 
     rotation.play();
     translation.play();
