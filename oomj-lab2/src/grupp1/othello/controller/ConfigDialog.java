@@ -198,6 +198,13 @@ private void setupBindings() {
  */
 private void setupHandlers() {
     playButton.setOnAction(e -> close());
+
+    setOnCloseRequest((e) -> {
+        // Indicate that we want to quit by setting first player's name to an
+        // empty string.
+        getModel().setPlayer1Name("");
+        close();
+    });
 }
 
 /**

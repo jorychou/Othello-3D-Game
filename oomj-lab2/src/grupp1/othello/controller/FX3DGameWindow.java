@@ -11,8 +11,9 @@ import grupp1.othello.model.GameResult;
 
 import java.util.Stack;
 
-import javafx.animation.RotateTransition;
+import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
+import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -561,10 +562,18 @@ private void setupStage() {
     getIcons().add(new Image("images/reversi.png"));
 }
 
+/**
+ * Hides the placement indicator.
+ */
 private void hideIndicator() {
     indicator.setVisible(false);
 }
 
+/**
+ * Shows the game result from a game session.
+ *
+ * @param gameResult The game result.
+ */
 private void showGameResult(GameResult gameResult) {
     if (gameResult.getWinner() != null) {
         winnerText.setText(gameResult.getWinner().getName() + " won!");
@@ -572,6 +581,14 @@ private void showGameResult(GameResult gameResult) {
         buttonGroup.setVisible(false);
         versusText .setVisible(false);
         winnerGroup.setVisible(true );
+
+        FadeTransition fade =
+            new FadeTransition(Duration.millis(800), winnerGroup);
+
+        fade.setFromValue(0.0f);
+        fade.setToValue(1.0f);
+
+        fade.play();
 
         if (currentCamera == 0)
             switchToNextCamera();
@@ -622,7 +639,7 @@ private void showIndicator(MouseEvent e) {
 }
 
 /**
- * Switches to the next camera with a transitione effect.
+ * Switches to the next camera with a transitional effect.
  */
 private void switchToNextCamera() {
     RotateTransition rotation =
@@ -720,7 +737,7 @@ private void updateView() {
     // Start the flip chain! Wohooo!
     flipNext(disksToFlip);
 
-    // Concatenating strings is syntactically cleaner than Integer.parseInt().
+    // Concatenating strings is syntactically cleaner than Integer.toString().
     blackPlayerScore.setText(
         "" + gameManager.getCurrentScore(GameManager.PLAYER_ONE)
     );

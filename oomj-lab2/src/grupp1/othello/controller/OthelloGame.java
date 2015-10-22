@@ -36,7 +36,11 @@ public void run() {
     // 1. CONFIGURE AND INITIALIZE
     //--------------------------------------------
 
-    GameConfig    config      = askUserToConfigureGame();
+    GameConfig config = askUserToConfigureGame();
+
+    if (config.getPlayer1Name().isEmpty())
+        return;
+
     PlayerFactory factory     = new PlayerFactory();
     GameManager   gameManager = new GameManager(
         new GameGrid(),
