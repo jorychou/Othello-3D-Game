@@ -110,7 +110,7 @@
                 </ImageView>
             </VBox>
 
-            <HBox translateX="550" translateY="598" spacing="26">
+            <HBox translateX="538" translateY="598" spacing="26">
                 <Button fx:id="newGameButton" text="NEW GAME" defaultButton="true"
                         scaleX="1.2" scaleY="1.2" />
                 <Button fx:id="exitButton" text="EXIT" scaleX="1.2" scaleY="1.2" />
