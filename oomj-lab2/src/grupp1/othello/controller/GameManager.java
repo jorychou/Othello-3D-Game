@@ -209,7 +209,7 @@ public boolean isValidMove(int x, int y, int player) {
 /**
  * Finds all valid disk placements and returns them in an array.
  *
-     * @param player
+ * @param player The player to find valid disk placements for (1 or 2).
  *
  * @return An array containing all valid moves for the specified player.
  */
@@ -432,6 +432,8 @@ private void placeDisk(DiskPlacement diskPlacement, int player)
  * @param x      The x-coordinate of the disk placement.
  * @param y      The y-coordinate of the disk placement.
  * @param player The index of the player making the move.
+ *
+ * @return True if the specified move is valid.
  */
 private boolean checkMove(int x, int y, int player) {
     return (checkDirections(x, y, player, false));
@@ -496,6 +498,9 @@ private boolean checkDirections(int x, int y, int player, boolean flip) {
  * @param player The player index. (1 or 2).
  * @param flip   True if disks should be flipped when found flippable.
  * @param flag   MUST be set to false when called externally.
+ *
+ * @return True if the direction gives a valid move for the specified
+ *         coordinates.
  */
 private boolean recurseDirection(int x, int y, int dx, int dy, int player,
                                  boolean flip, boolean flag)

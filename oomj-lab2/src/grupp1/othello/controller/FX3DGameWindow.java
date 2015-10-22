@@ -217,6 +217,7 @@ protected void initialize() {
  * Creates a new game disk.
  *
  * @param blackSideUp True to create the disk with the black side up.
+ * @param transparent True to create a transparent disk.
  *
  * @return The game disk that was created.
  */
