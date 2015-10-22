@@ -294,7 +294,7 @@ private void createGridLines() {
         box2.setHeight    (x2 - x1         );
         box2.setDepth     (0.0001f         );
 
-        Material mat = new PhongMaterial(new Color(0.7f, 0.7f, 0.7f, 0.7f));
+        Material mat = new PhongMaterial(new Color(0.7f, 0.7f, 0.7f, 0.0f));
 
         box1.setMaterial(mat);
         box2.setMaterial(mat);
