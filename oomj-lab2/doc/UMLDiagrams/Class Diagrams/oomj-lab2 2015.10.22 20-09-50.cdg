@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="oomj-lab2">
+  <ClassDiagramComponents>
+    <Class name="ComputerPlayer" package="grupp1.othello.controller" visibility="public" xPosition="669.0" yPosition="1563.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initialize" returnType="void" visibility="public"/>
+        <Method name="makeNextMove" returnType="DiskPlacement" visibility="public">
+          <Argument type="GameManager" name="gameManager"/>
+        </Method>
+        <Method name="notifyInvalidMove" returnType="void" visibility="public">
+          <Argument type="DiskPlacement" name="diskPlacement"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ConfigDialog" package="grupp1.othello.controller" visibility="public" xPosition="1598.0" yPosition="1436.0">
+      <Fields>
+        <Field name="enable3D" type="CheckBox" visibility="private"/>
+        <Field name="playButton" type="Button" visibility="private"/>
+        <Field name="player1Name" type="TextField" visibility="private"/>
+        <Field name="player1Type" type="ToggleGroup" visibility="private"/>
+        <Field name="player2Name" type="TextField" visibility="private"/>
+        <Field name="player2Type" type="ToggleGroup" visibility="private"/>
+        <Field name="rotateTransition1" type="RotateTransition" visibility="private"/>
+        <Field name="rotateTransition2" type="RotateTransition" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="GameConfig" name="model"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initialize" returnType="void" visibility="protected"/>
+        <Method name="setupBindings" returnType="void" visibility="private"/>
+        <Method name="setupHandlers" returnType="void" visibility="private"/>
+        <Method name="setupModel" returnType="void" visibility="private"/>
+        <Method name="setupTransitions" returnType="void" visibility="private"/>
+        <Method name="setupStage" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="FX3DGameWindow" package="grupp1.othello.controller" visibility="public" xPosition="1523.0" yPosition="36.0">
+      <Fields>
+        <Field name="closing" type="boolean" visibility="private"/>
+        <Field name="currentCamera" type="int" visibility="private"/>
+        <Field name="disks" type="Group[][]" visibility="private"/>
+        <Field name="gameManager" type="GameManager" visibility="private" isFinal="true"/>
+        <Field name="indicator" type="Group" visibility="private"/>
+        <Field name="gameBoardGroup" type="Group" visibility="private"/>
+        <Field name="gameDisksGroup" type="Group" visibility="private"/>
+        <Field name="validMovesGroup" type="Group" visibility="private"/>
+        <Field name="buttonGroup" type="Group" visibility="private"/>
+        <Field name="drawGroup" type="Group" visibility="private"/>
+        <Field name="scoreGroup" type="Group" visibility="private"/>
+        <Field name="winnerGroup" type="Group" visibility="private"/>
+        <Field name="blackPlayerScore" type="Text" visibility="private"/>
+        <Field name="whitePlayerScore" type="Text" visibility="private"/>
+        <Field name="versusText" type="Text" visibility="private"/>
+        <Field name="winnerText" type="Text" visibility="private"/>
+        <Field name="boardRotateTransition" type="RotateTransition" visibility="private"/>
+        <Field name="boardTranslateTransition" type="TranslateTransition" visibility="private"/>
+        <Field name="switchCamera" type="ImageView" visibility="private"/>
+        <Field name="exitButton" type="Button" visibility="private"/>
+        <Field name="newGameButton" type="Button" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="GameManager" name="gameManager"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initialize" returnType="void" visibility="protected"/>
+        <Method name="createDisk" returnType="Group" visibility="private">
+          <Argument type="boolean" name="blackSideUp"/>
+          <Argument type="boolean" name="transparent"/>
+        </Method>
+        <Method name="createGridLines" returnType="void" visibility="private"/>
+        <Method name="createIndicator" returnType="void" visibility="private"/>
+        <Method name="flipDisk" returnType="void" visibility="private">
+          <Argument type="Group" name="disk"/>
+          <Argument type="boolean" name="toBlack"/>
+        </Method>
+        <Method name="flipNext" returnType="void" visibility="private">
+          <Argument type="Stack&lt;Group&gt;" name="disks"/>
+        </Method>
+        <Method name="handleKeyPress" returnType="void" visibility="private">
+          <Argument type="KeyEvent" name="e"/>
+        </Method>
+        <Method name="handleMouseClick" returnType="void" visibility="private">
+          <Argument type="MouseEvent" name="e"/>
+        </Method>
+        <Method name="handleMouseMove" returnType="void" visibility="private">
+          <Argument type="MouseEvent" name="e"/>
+        </Method>
+        <Method name="resetGame" returnType="void" visibility="private"/>
+        <Method name="setupBindings" returnType="void" visibility="private"/>
+        <Method name="setupHandlers" returnType="void" visibility="private"/>
+        <Method name="setupModel" returnType="void" visibility="private"/>
+        <Method name="setupTransitions" returnType="void" visibility="private"/>
+        <Method name="setupStage" returnType="void" visibility="private"/>
+        <Method name="hideIndicator" returnType="void" visibility="private"/>
+        <Method name="showIndicator" returnType="void" visibility="private">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Method>
+        <Method name="showGameResult" returnType="void" visibility="private">
+          <Argument type="GameResult" name="gameResult"/>
+        </Method>
+        <Method name="switchToNextCamera" returnType="void" visibility="private"/>
+        <Method name="updateView" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="GameManager" package="grupp1.othello.controller" visibility="public" xPosition="306.0" yPosition="271.0">
+      <Fields>
+        <Field name="EMPTY" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PLAYER_ONE" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PLAYER_TWO" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="currentPlayerIndex" type="int" visibility="private"/>
+        <Field name="exitGame" type="boolean" visibility="private"/>
+        <Field name="gameGrid" type="GameGrid" visibility="private" isFinal="true"/>
+        <Field name="player1" type="Player" visibility="private" isFinal="true"/>
+        <Field name="player2" type="Player" visibility="private" isFinal="true"/>
+        <Field name="diskPlacedCallbacks" type="ArrayList&lt;BiConsumer&lt;Player, DiskPlacement&gt;&gt;" visibility="private"/>
+        <Field name="gameOverCallbacks" type="ArrayList&lt;Consumer&lt;GameResult&gt;&gt;" visibility="private"/>
+        <Field name="invalidMoveCallbacks" type="ArrayList&lt;BiConsumer&lt;Player, DiskPlacement&gt;&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="GameGrid" name="gameGrid"/>
+          <Argument type="Player" name="player1"/>
+          <Argument type="Player" name="player2"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCurrentPlayer" returnType="Player" visibility="public"/>
+        <Method name="getCurrentPlayerIndex" returnType="int" visibility="public"/>
+        <Method name="getCurrentScore" returnType="int" visibility="public">
+          <Argument type="int" name="player"/>
+        </Method>
+        <Method name="getGameGrid" returnType="GameGrid" visibility="public"/>
+        <Method name="getPlayer1" returnType="Player" visibility="public"/>
+        <Method name="getPlayer2" returnType="Player" visibility="public"/>
+        <Method name="isValidMove" returnType="boolean" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+          <Argument type="int" name="player"/>
+        </Method>
+        <Method name="findValidDiskPlacements" returnType="DiskPlacement[]" visibility="public">
+          <Argument type="int" name="player"/>
+        </Method>
+        <Method name="initialize" returnType="void" visibility="public"/>
+        <Method name="onDiskPlaced" returnType="GameManager" visibility="public">
+          <Argument type="BiConsumer&lt;Player, DiskPlacement&gt;" name="cb"/>
+        </Method>
+        <Method name="onGameOver" returnType="GameManager" visibility="public">
+          <Argument type="Consumer&lt;GameResult&gt;" name="cb"/>
+        </Method>
+        <Method name="onInvalidMove" returnType="GameManager" visibility="public">
+          <Argument type="BiConsumer&lt;Player, DiskPlacement&gt;" name="cb"/>
+        </Method>
+        <Method name="play" returnType="GameResult" visibility="public"/>
+        <Method name="quit" returnType="void" visibility="public"/>
+        <Method name="diskPlaced" returnType="void" visibility="private">
+          <Argument type="Player" name="player"/>
+          <Argument type="DiskPlacement" name="diskPlacement"/>
+        </Method>
+        <Method name="gameOver" returnType="void" visibility="private">
+          <Argument type="GameResult" name="gameResult"/>
+        </Method>
+        <Method name="invalidMove" returnType="void" visibility="private">
+          <Argument type="Player" name="player"/>
+          <Argument type="DiskPlacement" name="diskPlacement"/>
+        </Method>
+        <Method name="initGameGrid" returnType="void" visibility="private"/>
+        <Method name="playOneTurn" returnType="void" visibility="private">
+          <Argument type="Player" name="player"/>
+          <Argument type="int" name="playerIndex"/>
+        </Method>
+        <Method name="placeDisk" returnType="void" visibility="private">
+          <Argument type="DiskPlacement" name="diskPlacement"/>
+          <Argument type="int" name="player"/>
+        </Method>
+        <Method name="checkMove" returnType="boolean" visibility="private">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+          <Argument type="int" name="player"/>
+        </Method>
+        <Method name="makeMove" returnType="void" visibility="private">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+          <Argument type="int" name="player"/>
+        </Method>
+        <Method name="checkDirections" returnType="boolean" visibility="private">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+          <Argument type="int" name="player"/>
+          <Argument type="boolean" name="flip"/>
+        </Method>
+        <Method name="recurseDirection" returnType="boolean" visibility="private">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+          <Argument type="int" name="dx"/>
+          <Argument type="int" name="dy"/>
+          <Argument type="int" name="player"/>
+          <Argument type="boolean" name="flip"/>
+          <Argument type="boolean" name="flag"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GameWindowBase" package="grupp1.othello.controller" visibility="public" xPosition="1528.0" yPosition="1026.0">
+      <Fields>
+        <Field name="completeCallback" type="Consumer&lt;T&gt;" visibility="private"/>
+        <Field name="errorCallback" type="BiConsumer&lt;T, Object&gt;" visibility="private"/>
+        <Field name="model" type="T" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="T" name="model"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="onComplete" returnType="GameWindowBase&lt;T&gt;" visibility="public">
+          <Argument type="Consumer&lt;T&gt;" name="cb"/>
+        </Method>
+        <Method name="onError" returnType="GameWindowBase&lt;T&gt;" visibility="public">
+          <Argument type="BiConsumer&lt;T, Object&gt;" name="cb"/>
+        </Method>
+        <Method name="getModel" returnType="T" visibility="public"/>
+        <Method name="showAndWait" returnType="void" visibility="public"/>
+        <Method name="error" returnType="void" visibility="protected">
+          <Argument type="Object" name="data"/>
+        </Method>
+        <Method name="initialize" returnType="void" visibility="protected"/>
+        <Method name="complete" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="GUIHumanPlayer" package="grupp1.othello.controller" visibility="public" xPosition="1063.0" yPosition="1512.0">
+      <Fields>
+        <Field name="diskPlacement" type="DiskPlacement" visibility="private"/>
+        <Field name="lock" type="Object" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initialize" returnType="void" visibility="public"/>
+        <Method name="interrupt" returnType="void" visibility="public"/>
+        <Method name="makeNextMove" returnType="DiskPlacement" visibility="public">
+          <Argument type="GameManager" name="gameManager"/>
+        </Method>
+        <Method name="notifyInvalidMove" returnType="void" visibility="public">
+          <Argument type="DiskPlacement" name="diskPlacement"/>
+        </Method>
+        <Method name="setNextMove" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="OthelloGame" package="grupp1.othello.controller" visibility="public" xPosition="286.0" yPosition="23.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="run" returnType="void" visibility="public"/>
+        <Method name="askUserToConfigureGame" returnType="GameConfig" visibility="private"/>
+        <Method name="fork" returnType="Thread" visibility="private">
+          <Argument type="Runnable" name="runnable"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Player" package="grupp1.othello.controller" visibility="public" isAbstract="true" xPosition="611.0" yPosition="1090.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="value"/>
+        </Method>
+        <Method name="initialize" returnType="void" visibility="public" isAbstract="true"/>
+        <Method name="makeNextMove" returnType="DiskPlacement" visibility="public" isAbstract="true">
+          <Argument type="GameManager" name="gameManager"/>
+        </Method>
+        <Method name="notifyInvalidMove" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="DiskPlacement" name="diskPlacement"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="StdinHumanPlayer" package="grupp1.othello.controller" visibility="public" xPosition="279.0" yPosition="1563.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initialize" returnType="void" visibility="public"/>
+        <Method name="makeNextMove" returnType="DiskPlacement" visibility="public">
+          <Argument type="GameManager" name="gameManager"/>
+        </Method>
+        <Method name="notifyInvalidMove" returnType="void" visibility="public">
+          <Argument type="DiskPlacement" name="diskPlacement"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="InvalidMoveException" package="grupp1.othello.exception" visibility="public" xPosition="1.0" yPosition="988.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="message"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="DiskPlacement" package="grupp1.othello.model" visibility="public" xPosition="349.0" yPosition="1182.0">
+      <Fields>
+        <Field name="x" type="int" visibility="private" isFinal="true"/>
+        <Field name="y" type="int" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getX" returnType="int" visibility="public"/>
+        <Method name="getY" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="GameConfig" package="grupp1.othello.model" visibility="public" xPosition="855.0" yPosition="36.0">
+      <Fields>
+        <Field name="enable3DProperty" type="BooleanProperty" visibility="private" isFinal="true"/>
+        <Field name="player1NameProperty" type="StringProperty" visibility="private" isFinal="true"/>
+        <Field name="player1TypeProperty" type="ObjectProperty&lt;PlayerType&gt;" visibility="private" isFinal="true"/>
+        <Field name="player2NameProperty" type="StringProperty" visibility="private" isFinal="true"/>
+        <Field name="player2TypeProperty" type="ObjectProperty&lt;PlayerType&gt;" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="enable3DProperty" returnType="BooleanProperty" visibility="public" isFinal="true"/>
+        <Method name="player1NameProperty" returnType="StringProperty" visibility="public" isFinal="true"/>
+        <Method name="player1TypeProperty" returnType="ObjectProperty&lt;PlayerType&gt;" visibility="public" isFinal="true"/>
+        <Method name="player2NameProperty" returnType="StringProperty" visibility="public" isFinal="true"/>
+        <Method name="player2TypeProperty" returnType="ObjectProperty&lt;PlayerType&gt;" visibility="public" isFinal="true"/>
+        <Method name="getEnable3D" returnType="boolean" visibility="public"/>
+        <Method name="setEnable3D" returnType="void" visibility="public">
+          <Argument type="boolean" name="value"/>
+        </Method>
+        <Method name="getPlayer1Name" returnType="String" visibility="public"/>
+        <Method name="setPlayer1Name" returnType="void" visibility="public">
+          <Argument type="String" name="value"/>
+        </Method>
+        <Method name="getPlayer1Type" returnType="PlayerType" visibility="public"/>
+        <Method name="setPlayer1Type" returnType="void" visibility="public">
+          <Argument type="PlayerType" name="value"/>
+        </Method>
+        <Method name="getPlayer2Name" returnType="String" visibility="public"/>
+        <Method name="setPlayer2Name" returnType="void" visibility="public">
+          <Argument type="String" name="value"/>
+        </Method>
+        <Method name="getPlayer2Type" returnType="PlayerType" visibility="public"/>
+        <Method name="setPlayer2Type" returnType="void" visibility="public">
+          <Argument type="PlayerType" name="value"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GameGrid" package="grupp1.othello.model" visibility="public" xPosition="11.0" yPosition="499.0">
+      <Fields>
+        <Field name="DEFAULT_SIZE" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="grid" type="int[][]" visibility="private"/>
+        <Field name="gridSize" type="int" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="gridSize"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="clear" returnType="void" visibility="public"/>
+        <Method name="getSize" returnType="int" visibility="public"/>
+        <Method name="getCellData" returnType="int" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Method>
+        <Method name="setCellData" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+          <Argument type="int" name="data"/>
+        </Method>
+        <Method name="assertWithinBounds" returnType="void" visibility="private">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GameResult" package="grupp1.othello.model" visibility="public" xPosition="1140.0" yPosition="1026.0">
+      <Fields>
+        <Field name="players" type="Player[]" visibility="private"/>
+        <Field name="winner" type="Player" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getPlayers" returnType="Player[]" visibility="public"/>
+        <Method name="setPlayers" returnType="void" visibility="public">
+          <Argument type="Player" name="value"/>
+        </Method>
+        <Method name="getWinner" returnType="Player" visibility="public"/>
+        <Method name="setWinner" returnType="void" visibility="public">
+          <Argument type="Player" name="value"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PlayerFactory" package="grupp1.othello.model" visibility="public" xPosition="1204.0" yPosition="42.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="getPlayer" returnType="Player" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="PlayerType" name="type"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Othello" package="grupp1.othello" visibility="public" xPosition="28.0" yPosition="23.0">
+      <Fields>
+        <Field name="enableConsoleView" type="boolean" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="maxNameLength" type="int" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="start" returnType="void" visibility="public">
+          <Argument type="Stage" name="primaryStage"/>
+        </Method>
+        <Method name="getAuthors" returnType="String[]" visibility="private" isStatic="true"/>
+        <Method name="printIntroMessage" returnType="void" visibility="private" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="AboutGameDialog" package="grupp1.othello.view" visibility="public" xPosition="45.0" yPosition="1527.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="DrawnDialog" package="grupp1.othello.view" visibility="public" xPosition="45.0" yPosition="1391.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="GameBoard" package="grupp1.othello.view" visibility="public" xPosition="1098.0" yPosition="772.0">
+      <Fields>
+        <Field name="board" type="GridPane" visibility="private"/>
+        <Field name="gameManager" type="GameManager" visibility="private"/>
+        <Field name="marker" type="Circle[][]" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="GameManager" name="gameManager"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getGameBoard" returnType="GridPane" visibility="public"/>
+        <Method name="setPlacing" returnType="void" visibility="private">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+          <Argument type="Player" name="player"/>
+        </Method>
+        <Method name="updateGameBoard" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="GameFrame" package="grupp1.othello.view" visibility="public" xPosition="1040.0" yPosition="546.0">
+      <Fields>
+        <Field name="primaryStage" type="Stage" visibility="private"/>
+        <Field name="board" type="GameBoard" visibility="private"/>
+        <Field name="gameManager" type="GameManager" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Stage" name="primaryStage"/>
+          <Argument type="GameManager" name="gameManager"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="displayEnd" returnType="void" visibility="private">
+          <Argument type="GameResult" name="result"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="InvalidMoveDialog" package="grupp1.othello.view" visibility="public" xPosition="45.0" yPosition="1121.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="StdoutGameView" package="grupp1.othello.view" visibility="public" xPosition="266.0" yPosition="1779.0">
+      <Fields>
+        <Field name="gameManager" type="GameManager" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="GameManager" name="gameManager"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="notifyInvalidMove" returnType="void" visibility="private">
+          <Argument type="Player" name="player"/>
+          <Argument type="DiskPlacement" name="diskPlacement"/>
+        </Method>
+        <Method name="printGrid" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="WinnerDialog" package="grupp1.othello.view" visibility="public" xPosition="14.0" yPosition="1258.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="GameResult" name="result"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Enum name="PlayerType" package="grupp1.othello.model" visibility="public" xPosition="1265.0" yPosition="212.0">
+      <Literals>
+        <Literal name="COMPUTER"/>
+        <Literal name="HUMAN"/>
+      </Literals>
+    </Enum>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="grupp1.othello.controller.ComputerPlayer" target="grupp1.othello.model.DiskPlacement" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="player1TypeProperty" source="grupp1.othello.model.GameConfig" target="grupp1.othello.model.PlayerType" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="invalidMoveCallbacks" source="grupp1.othello.controller.GameManager" target="grupp1.othello.model.DiskPlacement" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;BiConsumer&lt;Player, DiskPlacement&gt;&gt;"/>
+    <UseRelation source="grupp1.othello.view.GameFrame" target="grupp1.othello.model.GameResult" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="gameOverCallbacks" source="grupp1.othello.controller.GameManager" target="grupp1.othello.model.GameResult" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Consumer&lt;GameResult&gt;&gt;"/>
+    <UseRelation source="grupp1.othello.controller.OthelloGame" target="grupp1.othello.model.GameConfig" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="grupp1.othello.controller.ConfigDialog" target="grupp1.othello.controller.GameWindowBase"/>
+    <UseRelation source="grupp1.othello.controller.StdinHumanPlayer" target="grupp1.othello.model.DiskPlacement" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="player2TypeProperty" source="grupp1.othello.model.GameConfig" target="grupp1.othello.model.PlayerType" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="grupp1.othello.controller.GameWindowBase" target="grupp1.othello.controller.GameWindowBase" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="grupp1.othello.controller.GUIHumanPlayer" target="grupp1.othello.model.DiskPlacement" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="grupp1.othello.controller.GameManager" target="grupp1.othello.controller.Player" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="grupp1.othello.controller.FX3DGameWindow" target="grupp1.othello.controller.GameWindowBase"/>
+    <UseRelation source="grupp1.othello.controller.Player" target="grupp1.othello.model.DiskPlacement" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="grupp1.othello.view.GameBoard" target="grupp1.othello.controller.Player" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="winner" source="grupp1.othello.model.GameResult" target="grupp1.othello.controller.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="gameGrid" source="grupp1.othello.controller.GameManager" target="grupp1.othello.model.GameGrid" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="diskPlacedCallbacks" source="grupp1.othello.controller.GameManager" target="grupp1.othello.model.DiskPlacement" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;BiConsumer&lt;Player, DiskPlacement&gt;&gt;"/>
+    <HasRelation name="gameManager" source="grupp1.othello.view.GameBoard" target="grupp1.othello.controller.GameManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="grupp1.othello.model.GameResult" target="grupp1.othello.controller.Player" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="grupp1.othello.view.StdoutGameView" target="grupp1.othello.model.DiskPlacement" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="diskPlacement" source="grupp1.othello.controller.GUIHumanPlayer" target="grupp1.othello.model.DiskPlacement" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="grupp1.othello.model.PlayerFactory" target="grupp1.othello.model.PlayerType" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="player2" source="grupp1.othello.controller.GameManager" target="grupp1.othello.controller.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="player1" source="grupp1.othello.controller.GameManager" target="grupp1.othello.controller.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="grupp1.othello.controller.GameManager" target="grupp1.othello.model.GameResult" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="gameManager" source="grupp1.othello.view.GameFrame" target="grupp1.othello.controller.GameManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="board" source="grupp1.othello.view.GameFrame" target="grupp1.othello.view.GameBoard" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="grupp1.othello.controller.ComputerPlayer" target="grupp1.othello.controller.Player"/>
+    <IsRelation name="is" source="grupp1.othello.controller.StdinHumanPlayer" target="grupp1.othello.controller.Player"/>
+    <IsRelation name="is" source="grupp1.othello.controller.GUIHumanPlayer" target="grupp1.othello.controller.Player"/>
+    <HasRelation name="gameManager" source="grupp1.othello.view.StdoutGameView" target="grupp1.othello.controller.GameManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="grupp1.othello.model.GameConfig" target="grupp1.othello.model.PlayerType" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="grupp1.othello.controller.GameManager" target="grupp1.othello.model.GameGrid" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="gameManager" source="grupp1.othello.controller.FX3DGameWindow" target="grupp1.othello.controller.GameManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="grupp1.othello.controller.GameManager" target="grupp1.othello.model.DiskPlacement" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="grupp1.othello.controller.FX3DGameWindow" target="grupp1.othello.model.GameResult" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

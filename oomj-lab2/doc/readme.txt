@@ -1,4 +1,4 @@
-1. Varför triggas inte bindings för .selectedToggleProperty() automatiskt i
+﻿1. Varför triggas inte bindings för .selectedToggleProperty() automatiskt i
    ConfigDialog.setupBindings() när man klickar på en annan radioknapp? Det
    måste vi ta reda på!
 
@@ -15,4 +15,5 @@
    ligger inuti klasser så är den nivån syntaktiskt självklar och behövs inte
    indenteras. Dvs, alla mina metoder ligger längst ut mot marginalen trots att
    de ligger inuti klassens 'måsvingar'. Därav sparar man 4 tecken i bredd på
-   varje rad. Fantastiskt! Tankar om detta? :-)
+   varje rad. Fantastiskt! Tankar om detta? :-) 
+   //Martin instämmer i resonemanget och gör likadant.
