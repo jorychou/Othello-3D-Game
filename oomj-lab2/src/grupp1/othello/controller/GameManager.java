@@ -53,6 +53,11 @@ public static final int PLAYER_TWO = 2;
 private int currentPlayerIndex;
 
 /**
+ * Indicates whether the game is done.
+ */
+private boolean exitGame;
+
+/**
  * The game grid to play on.
  */
 private final GameGrid gameGrid;
@@ -278,19 +283,22 @@ public GameManager onInvalidMove(BiConsumer<Player, DiskPlacement> cb) {
  * @return The game result.
  */
 public GameResult play() {
-    GameResult result = new GameResult();
-
-    boolean done = false;
-    while (!done) {
+    exitGame = false;
+    while (!exitGame) {
         playOneTurn(player1, PLAYER_ONE);
+        if (exitGame) break;
+
         playOneTurn(player2, PLAYER_TWO);
+        if (exitGame) break;
 
         if (findValidDiskPlacements(PLAYER_ONE).length == 0
          && findValidDiskPlacements(PLAYER_TWO).length == 0)
         {
-            done = true;
+            exitGame = true;
         }
     }
+
+    GameResult result = new GameResult();
 
     int player1Score = getCurrentScore(PLAYER_ONE);
     int player2Score = getCurrentScore(PLAYER_TWO);
@@ -304,6 +312,13 @@ public GameResult play() {
     gameOver(result);
 
     return (result);
+}
+
+/**
+ * Quits the game on the next turn.
+ */
+public void quit() {
+    exitGame = true;
 }
 
 /*------------------------------------------------
@@ -371,13 +386,17 @@ private void playOneTurn(Player player, int playerIndex) {
     if (findValidDiskPlacements(playerIndex).length == 0)
         return;
 
-    boolean done = false;
-    while (!done) {
+    boolean validMoveMade = false;
+    while (!validMoveMade) {
         DiskPlacement diskPlacement = player.makeNextMove(this);
+
+        if (exitGame)
+            return;
+
         try {
             placeDisk(diskPlacement, playerIndex);
             diskPlaced(player, diskPlacement);
-            done = true;
+            validMoveMade = true;
         }
         catch (InvalidMoveException e) {
             invalidMove(player, diskPlacement);

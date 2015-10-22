@@ -60,7 +60,10 @@ public void run() {
     // 3. GUI THREAD
     //--------------------------------------------
 
-    GameFrame gameFrame = new GameFrame(new Stage(), gameManager);
+    if (config.getEnable3D())
+        new FX3DGameWindow(gameManager).showAndWait();
+    else
+        new GameFrame(new Stage(), gameManager);
 }
 
 /*------------------------------------------------

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.animation.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<!--
+ - This is the FXML describing the 3D game view. Hand made from scratch! ;-)
+ -
+ - @author Philip Arvidsson (S133686)
+-->
+<Scene stylesheets="@/css/default.css" xmlns="http://javafx.com/javafx/8"
+       xmlns:fx="http://javafx.com/fxml/1">
+   <Group>
+       <ImageView>
+           <Image url="/images/background.jpg" />
+       </ImageView>
+
+       <SubScene width="720" height="640" depthBuffer="true">
+            <antiAliasing>
+                <SceneAntialiasing fx:constant="BALANCED" />
+            </antiAliasing>
+
+            <camera>
+                <PerspectiveCamera translateX="0.0" translateY="0.0"
+                                   translateZ="0.0" />
+            </camera>
+
+            <root>
+                <Group fx:id="gameBoardGroup" translateX="350.0"
+                       translateY="310.0" translateZ="800.0">
+                    <PointLight color="#b0b0b0" translateX="-100.0"
+                                translateY="-80.0" translateZ="-160.0" />
+                    <PointLight color="#909090" translateX="200.0"
+                                translateY="50.0" translateZ="-120.0" />
+                    <PointLight color="#c0c0c0" translateX="-180.0"
+                                translateY="160.0" translateZ="-190.0" />
+
+                    <!-- Hax to prevent group from readjusting center point! I'm
+                         sure there is a better way to do this. One that isn't
+                         retarded. -->
+                    <Box width="0.0" height="0.0" depth="5000.0" />
+                    <Box width="5000.0" height="0.0" depth="0.0" />
+                    <Box width="0.0" height="5000.0" depth="0.0" />
+
+                    <Box width="500.0" height="500.0" depth="20.0">
+                        <material>
+                            <PhongMaterial>
+                                <diffuseMap>
+                                    <Image url="/images/gameboard_tex.jpg" />
+                                </diffuseMap>
+                            </PhongMaterial>
+                        </material>
+                    </Box>
+
+                    <Group fx:id="gameDisksGroup" />
+                    <Group fx:id="validMovesGroup" />
+                </Group>
+            </root>
+        </SubScene>
+
+        <!-- After SubScene because z-order is important! -->
+
+        <Group fx:id="scoreGroup">
+            <HBox alignment="top_center" spacing="20" prefWidth="720">
+                <StackPane alignment="top_center">
+                    <Circle radius="32" style="-fx-fill: black; -fx-stroke: white; -fx-stroke-width: 2;" />
+                    <Text fx:id="blackPlayerScore" style="-fx-font-size: 36; -fx-font-weight: bold; -fx-fill: white; -fx-translate-y: 7;" />
+                </StackPane>
+                <Text fx:id="versusText" style="-fx-font-size: 42; -fx-font-weight: bold; -fx-stroke: white; -fx-stroke-width: 2; -fx-fill: black;" />
+                <StackPane alignment="top_center">
+                    <Circle radius="32" style="-fx-fill: white; -fx-stroke: black; -fx-stroke-width: 2;" />
+                    <Text fx:id="whitePlayerScore" style="-fx-font-size: 36; -fx-font-weight: bold; -fx-fill: black; -fx-translate-y: 7;" />
+                </StackPane>
+
+                <padding>
+                    <Insets top="20" right="0" bottom="0" left="0" />
+                </padding>
+            </HBox>
+        </Group>
+
+        <Group fx:id="winnerGroup" visible="false">
+            <Rectangle fill="#000000a0" width="720" height="640" />
+
+            <FlowPane translateX="136" translateY="62" columnHalignment="center" rowValignment="center">
+                <Text text="Watch out guys, we're" style="-fx-font-size: 46; -fx-font-weight: bold; -fx-stroke: white; -fx-stroke-width: 1; -fx-fill: black;" />
+                <Text text="dealing with a " style="-fx-font-size: 48; -fx-font-weight: bold; -fx-stroke: white; -fx-stroke-width: 1; -fx-fill: black;" />
+                <Text text="badass" style="-fx-font-size: 58; -fx-font-weight: bold; -fx-stroke: white; -fx-stroke-width: 2; -fx-fill: black;" />
+                <Text text=" over here!" style="-fx-font-size: 42; -fx-font-weight: bold; -fx-stroke: white; -fx-stroke-width: 1; -fx-fill: black;" />
+            </FlowPane>
+
+            <ImageView translateX="32" translateY="296">
+                <Image url="/images/crown.png" />
+            </ImageView>
+
+            <Text fx:id="winnerText" translateX="156" translateY="456" style="-fx-font-size: 76; -fx-font-weight: bold; -fx-stroke: white; -fx-stroke-width: 2; -fx-fill: black;" />
+        </Group>
+
+        <Group fx:id="buttonGroup">
+            <VBox translateX="648" translateY="118" spacing="16">
+                <ImageView fx:id="switchCamera" style="-fx-cursor: hand;">
+                    <Image url="/images/camera.png" />
+                </ImageView>
+            </VBox>
+
+            <HBox translateX="550" translateY="598" spacing="26">
+                <Button fx:id="newGameButton" text="NEW GAME" defaultButton="true"
+                        scaleX="1.2" scaleY="1.2" />
+                <Button fx:id="exitButton" text="EXIT" scaleX="1.2" scaleY="1.2" />
+            </HBox>
+        </Group>
+    </Group>
+
+    <fx:define>
+        <RotateTransition fx:id="boardRotateTransition" byAngle="-30.0" node="$gameBoardGroup" duration="3000ms">
+            <axis>
+                <Point3D x="1.0" y="0.4" z="0.25" />
+            </axis>
+        </RotateTransition>
+        <TranslateTransition fx:id="boardTranslateTransition" byZ="-960.0" node="$gameBoardGroup" duration="3000ms" />
+    </fx:define>
+</Scene>

@@ -58,7 +58,7 @@ public DiskPlacement makeNextMove(GameManager gameManager) {
 
     // Look thoughtful for a bit. :-)
     try {
-        Thread.sleep(ThreadLocalRandom.current().nextInt(500, 2000));
+        Thread.sleep(ThreadLocalRandom.current().nextInt(1000, 2000));
     }
     catch (InterruptedException e) {}
 

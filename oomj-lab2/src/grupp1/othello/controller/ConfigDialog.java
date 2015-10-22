@@ -4,6 +4,8 @@ package grupp1.othello.controller;
  * IMPORTS
  *----------------------------------------------*/
 
+import grupp1.othello.Othello;
+import grupp1.othello.controller.GameWindowBase;
 import grupp1.othello.model.GameConfig;
 import grupp1.othello.model.PlayerType;
 
@@ -11,6 +13,7 @@ import javafx.animation.RotateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -29,6 +32,9 @@ public class ConfigDialog extends GameWindowBase<GameConfig> {
 /*------------------------------------------------
  * FIELDS
  *----------------------------------------------*/
+
+@FXML
+private CheckBox enable3D;
 
 /**
  * Button for accepting the configuration.
@@ -117,6 +123,8 @@ protected void initialize() {
  * Sets up all bindings.
  */
 private void setupBindings() {
+    enable3D.selectedProperty().bindBidirectional(
+        getModel().enable3DProperty());
     player1Name.textProperty().bindBidirectional(
         getModel().player1NameProperty());
 
@@ -156,12 +164,27 @@ private void setupBindings() {
         getModel().setPlayer2Type((PlayerType)data);
     });
 
-    // Disable play button when a name is missing.
+    // Disable play button when a name is missing. Also make sure names are not
+    // too long.
     playButton.disableProperty().bind(
-        Bindings.createBooleanBinding(() ->
+        Bindings.createBooleanBinding(() -> {
+            if (player1Name.getText().length() > Othello.maxNameLength) {
+                player1Name.setText(
+                    player1Name.getText().substring(0, Othello.maxNameLength)
+                );
+            }
+
+            if (player2Name.getText().length() > Othello.maxNameLength) {
+                player2Name.setText(
+                    player2Name.getText().substring(0, Othello.maxNameLength)
+                );
+            }
+
+            return (player1Name.getText().length() == 0)
+                || (player2Name.getText().length() == 0);
+        },
             // Value binding.
-            (player1Name.getText().length() == 0)
-         || (player2Name.getText().length() == 0),
+
 
             // Dependencies.
             player1Name.textProperty(),

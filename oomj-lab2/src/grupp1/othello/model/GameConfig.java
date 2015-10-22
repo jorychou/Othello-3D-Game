@@ -4,10 +4,12 @@ package grupp1.othello.model;
  * IMPORTS
  *----------------------------------------------*/
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.StringProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /*------------------------------------------------
  * CLASS
@@ -23,6 +25,12 @@ public class GameConfig {
 /*------------------------------------------------
  * FIELDS
  *----------------------------------------------*/
+
+/**
+ * Enable 3D view property.
+ */
+private final BooleanProperty enable3DProperty =
+    new SimpleBooleanProperty(false);
 
 /**
  * First player's name property.
@@ -49,6 +57,15 @@ private final ObjectProperty<PlayerType> player2TypeProperty =
 /*------------------------------------------------
  * PUBLIC METHODS
  *----------------------------------------------*/
+
+/**
+ * Gets the enable 3D view property.
+ *
+ * @return The enable 3D view property.
+ */
+public final BooleanProperty enable3DProperty() {
+    return (enable3DProperty);
+}
 
 /**
  * Gets the first player's name property.
@@ -84,6 +101,24 @@ public final StringProperty player2NameProperty() {
  */
 public final ObjectProperty<PlayerType> player2TypeProperty() {
     return (player2TypeProperty);
+}
+
+/**
+ * Gets whether 3D view should be enabled.
+ *
+ * @return True if 3D view should be enabled.
+ */
+public boolean getEnable3D() {
+    return (enable3DProperty.getValue());
+}
+
+/**
+ * Sets whether 3D view should be enabled.
+ *
+ * @param value True to enable 3D view.
+ */
+public void setEnable3D(boolean value) {
+    enable3DProperty.setValue(value);
 }
 
 /**

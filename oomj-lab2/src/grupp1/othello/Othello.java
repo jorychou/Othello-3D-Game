@@ -29,6 +29,11 @@ public class Othello extends Application {
  */
 public static final boolean enableConsoleView = true;
 
+/**
+ * Max player name length.
+ */
+public static final int maxNameLength = 10;
+
 /*------------------------------------------------
  * PUBLIC METHODS
  *----------------------------------------------*/
@@ -68,8 +73,10 @@ public void start(Stage primaryStage) {
  * @return An array of strings with the program authors' names.
  */
 private static String[] getAuthors() {
-    return new String[] { "Philip Arvidsson (S133686)",
-                          "Martin Bergqvist (S141564)" };
+    return new String[] {
+        "Philip Arvidsson (S133686/contact@philiparvidsson.com)",
+        "Martin Bergqvist (S141564)"
+    };
 }
 
 /**

@@ -43,8 +43,8 @@
                     <Group fx:id="diskXform1">
                         <Group fx:id="diskXform2">
                             <Group rotate="90.0">
-                                <Cylinder  radius="24.0" height="3.0"
-                                           translateY="1.5">
+                                <Cylinder radius="24.0" height="3.0"
+                                          translateY="1.5">
                                     <material>
                                         <PhongMaterial diffuseColor="white"
                                                        specularColor="white" />
@@ -163,6 +163,8 @@
                 </userData>
             </RadioButton>
         </HBox>
+
+        <CheckBox fx:id="enable3D" text="Enable mega awesome 3D view (seriously not for noobs)" />
 
         <HBox alignment="center_left" spacing="26">
             <padding>

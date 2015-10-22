@@ -7,6 +7,10 @@ Button {
     -fx-font-weight: bold;
 }
 
+CheckBox {
+    -fx-text-fill: #cccccc;
+}
+
 Label {
     -fx-text-fill: #cccccc;
 }

@@ -5,8 +5,6 @@ package grupp1.othello.controller;
  *----------------------------------------------*/
 
 import grupp1.othello.model.DiskPlacement;
-import grupp1.othello.view.InvalidMoveDialog;
-import javafx.application.Platform;
 
 /*------------------------------------------------
  * CLASS
@@ -53,6 +51,16 @@ public GUIHumanPlayer(String name) {
 public void initialize() {}
 
 /**
+ * Interrupts the player.
+ */
+public void interrupt() {
+    synchronized (lock) {
+        diskPlacement = null;
+        lock.notify();
+    }
+}
+
+/**
  * Asks the player to place a disk on the grid.
  *
  * @param gameManager The game manager requesting the move.
@@ -67,13 +75,11 @@ public DiskPlacement makeNextMove(GameManager gameManager) {
         }
         catch (InterruptedException e) {
             // Not much we can do here.
+            return (null);
         }
 
         DiskPlacement result = diskPlacement;
         diskPlacement = null;
-
-        // This should never happen.
-        assert(result != null);
 
         return (result);
     }
@@ -85,10 +91,7 @@ public DiskPlacement makeNextMove(GameManager gameManager) {
  * @param diskPlacement The invalid disk placement.
  */
 @Override
-public void notifyInvalidMove(DiskPlacement diskPlacement) {
-    Platform.runLater(() -> new InvalidMoveDialog());
-
-}
+public void notifyInvalidMove(DiskPlacement diskPlacement) {}
 
 /**
  * Sets the next move (and allows the makeNextMove() method to stop blocking
