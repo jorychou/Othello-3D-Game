@@ -9,6 +9,7 @@ import grupp1.othello.controller.Player;
 import grupp1.othello.model.GameGrid;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.effect.*;
@@ -16,6 +17,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 /*------------------------------------------------
  * CLASS
@@ -64,8 +67,9 @@ public GameBoard(GameManager gameManager){
             Button tile = new Button();
             tile.setMinSize(60,60);
             tile.setMaxSize(60,60);
-            tile.setStyle("-fx-border-color: white; "
-                    + "-fx-background-color: transparent");
+            tile.setStyle("-fx-color: transparent;"
+                    + "-fx-border-color: white;"
+                    + "-fx-faint-focus-color: darkgreen;");
             marker[column][row] = new Circle(20, Color.TRANSPARENT);   
             marker[column][row].setMouseTransparent(true);
             GridPane.setRowIndex(tile, row);
@@ -77,6 +81,13 @@ public GameBoard(GameManager gameManager){
                 setPlacing(GridPane.getColumnIndex(tile),
                         GridPane.getRowIndex(tile),
                         gameManager.getCurrentPlayer());
+            });
+            tile.setOnKeyPressed((KeyEvent event) -> {
+                Button temp = (Button)event.getSource();
+                if(event.getCode() == KeyCode.ENTER && temp.isFocused())
+                    setPlacing(GridPane.getColumnIndex(tile), 
+                            GridPane.getRowIndex(tile), 
+                            gameManager.getCurrentPlayer());
             });
             board.getChildren().add(tile);
         }
