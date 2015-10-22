@@ -11,7 +11,7 @@ public class AboutGameDialog{
     /**
      * Dialog about the Game
      */
-    public void AboutGameDialog(){
+    public AboutGameDialog(){
         Alert aboutGame = new Alert(Alert.AlertType.INFORMATION);
         aboutGame.setTitle("About Othello: Not for N00bs Edition");
         aboutGame.setHeaderText(null);

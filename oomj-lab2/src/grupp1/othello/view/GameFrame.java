@@ -45,8 +45,6 @@ public GameFrame(Stage primaryStage, GameManager gameManager) {
     this.primaryStage = primaryStage;
     this.gameManager = gameManager;
 
-    AboutGameDialog aboutGame = new AboutGameDialog();
-
     BorderPane borderPane = new BorderPane();
     borderPane.setStyle("-fx-background: #202020;");
 
@@ -61,7 +59,7 @@ public GameFrame(Stage primaryStage, GameManager gameManager) {
                                     new OthelloGame().run();
                                 });
     exitMenuItem.setOnAction(actionEvent -> System.exit(0));
-    aboutMenuItem.setOnAction(actionEvent -> aboutGame.AboutGameDialog());
+    aboutMenuItem.setOnAction(actionEvent -> new AboutGameDialog());
 
     gameMenu.getItems().addAll(newMenuItem, new SeparatorMenuItem(),
              new SeparatorMenuItem(), exitMenuItem);
