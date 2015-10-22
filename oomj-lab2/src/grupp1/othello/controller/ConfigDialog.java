@@ -5,7 +5,6 @@ package grupp1.othello.controller;
  *----------------------------------------------*/
 
 import grupp1.othello.Othello;
-import grupp1.othello.controller.GameWindowBase;
 import grupp1.othello.model.GameConfig;
 import grupp1.othello.model.PlayerType;
 

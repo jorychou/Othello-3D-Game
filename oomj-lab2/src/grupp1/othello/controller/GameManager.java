@@ -209,7 +209,7 @@ public boolean isValidMove(int x, int y, int player) {
 /**
  * Finds all valid disk placements and returns them in an array.
  *
- * @param The index of the player to find all possible disk placements for.
+     * @param player
  *
  * @return An array containing all valid moves for the specified player.
  */

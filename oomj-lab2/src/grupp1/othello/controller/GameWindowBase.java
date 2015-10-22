@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  * Provides an intermediary FXML loader class that automatically loads its
  * associated view upon instantiation.
  *
- * @param T The type of the model associated with the controller (stage).
+ * @param <T>
  *
  * @author Philip Arvidsson (S133686)
  */

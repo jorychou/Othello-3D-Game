@@ -22,7 +22,7 @@ public class InvalidMoveDialog{
  *----------------------------------------------*/
     
 /**
- * 
+ * Error-dialog for instances of attempt at invalid moves
  */
 public InvalidMoveDialog(){
     Alert nope = new Alert(Alert.AlertType.ERROR);

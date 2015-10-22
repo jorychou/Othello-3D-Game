@@ -97,8 +97,8 @@ public void notifyInvalidMove(DiskPlacement diskPlacement) {}
  * Sets the next move (and allows the makeNextMove() method to stop blocking
  * and instead return the move specified by the call to this method).
  *
- * @param The x-coordinate of the disk placement.
- * @param The y-coordinate of the disk placement.
+     * @param x
+     * @param y
  */
 public void setNextMove(int x, int y) {
     synchronized (lock) {

@@ -4,9 +4,6 @@ package grupp1.othello.controller;
  * IMPORTS
  *----------------------------------------------*/
 
-import grupp1.othello.controller.GameWindowBase;
-import grupp1.othello.controller.GUIHumanPlayer;
-import grupp1.othello.controller.Player;
 import grupp1.othello.model.GameResult;
 
 import java.util.Stack;
@@ -16,11 +13,9 @@ import javafx.animation.PauseTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.geometry.Point3D;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

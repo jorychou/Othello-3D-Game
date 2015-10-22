@@ -61,7 +61,7 @@ public GameFrame(Stage primaryStage, GameManager gameManager) {
                                     new OthelloGame().run();
                                 });
     exitMenuItem.setOnAction(actionEvent -> System.exit(0));
-    aboutMenuItem.setOnAction(actionEvent -> aboutGame.aboutGameDialog());
+    aboutMenuItem.setOnAction(actionEvent -> aboutGame.AboutGameDialog());
 
     gameMenu.getItems().addAll(newMenuItem, new SeparatorMenuItem(),
              new SeparatorMenuItem(), exitMenuItem);

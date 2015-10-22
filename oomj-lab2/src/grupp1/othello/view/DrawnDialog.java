@@ -21,7 +21,7 @@ public class DrawnDialog{
  *----------------------------------------------*/
 
 /**
- * 
+ * Dialog for the end-game scenario Draw
  */
 public DrawnDialog(){
     Alert drawn = new Alert(Alert.AlertType.INFORMATION);

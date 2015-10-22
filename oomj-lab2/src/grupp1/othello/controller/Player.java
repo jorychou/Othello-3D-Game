@@ -77,6 +77,12 @@ public abstract DiskPlacement makeNextMove(GameManager gameManager);
  *
  * @param diskPlacement The invalid disk placement.
  */
+
+    /**
+     *
+     * @param diskPlacement
+     */
+    
 public abstract void notifyInvalidMove(DiskPlacement diskPlacement);
 
 }

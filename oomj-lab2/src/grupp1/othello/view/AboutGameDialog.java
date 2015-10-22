@@ -1,15 +1,17 @@
 package grupp1.othello.view;
 
 import javafx.scene.control.Alert;
-import javafx.scene.control.Dialog;
 
 /**
  *
  * @author Martin Bergqvist (S141564)
  */
-public class AboutGameDialog extends Dialog{
+public class AboutGameDialog{
 
-public void aboutGameDialog(){
+    /**
+     * Dialog about the Game
+     */
+    public void AboutGameDialog(){
         Alert aboutGame = new Alert(Alert.AlertType.INFORMATION);
         aboutGame.setTitle("About Othello: Not for N00bs Edition");
         aboutGame.setHeaderText(null);

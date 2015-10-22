@@ -7,7 +7,6 @@ package grupp1.othello.model;
 import grupp1.othello.controller.ComputerPlayer;
 import grupp1.othello.controller.GUIHumanPlayer;
 import grupp1.othello.controller.Player;
-import grupp1.othello.model.PlayerType;
 
 /*------------------------------------------------
  * CLASS
